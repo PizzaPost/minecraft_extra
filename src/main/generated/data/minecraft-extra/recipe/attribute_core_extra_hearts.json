@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "minecraft_extra:attribute_core",
+  "ingredients": [
+    {
+      "item": "minecraft_extra:attribute_core"
+    },
+    {
+      "item": "minecraft_extra:heart"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:attribute_core_extra_hearts"
+  }
+}

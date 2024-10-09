@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "minecraft-extra",
+	"version": "${version}",
+	"name": "minecraft extra",
+	"description": "This is the minecraft extra mod by PizzaPost!",
+	"authors": [
+		"PizzaPost"
+	],
+	"contact": {
+		"homepage": "https://pizzapost.com/",
+		"sources": "https://github.com/PizzaPost/fabric-minecraft-extra-1.21.X"
+	},
+	"license": "MIT",
+	"icon": "assets/minecraft_extra/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"de.pizzapost.minecraft_extra.MinecraftExtra"
+		],
+		"fabric-datagen": [
+			"de.pizzapost.minecraft_extra.MinecraftExtraDataGenerator"
+		],
+		"client": [
+			"de.pizzapost.minecraft_extra.MinecraftExtraClient"
+		]
+	},
+	"mixins": [
+		"minecraft-extra.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.5",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

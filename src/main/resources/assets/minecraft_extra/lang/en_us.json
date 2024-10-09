@@ -1,0 +1,24 @@
+{
+  "actionbar.minecraft_extra.gravity_message": "Your gravity is: %s",
+  "actionbar.minecraft_extra.scale_message": "Your scale is: %s",
+  "actionbar.minecraft_extra.break_crop_message": "Sneak to break the block.",
+
+  "item.minecraft_extra.attribute_core": "Attribute Core",
+  "item.minecraft_extra.attribute_core_extra_hearts": "Attribute Core",
+  "item.minecraft_extra.attribute_core_gravity": "Attribute Core",
+  "item.minecraft_extra.attribute_core_scaled": "Attribute Core",
+  "item.minecraft_extra.attribute_core_spicy": "Attribute Core",
+  "item.minecraft_extra.attribute_core_spikes": "Attribute Core",
+  "item.minecraft_extra.heart": "Heart",
+  "item.minecraft_extra.infinite_potato": "Infinite Potato",
+  "item.minecraft_extra.weather_item": "Weather Item",
+  "item.minecraft_extra.rotten_chunk": "Rotten Chunk",
+  "item.minecraft_extra.lootbox": "Lootbox",
+  "item.minecraft_extra.hardened_netherite_ingot": "Hardened Netherite Ingot",
+  "item.minecraft_extra.flute": "Flute",
+  "item.minecraft_extra.gravity_shard": "Gravity Shard",
+  "item.minecraft_extra.tp_stick": "Teleportation Stick",
+  "item.minecraft_extra.lightning_stick": "Lightning Stick",
+
+  "itemgroup.minecraft_extra.minecraft_extra_items": "Minecraft Extra"
+}

@@ -1,0 +1,42 @@
+{
+  "flute": {
+    "subtitle":"Flute",
+    "sounds": [
+      "minecraft_extra:flute/song0",
+      "minecraft_extra:flute/song1",
+      "minecraft_extra:flute/song2",
+      "minecraft_extra:flute/song3",
+      "minecraft_extra:flute/song4"
+    ]
+  },
+  "super_fertilizer": {
+    "subtitle":"Super Fertilizer",
+    "sounds": [
+      "minecraft_extra:super_fertilizer"
+    ]
+  },
+  "change_weather": {
+    "subtitle":"Changing Weather",
+    "sounds": [
+      "minecraft_extra:change_weather"
+    ]
+  },
+  "giant.death": {
+    "subtitle":"Giant Dies",
+    "sounds": [
+      "minecraft_extra:giant/giant_death"
+    ]
+  },
+  "attribute_core.use": {
+    "subtitle":"Used Attribute Core",
+    "sounds": [
+      "minecraft_extra:attribute_core/attribute_core_use"
+    ]
+  },
+  "wireless_redstone.send": {
+    "subtitle":"Wireless Redstone Ambient",
+    "sounds": [
+      "minecraft_extra:wireless_redstone/wireless_redstone_send"
+    ]
+  }
+}

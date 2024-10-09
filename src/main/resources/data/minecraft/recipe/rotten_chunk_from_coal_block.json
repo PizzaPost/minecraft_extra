@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "minecraft_extra:rotten_chunk",
+  "ingredients": [
+    {
+      "item": "minecraft:coal_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "minecraft_extra:rotten_chunk"
+  }
+}

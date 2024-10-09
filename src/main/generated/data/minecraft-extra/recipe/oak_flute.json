@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "minecraft_extra:flute",
+  "key": {
+    "n": {
+      "item": "minecraft:note_block"
+    },
+    "p": {
+      "item": "minecraft:oak_planks"
+    }
+  },
+  "pattern": [
+    "pnp"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:flute"
+  }
+}

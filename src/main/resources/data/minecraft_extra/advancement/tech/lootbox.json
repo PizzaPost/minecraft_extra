@@ -1,0 +1,18 @@
+{
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:using_item",
+      "conditions": {
+        "item": {
+          "items": "minecraft_extra:lootbox"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "minecraft_extra:tech/lootbox",
+    "loot": [
+      "minecraft_extra:lootbox"
+    ]
+  }
+}
