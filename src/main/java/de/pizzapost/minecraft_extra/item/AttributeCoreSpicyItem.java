@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
@@ -22,6 +23,7 @@ public class AttributeCoreSpicyItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
+        player.incrementStat(Stats.USED.getOrCreateStat(this));
         if (!world.isClient() && world instanceof ServerWorld serverWorld) {
             Vec3d position = player.getPos();
             Box area = new Box(position.subtract(8, 8, 8), position.add(8, 8, 8));

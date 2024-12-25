@@ -8,6 +8,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -29,6 +30,7 @@ public class WeatherItemItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         Random rand=new Random();
+        player.incrementStat(Stats.USED.getOrCreateStat(this));
         int random=rand.nextInt(3);
         if (!world.isClient() && player instanceof ServerPlayerEntity serverPlayer) {
             MinecraftServer server = serverPlayer.getServer();

@@ -3,6 +3,8 @@
   "actionbar.minecraft_extra.scale_message": "Your scale is: %s",
   "actionbar.minecraft_extra.break_crop_message": "Sneak to break the block.",
 
+  "effect.minecraft_extra.spider": "Spider",
+
   "item.minecraft_extra.attribute_core": "Attribute Core",
   "item.minecraft_extra.attribute_core_extra_hearts": "Attribute Core",
   "item.minecraft_extra.attribute_core_gravity": "Attribute Core",
@@ -15,10 +17,26 @@
   "item.minecraft_extra.rotten_chunk": "Rotten Chunk",
   "item.minecraft_extra.lootbox": "Lootbox",
   "item.minecraft_extra.hardened_netherite_ingot": "Hardened Netherite Ingot",
+  "item.minecraft_extra.hardened_netherite_helmet": "Hardened Netherite Helmet",
+  "item.minecraft_extra.hardened_netherite_chestplate": "Hardened Netherite Chestplate",
+  "item.minecraft_extra.hardened_netherite_leggings": "Hardened Netherite Leggings",
+  "item.minecraft_extra.hardened_netherite_boots": "Hardened Netherite Boots",
   "item.minecraft_extra.flute": "Flute",
   "item.minecraft_extra.gravity_shard": "Gravity Shard",
   "item.minecraft_extra.tp_stick": "Teleportation Stick",
   "item.minecraft_extra.lightning_stick": "Lightning Stick",
+  "item.minecraft_extra.icebomb": "Ice Bomb",
+  "item.minecraft_extra.throwable_fire_charge": "Throwable Firecharge",
 
-  "itemgroup.minecraft_extra.minecraft_extra_items": "Minecraft Extra"
+  "itemgroup.minecraft_extra.minecraft_extra_items": "Minecraft Extra",
+
+  "key.minecraft_extra.jump_boost": "Jump Boost",
+
+  "sound.minecraft_extra.flute": "Flute Plays",
+  "sound.minecraft_extra.super_fertilizer": "Super Fertilizer Used",
+  "sound.minecraft_extra.changed_weather": "Change Weather",
+  "sound.minecraft_extra.giant_dies": "Giant Dies",
+  "sound.minecraft_extra.used_attribute_core": "Attribute Core Used",
+  "sound.minecraft_extra.wireless_redstone_send": "Wireless Redstone Signal Sent",
+  "sound.minecraft_extra.icebomb": "Icebomb Used"
 }

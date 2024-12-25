@@ -1,19 +1,26 @@
 package de.pizzapost.minecraft_extra;
 
+import de.pizzapost.minecraft_extra.effect.ModEffects;
+import de.pizzapost.minecraft_extra.entity.ModEntities;
 import de.pizzapost.minecraft_extra.event.LightningStrikeHandler;
 import de.pizzapost.minecraft_extra.event.SleepRegeneration;
 import de.pizzapost.minecraft_extra.item.ModItemGroups;
 import de.pizzapost.minecraft_extra.item.ModItems;
+import de.pizzapost.minecraft_extra.keybinds.ModKeys;
 import de.pizzapost.minecraft_extra.sound.ModSounds;
 import de.pizzapost.minecraft_extra.util.ModLootTableModifiers;
+import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.block.*;
+import net.minecraft.client.gui.screen.advancement.AdvancementsScreen;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.packet.s2c.play.OverlayMessageS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -22,6 +29,8 @@ import org.slf4j.LoggerFactory;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.lang.reflect.Field;
 import java.util.List;
 
 public class MinecraftExtra implements ModInitializer {
@@ -34,7 +43,9 @@ public class MinecraftExtra implements ModInitializer {
 		ModItems.registerModItems();
 		ModLootTableModifiers.modifyLootTables();
 		ModSounds.registerSounds();
+		ModEntities.registeredModEntities();
 		LightningStrikeHandler.registerLightningStrikeEvent();
+		ModEffects.registerEffects();
 		new SleepRegeneration().onInitialize();
 		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
 			if (!world.isClient()) {
@@ -163,6 +174,13 @@ public class MinecraftExtra implements ModInitializer {
 		} else {
 			world.setBlockState(pos, block.getDefaultState());
 			break_crop_message(player);
+		}
+	}
+
+	public static class ClientInit implements ClientModInitializer {
+		@Override
+		public void onInitializeClient() {
+			ModKeys.registerKeyBindings();
 		}
 	}
 }

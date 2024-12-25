@@ -1,6 +1,6 @@
 {
   "flute": {
-    "subtitle":"Flute",
+    "subtitle":"sound.minecraft_extra.flute",
     "sounds": [
       "minecraft_extra:flute/song0",
       "minecraft_extra:flute/song1",
@@ -10,31 +10,37 @@
     ]
   },
   "super_fertilizer": {
-    "subtitle":"Super Fertilizer",
+    "subtitle":"sound.minecraft_extra.super_fertilizer",
     "sounds": [
       "minecraft_extra:super_fertilizer"
     ]
   },
   "change_weather": {
-    "subtitle":"Changing Weather",
+    "subtitle":"sound.minecraft_extra.changed_weather",
     "sounds": [
       "minecraft_extra:change_weather"
     ]
   },
   "giant.death": {
-    "subtitle":"Giant Dies",
+    "subtitle":"sound.minecraft_extra.giant_dies",
     "sounds": [
       "minecraft_extra:giant/giant_death"
     ]
   },
   "attribute_core.use": {
-    "subtitle":"Used Attribute Core",
+    "subtitle":"sound.minecraft_extra.used_attribute_core",
     "sounds": [
       "minecraft_extra:attribute_core/attribute_core_use"
     ]
   },
   "wireless_redstone.send": {
-    "subtitle":"Wireless Redstone Ambient",
+    "subtitle":"sound.minecraft_extra.wireless_redstone_send",
+    "sounds": [
+      "minecraft_extra:wireless_redstone/wireless_redstone_send"
+    ]
+  },
+  "entity.icebomb": {
+    "subtitle":"sound.minecraft_extra.icebomb",
     "sounds": [
       "minecraft_extra:wireless_redstone/wireless_redstone_send"
     ]

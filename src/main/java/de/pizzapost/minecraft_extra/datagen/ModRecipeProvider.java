@@ -76,6 +76,42 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND))
                 .offerTo(exporter);
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.HARDENED_NETHERITE_INGOT)
+                .input(Items.NETHERITE_INGOT)
+                .input(Items.NETHERITE_INGOT)
+                .criterion(hasItem(Items.NETHERITE_INGOT), conditionsFromItem(Items.NETHERITE_INGOT))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.HARDENED_NETHERITE_HELMET)
+                .pattern("hhh")
+                .pattern("h h")
+                .input('h', ModItems.HARDENED_NETHERITE_INGOT)
+                .criterion(hasItem(ModItems.HARDENED_NETHERITE_INGOT),conditionsFromItem(ModItems.HARDENED_NETHERITE_INGOT))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.HARDENED_NETHERITE_CHESTPLATE)
+                .pattern("h h")
+                .pattern("hhh")
+                .pattern("hhh")
+                .input('h', ModItems.HARDENED_NETHERITE_INGOT)
+                .criterion(hasItem(ModItems.HARDENED_NETHERITE_INGOT),conditionsFromItem(ModItems.HARDENED_NETHERITE_INGOT))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.HARDENED_NETHERITE_LEGGINGS)
+                .pattern("hhh")
+                .pattern("h h")
+                .pattern("h h")
+                .input('h', ModItems.HARDENED_NETHERITE_INGOT)
+                .criterion(hasItem(ModItems.HARDENED_NETHERITE_INGOT),conditionsFromItem(ModItems.HARDENED_NETHERITE_INGOT))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.HARDENED_NETHERITE_BOOTS)
+                .pattern("h h")
+                .pattern("h h")
+                .input('h', ModItems.HARDENED_NETHERITE_INGOT)
+                .criterion(hasItem(ModItems.HARDENED_NETHERITE_INGOT),conditionsFromItem(ModItems.HARDENED_NETHERITE_INGOT))
+                .offerTo(exporter);
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.FLUTE)
                 .group("minecraft_extra:flute")
                 .pattern("pnp")
@@ -163,6 +199,22 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('f', Items.STRING) //String is called "Faden" in german
                 .input('s', Items.STICK)
                 .criterion(hasItem(Items.ENDER_PEARL),conditionsFromItem(Items.ENDER_PEARL))
+                .offerTo(exporter);
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ICEBOMB, 10)
+                .input(Items.SNOWBALL)
+                .input(Items.ICE)
+                .criterion(hasItem(Items.SNOWBALL), conditionsFromItem(Items.SNOWBALL))
+                .offerTo(exporter);
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.THROWABLE_FIRECHARGE)
+                .input(Items.FIRE_CHARGE)
+                .criterion(hasItem(Items.FIRE_CHARGE), conditionsFromItem(Items.FIRE_CHARGE))
+                .offerTo(exporter);
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.FIRE_CHARGE)
+                .input(ModItems.THROWABLE_FIRECHARGE)
+                .criterion(hasItem(ModItems.THROWABLE_FIRECHARGE), conditionsFromItem(ModItems.THROWABLE_FIRECHARGE))
                 .offerTo(exporter);
     }
 }

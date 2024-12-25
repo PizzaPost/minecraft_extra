@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -46,7 +47,7 @@ public class AttributeCoreScaledItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
-
+        player.incrementStat(Stats.USED.getOrCreateStat(this));
         if (player instanceof ServerPlayerEntity serverPlayer) {
             int currentStageSize = playerSizes.getOrDefault(player, 0);
             int nextStageSize = (currentStageSize + 1) % PACK1_STAGES.length;

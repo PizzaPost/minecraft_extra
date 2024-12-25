@@ -5,7 +5,8 @@
 	"mixins": [
 		"ExampleMixin",
 		"FarmlandBlockMixin",
-		"PlayerEntityMixin"
+		"PlayerEntityMixin",
+		"HardenedNetheriteArmorMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

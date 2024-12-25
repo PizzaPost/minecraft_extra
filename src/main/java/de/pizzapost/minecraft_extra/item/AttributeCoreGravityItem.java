@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.OverlayMessageS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Vec3d;
@@ -23,6 +24,7 @@ public class AttributeCoreGravityItem extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        player.incrementStat(Stats.USED.getOrCreateStat(this));
         var current_vel=player.getFinalGravity();
         if (current_vel == 0.08) {
             Objects.requireNonNull(player.getAttributeInstance(EntityAttributes.GENERIC_GRAVITY))

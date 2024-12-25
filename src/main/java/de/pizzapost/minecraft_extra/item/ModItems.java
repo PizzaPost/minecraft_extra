@@ -1,15 +1,19 @@
 package de.pizzapost.minecraft_extra.item;
 
 import de.pizzapost.minecraft_extra.MinecraftExtra;
+import de.pizzapost.minecraft_extra.item.custom.ModArmorItem;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.FireChargeItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 
 public class ModItems {
     public static final Item ATTRIBUTE_CORE = registerItem("attribute_core", new Item(new Item.Settings()));
@@ -43,6 +47,22 @@ public class ModItems {
             new TPStickItem(new Item.Settings().maxCount(1)));
     public static final Item LIGHTNING_STICK = registerItem("lightning_stick",
             new LightningStickItem(new Item.Settings().maxCount(64).maxDamage(64)));
+    public static final Item ICEBOMB = registerItem("icebomb",
+            new IcebombItem(new Item.Settings().maxCount(16)));
+    public static final Item HARDENED_NETHERITE_HELMET = registerItem("hardened_netherite_helmet",
+            new ModArmorItem(ModArmorMaterials.HARDENED_NETHERITE_ARMOR_MATERIAL,
+                    ArmorItem.Type.HELMET, new Item.Settings().fireproof().maxCount(1).rarity(Rarity.EPIC)));
+    public static final Item HARDENED_NETHERITE_CHESTPLATE = registerItem("hardened_netherite_chestplate",
+            new ArmorItem(ModArmorMaterials.HARDENED_NETHERITE_ARMOR_MATERIAL,
+                    ArmorItem.Type.CHESTPLATE, new Item.Settings().fireproof().maxCount(1).rarity(Rarity.EPIC)));
+    public static final Item HARDENED_NETHERITE_LEGGINGS = registerItem("hardened_netherite_leggings",
+            new ArmorItem(ModArmorMaterials.HARDENED_NETHERITE_ARMOR_MATERIAL,
+                    ArmorItem.Type.LEGGINGS, new Item.Settings().fireproof().maxCount(1).rarity(Rarity.EPIC)));
+    public static final Item HARDENED_NETHERITE_BOOTS = registerItem("hardened_netherite_boots",
+            new ArmorItem(ModArmorMaterials.HARDENED_NETHERITE_ARMOR_MATERIAL,
+                    ArmorItem.Type.BOOTS, new Item.Settings().fireproof().maxCount(1).rarity(Rarity.EPIC)));
+    public static final Item THROWABLE_FIRECHARGE = registerItem("throwable_fire_charge",
+            new ThrowableFireChargeItem(new Item.Settings().maxCount(64)));
 
 
 

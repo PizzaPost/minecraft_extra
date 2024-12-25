@@ -3,6 +3,8 @@
   "actionbar.minecraft_extra.scale_message": "Deine Größe ist: %s",
   "actionbar.minecraft_extra.break_crop_message": "Krieche, um den Block abzubauen.",
 
+  "effect.minecraft_extra.spider": "Spinne",
+
   "item.minecraft_extra.attribute_core": "Attribut Kern",
   "item.minecraft_extra.attribute_core_extra_hearts": "Attribut Kern",
   "item.minecraft_extra.attribute_core_gravity": "Attribut Kern",
@@ -15,10 +17,26 @@
   "item.minecraft_extra.rotten_chunk": "Verrotteter Klumpen",
   "item.minecraft_extra.lootbox": "Lootbox",
   "item.minecraft_extra.hardened_netherite_ingot": "Verstärkter Netheritebarren",
+  "item.minecraft_extra.hardened_netherite_helmet": "Verstärkter Netheritehelm",
+  "item.minecraft_extra.hardened_netherite_chestplate": "Verstärkte Netheriteharnisch",
+  "item.minecraft_extra.hardened_netherite_leggings": "Verstärkte Netheritebeinschutz",
+  "item.minecraft_extra.hardened_netherite_boots": "Verstärkte Netheritestiefel",
   "item.minecraft_extra.flute": "Flöte",
   "item.minecraft_extra.gravity_shard": "Gravitationsscherbe",
   "item.minecraft_extra.tp_stick": "Teleportationsstab",
   "item.minecraft_extra.lightning_stick": "Blitzstock",
+  "item.minecraft_extra.icebomb": "Eisbombe",
+  "item.minecraft_extra.throwable_fire_charge": "Werfbare Feuerkugel",
 
-  "itemgroup.minecraft_extra.minecraft_extra_items": "Minecraft Extra"
+  "itemgroup.minecraft_extra.minecraft_extra_items": "Minecraft Extra",
+
+  "key.minecraft_extra.jump_boost": "Sprungkraft",
+
+  "sound.minecraft_extra.flute": "Flöte Spielt",
+  "sound.minecraft_extra.super_fertilizer": "Super Dünger Benutzt",
+  "sound.minecraft_extra.changed_weather": "Wechsle Wetter",
+  "sound.minecraft_extra.giant_dies": "Riese stirbt",
+  "sound.minecraft_extra.used_attribute_core": "Attribut Kern benutzt",
+  "sound.minecraft_extra.wireless_redstone_send": "Kabelloses Redstone Signal gesendet",
+  "sound.minecraft_extra.icebomb": "Eisbombe benutzt"
 }

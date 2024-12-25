@@ -15,7 +15,6 @@ public abstract class FarmlandBlockMixin {
 
     @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
     private void disableFarmlandTrample(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
-        // Cancel the method call to prevent trampling
         ci.cancel();
     }
 }

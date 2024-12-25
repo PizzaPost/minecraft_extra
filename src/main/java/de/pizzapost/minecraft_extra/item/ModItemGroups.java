@@ -27,10 +27,16 @@ public class ModItemGroups {
                         entries.add(ModItems.ROTTEN_CHUNK);
                         entries.add(ModItems.LOOTBOX);
                         entries.add(ModItems.HARDENED_NETHERITE_INGOT);
+                        entries.add(ModItems.HARDENED_NETHERITE_HELMET);
+                        entries.add(ModItems.HARDENED_NETHERITE_CHESTPLATE);
+                        entries.add(ModItems.HARDENED_NETHERITE_LEGGINGS);
+                        entries.add(ModItems.HARDENED_NETHERITE_BOOTS);
                         entries.add(ModItems.FLUTE);
                         entries.add(ModItems.GRAVITY_SHARD);
                         entries.add(ModItems.TP_STICK);
                         entries.add(ModItems.LIGHTNING_STICK);
+                        entries.add(ModItems.ICEBOMB);
+                        entries.add(ModItems.THROWABLE_FIRECHARGE);
                     })
 
                     .build());
