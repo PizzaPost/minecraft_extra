@@ -1,0 +1,41 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:blaze_rod"
+    },
+    "title": {
+      "translate":"advancements.minecraft_extra.description.enderblaze"
+    },
+    "description": {
+      "translate":"advancements.minecraft_extra.description.enderblaze"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "kil": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "player": {
+          "location": {
+            "dimension": "minecraft:the_end"
+          }
+        },
+        "entity": {
+          "location": {
+            "dimension": "minecraft:the_end"
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kil"
+    ]
+  ],
+  "parent":"minecraft_extra:root",
+  "rewards": {
+      "experience": 200
+  },
+  "sends_telemetry_event": true
+}

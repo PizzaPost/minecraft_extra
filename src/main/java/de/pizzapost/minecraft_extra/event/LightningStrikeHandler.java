@@ -25,6 +25,12 @@ public class LightningStrikeHandler {
                 lightningStick.setCount(count);
                 player.setStackInHand(Hand.MAIN_HAND, lightningStick);
             }
+            if (player.distanceTo(lightning) <= 10 && player.getOffHandStack().getItem() == Items.STICK) {
+                int count = player.getOffHandStack().getCount();
+                ItemStack lightningStick = new ItemStack(ModItems.LIGHTNING_STICK);
+                lightningStick.setCount(count);
+                player.setStackInHand(Hand.OFF_HAND, lightningStick);
+            }
         }
     }
 }

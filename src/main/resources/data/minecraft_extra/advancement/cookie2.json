@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft_extra:cookie1",
+  "display": {
+    "icon": {
+      "id": "minecraft:parrot_spawn_egg"
+    },
+    "title": {"translate":"advancements.minecraft_extra.title.cookie2"},
+    "description": {"translate":"advancements.minecraft_extra.title.cookie2"},
+    "frame": "goal"
+  },
+  "criteria": {
+    "int": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "item": {
+          "items": "minecraft:cookie"
+        },
+        "entity": {
+          "type": "minecraft:parrot"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "int"
+    ]
+  ],
+  "rewards": {
+    "experience": 20
+  },
+  "sends_telemetry_event": true
+}

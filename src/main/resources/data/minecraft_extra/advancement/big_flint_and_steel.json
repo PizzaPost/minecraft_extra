@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "dur": {
+      "trigger": "minecraft:item_durability_changed",
+      "conditions": {
+        "durability": 0,
+        "item": {
+          "items": "minecraft_extra:big_flint_and_steel"
+        }
+      }
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.big_flint_and_steel"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:big_flint_and_steel"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.big_flint_and_steel"
+    }
+  },
+  "requirements": [
+    [
+      "dur"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

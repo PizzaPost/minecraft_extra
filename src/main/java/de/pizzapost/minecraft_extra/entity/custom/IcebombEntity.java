@@ -1,54 +1,45 @@
 package de.pizzapost.minecraft_extra.entity.custom;
 
 import de.pizzapost.minecraft_extra.MinecraftExtra;
+import de.pizzapost.minecraft_extra.effect.ModEffects;
 import de.pizzapost.minecraft_extra.entity.ModEntities;
 import de.pizzapost.minecraft_extra.item.ModItems;
 import de.pizzapost.minecraft_extra.sound.ModSounds;
-import net.minecraft.block.Block;
+import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class IcebombEntity extends ThrownItemEntity {
-    private static final Identifier TEXTURE = Identifier.of(MinecraftExtra.MOD_ID, "textures/entity/icebomb.png");
     private final Map<BlockPos, Integer> growingBlocks = new HashMap<>();
     private int animationTick = 0;
-    public IcebombEntity(EntityType<? extends IcebombEntity> entityType, World world) {
+
+    public IcebombEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    public Identifier getTexture(IcebombEntity entity) {
-        return TEXTURE;
-    }
-
     public IcebombEntity(World world, LivingEntity owner) {
-        super(EntityType.SNOWBALL, owner, world);
-    }
-
-    public IcebombEntity(World world, double x, double y, double z) {
-        super(EntityType.SNOWBALL, x, y, z, world);
+        super(ModEntities.ICEBOMB, owner, world);
     }
 
     protected Item getDefaultItem() {
@@ -73,7 +64,10 @@ public class IcebombEntity extends ThrownItemEntity {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
         int damage = entity instanceof BlazeEntity ? 5 : 2;
-        entity.damage(this.getDamageSources().thrown(this, this.getOwner()), (float) damage);
+        entity.damage(this.getDamageSources().thrown(this, this.getOwner()), (float) damage+1);
+        if (entity instanceof LivingEntity) {
+            ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(ModEffects.FREEZE, 600, 0));
+        }
     }
 
     @Override
@@ -81,11 +75,14 @@ public class IcebombEntity extends ThrownItemEntity {
         super.tick();
         if (!this.getWorld().isClient) {
             BlockPos currentPos = this.getBlockPos();
-
             if (this.getWorld().getBlockState(currentPos).isOf(Blocks.WATER)) {
                 int maxRadius = 12;
                 int waveDelay = 5;
-;                if (animationTick == 0) {
+                if (animationTick == 0) {
+                    BlockPos hitPos = this.getBlockPos();
+                    if (this.getWorld().getBlockState(hitPos).isOf(Blocks.WATER)) {
+                        growingBlocks.put(hitPos, waveDelay);
+                    }
                     for (int x = -maxRadius; x <= maxRadius; x++) {
                         for (int y = -maxRadius; y <= maxRadius; y++) {
                             for (int z = -maxRadius; z <= maxRadius; z++) {
@@ -104,20 +101,24 @@ public class IcebombEntity extends ThrownItemEntity {
                     int delay = entry.getValue();
                     if (delay == animationTick) {
                         this.getWorld().setBlockState(pos, Blocks.FROSTED_ICE.getDefaultState());
+                        ServerWorld serverWorld = (ServerWorld) this.getWorld();
+                        serverWorld.spawnParticles(ParticleTypes.SNOWFLAKE, pos.getX(), pos.getY() + 1, pos.getZ(), 3, 0.0, 0.0, 0.0, 0.2);
+                        for (ServerPlayerEntity player : serverWorld.getPlayers()) {
+                            if (player.getX() > pos.getX() - 25 && player.getX() < pos.getX() + 25 && player.getY() > pos.getY() - 25 && player.getY() < pos.getY() + 25 && player.getZ() > pos.getZ() - 25 && player.getZ() < pos.getZ() + 25) {
+                                serverWorld.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.ICEBOMB_BUILD, SoundCategory.BLOCKS, 0.04f, random.nextFloat() * 0.4F + 0.8F);
+                            }
+                        }
                         return true;
                     }
                     return false;
                 });
                 if (growingBlocks.isEmpty()) {
-                    this.getWorld().playSound(null, this.getX(), this.getY(), this.getZ(), ModSounds.ENTITY_ICEBOMB, SoundCategory.BLOCKS, 1f, random.nextFloat() * 0.4F + 0.8F);
                     this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
                     this.discard();
                 }
             }
         }
     }
-
-
 
     @Override
     protected void onCollision(HitResult hitResult) {

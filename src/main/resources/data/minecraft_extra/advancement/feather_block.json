@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "imp": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.feather_block"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:feather_block"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.feather_block"
+    }
+  },
+  "requirements": [
+    [
+      "imp"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

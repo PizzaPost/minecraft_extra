@@ -1,0 +1,121 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:zombie_head"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.camouflage"
+    },
+    "description": {
+      "translate": "advancements.minecraft_extra.description.camouflage"
+    },
+    "frame": "challenge"
+  },
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "kil1": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "player": {
+          "slots": {
+            "armor.head": {
+              "items": "minecraft:creeper_head"
+            }
+          }
+        },
+        "entity": {
+          "type": "minecraft:creeper"
+        }
+      }
+    },
+    "kil2": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "player": {
+          "slots": {
+            "armor.head": {
+              "items": "minecraft:dragon_head"
+            }
+          }
+        },
+        "entity": {
+          "type": "minecraft:ender_dragon"
+        }
+      }
+    },
+    "kil3": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "player": {
+          "slots": {
+            "armor.head": {
+              "items": "minecraft:piglin_head"
+            }
+          }
+        },
+        "entity": {
+          "type": "minecraft:piglin"
+        }
+      }
+    },
+    "kil4": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "player": {
+          "slots": {
+            "armor.head": {
+              "items": "minecraft:skeleton_skull"
+            }
+          }
+        },
+        "entity": {
+          "type": "minecraft:skeleton"
+        }
+      }
+    },
+    "kil5": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "player": {
+          "slots": {
+            "armor.head": {
+              "items": "minecraft:wither_skeleton_skull"
+            }
+          }
+        },
+        "entity": {
+          "type": "minecraft:wither_skeleton"
+        }
+      }
+    },
+    "kil6": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "player": {
+          "slots": {
+            "armor.head": {
+              "items": "minecraft:zombie_head"
+            }
+          }
+        },
+        "entity": {
+          "type": "minecraft:zombie"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kil1",
+      "kil2",
+      "kil3",
+      "kil4",
+      "kil5",
+      "kil6"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

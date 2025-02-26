@@ -1,0 +1,49 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:deepslate_diamond_ore"
+      },
+		"title": {"translate":"advancements.minecraft_extra.title.diamond_ores"},
+		"description": {"translate":"advancements.minecraft_extra.title.diamond_ores"},
+		"frame": "goal"
+	},
+	"parent": "minecraft_extra:root",
+	"criteria": {
+		"inv1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:diamond_ore"
+            ]
+          }
+        ]
+      }
+    },
+    "inv2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:deepslate_diamond_ore"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "inv1"
+    ],
+    [
+      "inv2"
+    ]
+  ],
+  "rewards": {
+    "experience": 60
+  },
+  "sends_telemetry_event": true
+}

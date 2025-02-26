@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "minecraft_extra:pizza_poi",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "inv": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft_extra:icebomb"
+          }
+        ]
+      }
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.icebomb"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:icebomb"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.icebomb"
+    }
+  },
+  "requirements": [
+    [
+      "inv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:sculk"
+      },
+      "title": {"translate":"advancements.minecraft_extra.title.ancient_city"},
+      "description": {"translate":"advancements.minecraft_extra.description.ancient_city"}
+	},
+	"parent":"minecraft:adventure/avoid_vibration",
+	"criteria": {
+    "loc": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "minecraft:ancient_city"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+	"requirements": [
+      [
+        "loc"
+      ]
+  ],
+	"rewards": {
+		"experience": 30
+  },
+  "sends_telemetry_event": true
+}

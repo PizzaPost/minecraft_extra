@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:basalt"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.basalt_deltas"
+    },
+    "description": {
+      "translate": "advancements.minecraft_extra.description.basalt_deltas"
+    },
+    "frame": "task"
+  },
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "loc": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": {
+          "location": {
+            "biomes": "minecraft:basalt_deltas"
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "loc"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft_extra:flint_block",
+    "minecraft_extra:flint_bricks",
+    "minecraft_extra:chiseled_flint_bricks",
+    "minecraft_extra:flint_slab",
+    "minecraft_extra:flint_stair",
+    "minecraft_extra:flint_wall",
+    "minecraft_extra:flint_brick_slab",
+    "minecraft_extra:flint_brick_stair",
+    "minecraft_extra:flint_brick_wall",
+    "minecraft_extra:effect_farmland"
+  ]
+}

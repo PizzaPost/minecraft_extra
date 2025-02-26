@@ -1,5 +1,6 @@
 package de.pizzapost.minecraft_extra.util;
 
+import de.pizzapost.minecraft_extra.entity.ModEntities;
 import de.pizzapost.minecraft_extra.item.ModItems;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.block.Blocks;
@@ -38,42 +39,27 @@ public class ModLootTableModifiers {
             }
 
             if (Blocks.GRAVEL.getLootTableKey() == key) {
-                LootPool.Builder emeraldPool = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .with(ItemEntry.builder(Items.EMERALD))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 1f)).build())
-                        .conditionally(RandomChanceLootCondition.builder(0.08f));
-                tableBuilder.pool(emeraldPool.build());
-                LootPool.Builder goldIngotPool = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .with(ItemEntry.builder(Items.GOLD_INGOT))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 1f)).build())
-                        .conditionally(RandomChanceLootCondition.builder(0.1f));
-                tableBuilder.pool(goldIngotPool.build());
-                LootPool.Builder goldNuggetPool = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .with(ItemEntry.builder(Items.GOLD_NUGGET))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 1f)).build())
-                        .conditionally(RandomChanceLootCondition.builder(0.15f));
-                tableBuilder.pool(goldNuggetPool.build());
                 LootPool.Builder ironNuggetPool = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .with(ItemEntry.builder(Items.IRON_NUGGET))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 1f)).build())
                         .conditionally(RandomChanceLootCondition.builder(0.1f));
                 tableBuilder.pool(ironNuggetPool.build());
-                LootPool.Builder ironIngotPool = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .with(ItemEntry.builder(Items.IRON_INGOT))
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 1f)).build())
-                        .conditionally(RandomChanceLootCondition.builder(0.07f));
-                tableBuilder.pool(ironIngotPool.build());
                 LootPool.Builder diamondPool = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .with(ItemEntry.builder(Items.DIAMOND))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 1f)).build())
-                        .conditionally(RandomChanceLootCondition.builder(0.05f));
+                        .conditionally(RandomChanceLootCondition.builder(0.0001f));
                 tableBuilder.pool(diamondPool.build());
+            }
+
+            if(EntityType.ILLUSIONER.getLootTableId() == key) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .with(ItemEntry.builder(ModItems.ILLUSIONER_ESSENCE))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 1f)).build())
+                        .conditionally(RandomChanceLootCondition.builder(.4f));
+                tableBuilder.pool(poolBuilder.build());
             }
         });
     }

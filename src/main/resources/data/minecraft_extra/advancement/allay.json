@@ -1,0 +1,34 @@
+{
+	"display": {
+		"icon": {
+			"id": "minecraft:allay_spawn_egg"
+		},
+		"title": {"translate":"advancements.minecraft_extra.title.allay"},
+		"description": {"translate":"advancements.minecraft_extra.description.allay"}
+	},
+  "rewards": {
+    "experience": 20
+  },
+	"parent": "minecraft_extra:root",
+	"criteria": {
+    "int": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+				"item": {
+          "items": [
+            "minecraft:emerald"
+          ]
+        },
+        "entity": {
+          "type": "minecraft:allay"
+        }
+      }
+    }
+	},
+	"requirements": [
+      [
+        "int"
+      ]
+  ],
+  "sends_telemetry_event": true
+}

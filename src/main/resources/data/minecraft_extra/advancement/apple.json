@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:apple"
+    },
+    "title": {"translate":"advancements.minecraft_extra.title.apple"},
+    "description": {"translate":"advancements.minecraft_extra.description.apple"}
+  },
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "con": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "minecraft:apple"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "con"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

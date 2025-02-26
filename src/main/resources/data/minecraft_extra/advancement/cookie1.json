@@ -1,0 +1,31 @@
+{
+  "parent": "minecraft_extra:root",
+  "display": {
+    "icon": {
+      "id": "minecraft:cookie"
+    },
+    "title": {
+      "translate":"advancements.minecraft_extra.title.cookie1"
+    },
+    "description": {
+      "translate":"advancements.minecraft_extra.description.cookie2"
+    }
+  },
+  "criteria": {
+    "cra": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "minecraft:cookie"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cra"
+    ]
+  ],
+  "rewards": {
+    "experience": 7
+  },
+  "sends_telemetry_event": true
+}

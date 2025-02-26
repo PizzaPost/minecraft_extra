@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft_extra:white_petals",
+    "minecraft_extra:light_gray_petals",
+    "minecraft_extra:gray_petals",
+    "minecraft_extra:black_petals",
+    "minecraft_extra:brown_petals",
+    "minecraft_extra:red_petals",
+    "minecraft_extra:orange_petals",
+    "minecraft_extra:yellow_petals",
+    "minecraft_extra:lime_petals",
+    "minecraft_extra:gray_petals",
+    "minecraft_extra:cyan_petals",
+    "minecraft_extra:light_blue_petals",
+    "minecraft_extra:blue_petals",
+    "minecraft_extra:purple_petals",
+    "minecraft_extra:magenta_petals"
+  ]
+}

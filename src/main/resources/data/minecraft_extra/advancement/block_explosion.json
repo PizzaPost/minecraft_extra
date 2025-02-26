@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft_extra:root",
+  "display": {
+    "icon": {
+      "id": "minecraft:shield"
+    },
+    "title": {
+      "translate":"advancements.minecraft_extra.title.block_explosion"
+    },
+    "description": {
+      "translate":"advancements.minecraft_extra.description.block_explosion"
+    }
+  },
+	"criteria": {
+		"hur": {
+			"trigger": "minecraft:entity_hurt_player",
+			"conditions": {
+				"damage": {
+					"blocked": true,
+					"source_entity": {
+						"type": "creeper"
+					}
+				}
+			}
+		}
+	},
+  "requirements": [
+    [
+      "hur"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": true
+}

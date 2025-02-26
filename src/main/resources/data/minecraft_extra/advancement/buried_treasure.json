@@ -1,0 +1,27 @@
+{
+  "parent": "minecraft_extra:root",
+	"display": {
+		"icon": {
+			"id": "minecraft:heart_of_the_sea"
+		},
+		"title": {"translate":"advancements.minecraft_extra.title.buried_treasure"},
+		"description": {"translate":"advancements.minecraft_extra.description.buried_treasure"}
+	},
+	"criteria": {
+		"gen": {
+			"trigger": "minecraft:player_generates_container_loot",
+			"conditions": {
+				"loot_table": "minecraft:chests/buried_treasure"
+			}
+		}
+	},
+  "requirements": [
+    [
+      "gen"
+    ]
+  ],
+  "rewards": {
+      "experience": 15
+  },
+  "sends_telemetry_event": true
+}

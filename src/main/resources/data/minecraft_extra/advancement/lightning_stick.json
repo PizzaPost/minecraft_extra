@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "imp": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.lightning_stick"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:lightning_stick"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.lightning_stick"
+    }
+  },
+  "requirements": [
+    [
+      "imp"
+    ]
+  ],
+  "rewards": {
+    "experience": 70
+  },
+  "sends_telemetry_event": true
+}

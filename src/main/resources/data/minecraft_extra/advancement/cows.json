@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:wheat"
+    },
+    "title": {
+      "translate":"advancements.minecraft_extra.title.cows"
+    },
+    "description": {
+      "translate":"advancements.minecraft_extra.description.cows"
+    }
+  },
+  "criteria": {
+    "bre": {
+      "trigger": "minecraft:bred_animals",
+      "conditions": {
+        "child": {
+            "type": "minecraft:cow"
+        },
+        "parent": {
+            "type": "minecraft:cow"
+        },
+        "partner": {
+            "type": "minecraft:cow"
+        }
+      }
+    }
+  },
+  "parent":"minecraft_extra:root",
+  "requirements": [
+    [
+      "bre"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

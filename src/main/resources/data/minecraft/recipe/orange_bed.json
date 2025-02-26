@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "bed",
+  "key": {
+    "w": {
+      "item": "minecraft:orange_wool"
+    },
+    "f": {
+      "item": "minecraft_extra:feather_block"
+    },
+    "p": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "wwf",
+    "ppp"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:orange_bed"
+  }
+}

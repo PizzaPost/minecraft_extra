@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "imp": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.hammer"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:hammer"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.hammer"
+    }
+  },
+  "requirements": [
+    [
+      "imp"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

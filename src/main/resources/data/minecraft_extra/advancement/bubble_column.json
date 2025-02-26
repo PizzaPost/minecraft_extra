@@ -1,0 +1,27 @@
+{
+  "parent": "minecraft_extra:root",
+  "display": {
+    "icon": {
+      "id": "minecraft:magma_block"
+    },
+    "title": {"translate": "advancements.minecraft_extra.title.bubble_column"},
+    "description": {"translate": "advancements.minecraft_extra.description.bubble_column"}
+  },
+  "criteria": {
+    "ent": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "minecraft:bubble_column"
+      }
+    }
+	},
+  "requirements": [
+    [
+      "ent"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": true
+}

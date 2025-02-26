@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "imp": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.super_fertilizer"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:super_fertilizer"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.super_fertilizer"
+    }
+  },
+  "requirements": [
+    [
+      "imp"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -12,7 +12,7 @@
   "rewards": {
     "function": "minecraft_extra:tech/lootbox",
     "loot": [
-      "minecraft_extra:lootbox"
+      "minecraft_extra:items/lootbox"
     ]
   }
 }

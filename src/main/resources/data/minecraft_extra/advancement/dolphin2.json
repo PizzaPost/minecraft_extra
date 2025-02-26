@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:dolphin_spawn_egg"
+    },
+    "title": {
+      "translate":"advancements.minecraft_extra.description.dolphin2"
+    },
+    "description": {
+      "translate":"advancements.minecraft_extra.description.dolphin2"
+    }
+  },
+  "criteria": {
+    "pic": {
+      "trigger": "minecraft:thrown_item_picked_up_by_entity",
+      "conditions": {
+        "entity": {
+          "type": "dolphin"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "pic"
+    ]
+  ],
+  "parent":"minecraft_extra:root",
+  "rewards": {
+      "experience": 12
+  },
+  "sends_telemetry_event": true
+}

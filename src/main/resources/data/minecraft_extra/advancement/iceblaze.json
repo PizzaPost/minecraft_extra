@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "kil": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "minecraft_extra:iceblaze"
+        }
+      }
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.iceblaze"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:iceblaze_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.iceblaze"
+    },
+    "frame": "goal"
+  },
+  "requirements": [
+    [
+      "kil"
+    ]
+  ],
+  "rewards": {
+    "experience": 30
+  },
+  "sends_telemetry_event": true
+}

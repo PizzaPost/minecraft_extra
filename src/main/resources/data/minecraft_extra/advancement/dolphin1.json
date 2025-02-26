@@ -1,0 +1,39 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:chest"
+    },
+    "title": {
+      "translate":"advancements.minecraft_extra.title.dolphin1"
+    },
+    "description": {
+      "translate":"advancements.minecraft_extra.description.dolphin1"
+    }
+  },
+  "criteria": {
+    "int": {
+      "trigger": "minecraft:player_interacted_with_entity",
+        "conditions": {
+          "entity": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "type": "minecraft:dolphin"
+              }
+            }
+          ]
+        }
+      }
+	},
+  "requirements": [
+    [
+      "int"
+    ]
+  ],
+  "parent":"minecraft_extra:root",
+  "rewards": {
+      "experience": 20
+  },
+  "sends_telemetry_event": true
+}

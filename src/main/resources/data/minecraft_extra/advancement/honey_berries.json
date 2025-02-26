@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "con": {
+      "conditions": {
+        "item": {
+          "items": "minecraft_extra:honey_berries"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.honey_berries"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:honey_berries"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.honey_berries"
+    }
+  },
+  "requirements": [
+    [
+      "con"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": true
+}

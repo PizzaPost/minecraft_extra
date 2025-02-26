@@ -1,0 +1,23 @@
+{
+	"required": true,
+	"package": "de.pizzapost.minecraft_extra.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"ExampleMixin",
+		"FarmlandBlockMixin",
+		"PlayerEntityMixin",
+      	"ArmorItemMixin",
+		"ZombieHorseEntityMixin",
+		"EnderDragonEntityMixin",
+		"SpikeCacheMixin",
+		"BlocksMixin",
+		"CropBlockMixin",
+		"FireBlockMixin",
+		"LightmapTextureManagerMixin",
+		"LivingEntityMixin",
+		"GameMenuScreenMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

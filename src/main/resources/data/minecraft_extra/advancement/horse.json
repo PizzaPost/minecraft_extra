@@ -1,0 +1,39 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:golden_apple"
+    },
+    "title": {
+      "translate":"advancements.minecraft_extra.description.horse"
+    },
+    "description": {
+      "translate":"advancements.minecraft_extra.description.horse"
+    }
+  },
+  "criteria": {
+    "tam": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "minecraft:horse"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tam"
+    ]
+  ],
+  "parent":"minecraft_extra:root",
+  "rewards": {
+      "experience": 20
+  },
+  "sends_telemetry_event": true
+}

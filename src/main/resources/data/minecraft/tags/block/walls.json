@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft_extra:flint_wall",
+    "minecraft_extra:flint_brick_wall"
+  ]
+}

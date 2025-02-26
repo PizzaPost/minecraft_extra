@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "inv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft_extra:super_strong_throwable_fire_charge"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.super_strong_throwable_fire_charge"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:super_strong_throwable_fire_charge"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.super_strong_throwable_fire_charge"
+    }
+  },
+  "requirements": [
+    [
+      "inv"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

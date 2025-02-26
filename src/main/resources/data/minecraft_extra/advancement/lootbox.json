@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "usi": {
+      "conditions": {
+        "item": {
+          "items": "minecraft_extra:lootbox"
+        }
+      },
+      "trigger": "minecraft:using_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.lootbox"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:lootbox"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.lootbox"
+    }
+  },
+  "requirements": [
+    [
+      "usi"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

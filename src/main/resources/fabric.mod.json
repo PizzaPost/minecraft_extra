@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "minecraft-extra",
+	"id": "minecraft_extra",
 	"version": "${version}",
 	"name": "minecraft extra",
 	"description": "This is the minecraft extra mod by PizzaPost!",
@@ -26,7 +26,7 @@
 		]
 	},
 	"mixins": [
-		"minecraft-extra.mixins.json"
+		"minecraft_extra.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.5",

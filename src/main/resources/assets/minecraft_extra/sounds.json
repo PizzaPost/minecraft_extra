@@ -9,12 +9,6 @@
       "minecraft_extra:flute/song4"
     ]
   },
-  "super_fertilizer": {
-    "subtitle":"sound.minecraft_extra.super_fertilizer",
-    "sounds": [
-      "minecraft_extra:super_fertilizer"
-    ]
-  },
   "change_weather": {
     "subtitle":"sound.minecraft_extra.changed_weather",
     "sounds": [
@@ -30,19 +24,25 @@
   "attribute_core.use": {
     "subtitle":"sound.minecraft_extra.used_attribute_core",
     "sounds": [
-      "minecraft_extra:attribute_core/attribute_core_use"
+      "minecraft_extra:attribute_core_use"
     ]
   },
   "wireless_redstone.send": {
     "subtitle":"sound.minecraft_extra.wireless_redstone_send",
     "sounds": [
-      "minecraft_extra:wireless_redstone/wireless_redstone_send"
+      "minecraft_extra:wireless_redstone"
     ]
   },
-  "entity.icebomb": {
-    "subtitle":"sound.minecraft_extra.icebomb",
+  "icebomb.build": {
+    "subtitle":"sound.minecraft_extra.icebomb_build",
     "sounds": [
-      "minecraft_extra:wireless_redstone/wireless_redstone_send"
+      "minecraft_extra:icebomb_build"
+    ]
+  },
+  "soap_bubble.pop": {
+    "subtitle":"sound.minecraft_extra.soap_bubble_pop",
+    "sounds": [
+      "minecraft_extra:soap_bubble_pop"
     ]
   }
 }

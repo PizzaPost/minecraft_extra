@@ -13,7 +13,8 @@ public class ModSounds {
     public static final SoundEvent WIRELESS_REDSTONE_SEND = registerSoundEvent("wire_redstone.send");
     public static final SoundEvent FLUTE = registerSoundEvent("flute");
     public static final SoundEvent GIANT_DEATH = registerSoundEvent("giant.death");
-    public static final SoundEvent ENTITY_ICEBOMB = registerSoundEvent("player.icebomb");
+    public static final SoundEvent ICEBOMB_BUILD = registerSoundEvent("icebomb.build");
+    public static final SoundEvent SOAP_BUBBLE_POP = registerSoundEvent("soap_bubble.pop");
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = Identifier.of(MinecraftExtra.MOD_ID, name);

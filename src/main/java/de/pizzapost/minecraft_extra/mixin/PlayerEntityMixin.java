@@ -1,9 +1,12 @@
 package de.pizzapost.minecraft_extra.mixin;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +23,6 @@ public abstract class PlayerEntityMixin {
         World world = player.getWorld();
         BlockPos pos = player.getBlockPos();
         BlockPos belowPos = pos.down();
-
         if (world.getBlockState(belowPos).isOf(Blocks.GRAVEL) && world.getBlockState(pos).isAir()) {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 2, 2));
         }
