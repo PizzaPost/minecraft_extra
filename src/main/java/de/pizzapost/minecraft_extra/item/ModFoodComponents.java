@@ -10,8 +10,6 @@ public class ModFoodComponents {
             saturationModifier(20F).
             statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 300,4),0.25F)
             .build();
-    public static final FoodComponent LOOTBOX = new FoodComponent.Builder().nutrition(0).
-            saturationModifier(0F).alwaysEdible().build();
     public static final FoodComponent HONEY_BERRY = new FoodComponent.Builder().nutrition(2).
             saturationModifier(0.1F).snack().build();
     public static final FoodComponent SOAP = new FoodComponent.Builder().nutrition(1).

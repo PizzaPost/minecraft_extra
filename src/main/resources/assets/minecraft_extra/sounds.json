@@ -42,7 +42,12 @@
   "soap_bubble.pop": {
     "subtitle":"sound.minecraft_extra.soap_bubble_pop",
     "sounds": [
-      "minecraft_extra:soap_bubble_pop"
+      "minecraft_extra:soap_bubble/pop-01",
+      "minecraft_extra:soap_bubble/pop-02",
+      "minecraft_extra:soap_bubble/pop-03",
+      "minecraft_extra:soap_bubble/pop-04",
+      "minecraft_extra:soap_bubble/pop-05",
+      "minecraft_extra:soap_bubble/pop-06"
     ]
   }
 }

@@ -21,6 +21,7 @@
           }
         },
         "entity": {
+          "type": "minecraft:blaze",
           "location": {
             "dimension": "minecraft:the_end"
           }

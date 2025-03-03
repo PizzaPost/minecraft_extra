@@ -3,12 +3,10 @@ package de.pizzapost.minecraft_extra.block;
 import de.pizzapost.minecraft_extra.MinecraftExtra;
 import de.pizzapost.minecraft_extra.block.custom.*;
 import de.pizzapost.minecraft_extra.item.ModItems;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -95,7 +93,6 @@ public class ModBlocks {
             new Block(AbstractBlock.Settings.create().strength(-1F, -1F)
                     .sounds(BlockSoundGroup.METAL).mapColor(MapColor.LIME)
                     .instrument(NoteBlockInstrument.PLING)));
-
 
     public static void registerCompostables() {
         ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.ASH, 0.1f);

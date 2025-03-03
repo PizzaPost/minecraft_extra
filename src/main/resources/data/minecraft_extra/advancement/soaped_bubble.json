@@ -1,0 +1,31 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "eff": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "minecraft_extra:soaped": {}
+        }
+      }
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.soap_bubble"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:soap"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.soap_bubble"
+    }
+  },
+  "requirements": [
+    [
+      "eff"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

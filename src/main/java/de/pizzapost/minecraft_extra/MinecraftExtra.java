@@ -232,7 +232,15 @@ public class MinecraftExtra implements ModInitializer {
 			}
 			return true;
 		});
-
+		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
+			if (state.getBlock()==Blocks.BEDROCK) {
+				if (player.getStackInHand(Hand.MAIN_HAND).isOf(ModItems.HARDENED_NETHERITE_PICKAXE)) {
+					world.spawnEntity(new ItemEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, new ItemStack(Items.BEDROCK, 1)));
+				} else if (player.getStackInHand(Hand.OFF_HAND).isOf(ModItems.HARDENED_NETHERITE_PICKAXE)) {
+					world.spawnEntity(new ItemEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, new ItemStack(Items.BEDROCK, 1)));
+				}
+			}
+		});
 		PlayerBlockBreakEvents.BEFORE.register((world,  player, pos, state,  blockEntity) -> {
 			ItemStack itemStack = player.getMainHandStack();
 			if (itemStack.isOf(ModItems.HARDENED_NETHERITE_AXE)) {

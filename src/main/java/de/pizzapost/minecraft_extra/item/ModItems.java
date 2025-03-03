@@ -74,7 +74,7 @@ public class ModItems {
     public static final Item ROTTEN_CHUNK = registerItem("rotten_chunk",
             new Item(new Item.Settings().maxCount(64)));
     public static final Item LOOTBOX = registerItem("lootbox",
-            new Item(new Item.Settings().maxCount(1).food(ModFoodComponents.LOOTBOX)) {
+            new LootboxItem(new Item.Settings().maxCount(1)) {
                 @Override
                 public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
                     tooltip.add(Text.translatable("tooltip.minecraft_extra.right_click"));
@@ -450,7 +450,7 @@ public class ModItems {
     public static final Item FAT = registerItem("fat",
             new Item(new Item.Settings()));
     public static final Item SOAP = registerItem("soap",
-            new SoapItem(new Item.Settings().food(ModFoodComponents.SOAP)));
+            new Item(new Item.Settings().food(ModFoodComponents.SOAP)));
 
     public static Item registerBlock(Block block) {
         return registerBlock(new BlockItem(block, new Item.Settings()));

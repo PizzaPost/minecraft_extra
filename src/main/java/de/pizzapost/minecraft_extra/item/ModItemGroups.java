@@ -62,6 +62,7 @@ public class ModItemGroups {
                         entries.add(ModItems.ICEBLAZE_SPAWN_EGG);
                         entries.add(ModItems.BIG_FLINT_AND_STEEL);
                         entries.add(ModItems.ASH);
+                        entries.add(ModItems.HONEY_BERRIES);
                         entries.add(ModItems.HONEY_KEY);
                         entries.add(ModItems.HONEY_KEY_CLEAN);
                         entries.add(ModItems.BIOME_COMPASS);
@@ -86,6 +87,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.FLINT_BRICK_STAIR);
                         entries.add(ModBlocks.FLINT_BRICK_WALL);
                         entries.add(ModBlocks.ASH_LAYER);
+                        entries.add(ModBlocks.EFFECT_FARMLAND);
                         entries.add(ModBlocks.FEATHER_BLOCK);
                         entries.add(ModBlocks.HONEY_BERRY_BUSH);
                         entries.add(ModBlocks.WHITE_PETALS);

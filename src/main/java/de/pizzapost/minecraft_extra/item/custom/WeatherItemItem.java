@@ -74,7 +74,6 @@ public class WeatherItemItem extends Item {
 
         player.incrementStat(Stats.USED.getOrCreateStat(this));
         player.getStackInHand(hand).decrementUnlessCreative(1, player);
-
         return TypedActionResult.success(player.getStackInHand(hand));
     }
 }

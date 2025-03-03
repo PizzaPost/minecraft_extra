@@ -2,6 +2,8 @@ package de.pizzapost.minecraft_extra.item.custom;
 
 import com.google.common.base.Predicate;
 import com.mojang.datafixers.util.Pair;
+import de.pizzapost.minecraft_extra.MinecraftExtra;
+import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.component.ComponentChanges;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.LodestoneTrackerComponent;
@@ -14,6 +16,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -50,6 +53,13 @@ public class BiomeCompassItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
+        Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "biome_compass");
+        if (player instanceof ServerPlayerEntity serverPlayer) {
+            AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+            if (advancement != null) {
+                serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
+            }
+        }
         if (!world.isClient()) {
             Registry<Biome> biomeRegistry = world.getRegistryManager().get(RegistryKeys.BIOME);
             List<Biome> biomes = biomeRegistry.stream().filter(biome -> {

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "inv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:bedrock"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.bedrock"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:bedrock"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.bedrock"
+    }
+  },
+  "requirements": [
+    [
+      "inv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

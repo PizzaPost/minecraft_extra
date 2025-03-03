@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "imp": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.biome_compass"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:biome_compass"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.biome_compass"
+    }
+  },
+  "requirements": [
+    [
+      "imp"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
