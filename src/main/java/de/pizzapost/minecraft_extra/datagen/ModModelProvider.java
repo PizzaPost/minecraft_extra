@@ -90,5 +90,8 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.PIZZAPOST_HEAD_ITEM, Models.GENERATED);
         itemModelGenerator.register(ModItems.FAT, Models.GENERATED);
         itemModelGenerator.register(ModItems.SOAP, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ICE_BLAZE_ROD, Models.GENERATED);
+        itemModelGenerator.register(ModItems.TIME_CONTROL_DEVICE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.TIME_CONTROL_DEVICE_PIECE, Models.GENERATED);
     }
 }

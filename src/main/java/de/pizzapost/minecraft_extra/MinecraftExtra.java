@@ -13,6 +13,7 @@ import de.pizzapost.minecraft_extra.item.custom.AttributeCoreScaledItem;
 import de.pizzapost.minecraft_extra.item.ModItemGroups;
 import de.pizzapost.minecraft_extra.item.ModItems;
 import de.pizzapost.minecraft_extra.item.custom.HardenedNetheriteAxeItem;
+import de.pizzapost.minecraft_extra.item.custom.TimeControlDeviceItem;
 import de.pizzapost.minecraft_extra.keybinds.ModKeys;
 import de.pizzapost.minecraft_extra.particle.ModParticles;
 import de.pizzapost.minecraft_extra.sound.ModSounds;
@@ -34,6 +35,7 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
@@ -60,6 +62,7 @@ import org.slf4j.LoggerFactory;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.world.World;
 
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 

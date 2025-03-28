@@ -233,6 +233,9 @@
   "item.minecraft_extra.pizzapost_item": "PizzaPost Gegenstand",
   "item.minecraft_extra.fat": "Fett",
   "item.minecraft_extra.soap": "Seife",
+  "item.minecraft_extra.time_control_device": "Zeitsteuergerät",
+  "item.minecraft_extra.time_control_device_piece": "Zeitsteuergerätstück",
+  "item.minecraft_extra.ice_blaze_rod": "Eislohenrute",
 
 
   "itemgroup.minecraft_extra.minecraft_extra_items": "Minecraft Extra - Gegenstände",

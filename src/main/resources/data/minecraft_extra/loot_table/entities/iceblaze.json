@@ -13,7 +13,24 @@
               "count": {
                 "min": 0,
                 "max": 4
-              }
+              },
+              "conditions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft_extra:ice_blaze_rod",
+          "functions": [],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.1
             }
           ]
         }

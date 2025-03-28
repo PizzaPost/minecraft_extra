@@ -233,6 +233,9 @@
   "item.minecraft_extra.pizzapost_item": "PizzaPost Item",
   "item.minecraft_extra.fat": "Fat",
   "item.minecraft_extra.soap": "Soap",
+  "item.minecraft_extra.time_control_device": "Time Control Device",
+  "item.minecraft_extra.time_control_device_piece": "Time Control Device Piece",
+  "item.minecraft_extra.ice_blaze_rod": "Iceblaze Rod",
 
 
   "itemgroup.minecraft_extra.minecraft_extra_items": "Minecraft Extra - Items",

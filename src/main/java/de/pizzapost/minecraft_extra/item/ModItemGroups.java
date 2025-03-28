@@ -60,6 +60,9 @@ public class ModItemGroups {
                         entries.add(ModItems.EFFECT_GEM_PUSH);
                         entries.add(ModItems.HAMMER);
                         entries.add(ModItems.ICEBLAZE_SPAWN_EGG);
+                        entries.add(ModItems.ICE_BLAZE_ROD);
+                        entries.add(ModItems.TIME_CONTROL_DEVICE_PIECE);
+                        entries.add(ModItems.TIME_CONTROL_DEVICE);
                         entries.add(ModItems.BIG_FLINT_AND_STEEL);
                         entries.add(ModItems.ASH);
                         entries.add(ModItems.HONEY_BERRIES);

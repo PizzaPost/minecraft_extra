@@ -580,5 +580,30 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(ModItems.ASH), conditionsFromItem(ModItems.ASH))
                 .criterion(hasItem(Items.WATER_BUCKET), conditionsFromItem(Items.WATER_BUCKET))
                 .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.TIME_CONTROL_DEVICE_PIECE)
+                .pattern(" gg")
+                .pattern("cig")
+                .pattern("cc ")
+                .input('g', Items.GOLD_INGOT)
+                .input('c', Items.COPPER_INGOT)
+                .input('i', ModItems.ICE_BLAZE_ROD)
+                .criterion(hasItem(Items.GOLD_INGOT),conditionsFromItem(Items.GOLD_INGOT))
+                .criterion(hasItem(Items.COPPER_INGOT),conditionsFromItem(Items.COPPER_INGOT))
+                .criterion(hasItem(ModItems.ICE_BLAZE_ROD),conditionsFromItem(ModItems.ICE_BLAZE_ROD))
+                .offerTo(exporter);
+
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.TIME_CONTROL_DEVICE)
+                .pattern(" d ")
+                .pattern("iti")
+                .pattern("iii")
+                .input('d', Items.DAYLIGHT_DETECTOR)
+                .input('i', Items.IRON_INGOT)
+                .input('t', ModItems.TIME_CONTROL_DEVICE_PIECE)
+                .criterion(hasItem(Items.DAYLIGHT_DETECTOR),conditionsFromItem(Items.DAYLIGHT_DETECTOR))
+                .criterion(hasItem(Items.IRON_INGOT),conditionsFromItem(Items.IRON_INGOT))
+                .criterion(hasItem(ModItems.TIME_CONTROL_DEVICE_PIECE),conditionsFromItem(ModItems.TIME_CONTROL_DEVICE_PIECE))
+                .offerTo(exporter);
     }
 }

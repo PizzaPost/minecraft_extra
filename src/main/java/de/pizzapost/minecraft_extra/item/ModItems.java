@@ -451,6 +451,12 @@ public class ModItems {
             new Item(new Item.Settings()));
     public static final Item SOAP = registerItem("soap",
             new Item(new Item.Settings().food(ModFoodComponents.SOAP)));
+    public static final Item TIME_CONTROL_DEVICE = registerItem("time_control_device",
+            new TimeControlDeviceItem(new Item.Settings().maxCount(1)));
+    public static final Item TIME_CONTROL_DEVICE_PIECE = registerItem("time_control_device_piece",
+            new Item(new Item.Settings()));
+    public static final Item ICE_BLAZE_ROD = registerItem("ice_blaze_rod",
+            new Item(new Item.Settings()));
 
     public static Item registerBlock(Block block) {
         return registerBlock(new BlockItem(block, new Item.Settings()));

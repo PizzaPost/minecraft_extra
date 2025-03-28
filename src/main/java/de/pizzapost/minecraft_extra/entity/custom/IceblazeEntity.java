@@ -11,11 +11,13 @@ import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Random;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -69,6 +71,13 @@ public class IceblazeEntity extends HostileEntity {
     @Override
     public void tick() {
         super.tick();
+        List<Entity> entities = this.getWorld().getEntitiesByClass(Entity.class, this.getBoundingBox().expand(5.0), Entity::isAlive);
+        for (Entity entity : entities) {
+            if (entity instanceof ArrowEntity) {
+                entity.setAngles(entity.getYaw(), -90);
+                entity.setVelocity(0, -0.5, 0);
+            }
+        }
         if (!this.grounded) {
             if (this.hoverTimer > 0) {
                 this.hoverTimer--;
