@@ -59,6 +59,7 @@
   "advancements.minecraft_extra.description.tp_stick": "Teleport further than the standard range",
   "advancements.minecraft_extra.description.void_pig": "Kill a pig in the end below the build limit.",
   "advancements.minecraft_extra.description.weather": "Change the weather to Clear, Rainy and Thunderstorm.",
+  "advancements.minecraft_extra.description.time_control_device": "Use a time control device.",
 
   "advancements.minecraft_extra.title.allay": "truly best friends forever",
   "advancements.minecraft_extra.title.ancient_city": "deep, dark and dusty",
@@ -112,6 +113,7 @@
   "advancements.minecraft_extra.title.tp_stick": "",
   "advancements.minecraft_extra.title.void_pig": "",
   "advancements.minecraft_extra.title.weather": "",
+  "advancements.minecraft_extra.title.time_control_device": "Time-Controlled",
 
 
   "block.minecraft_extra.xp_storage": "XP Storage",

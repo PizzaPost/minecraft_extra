@@ -59,6 +59,7 @@
   "advancements.minecraft_extra.description.tp_stick": "Teleportiere dich weiter als die Standartreichweite",
   "advancements.minecraft_extra.description.void_pig": "Töte ein Schwein im End unter dem Baulimit.",
   "advancements.minecraft_extra.description.weather": "Ändere das Wetter auf Klar, Regen und Gewitter.",
+  "advancements.minecraft_extra.description.time_control_device": "Benutze ein Zeitsteuerungsgerät.",
 
   "advancements.minecraft_extra.title.allay": "wirklich beste Freunde für immer",
   "advancements.minecraft_extra.title.ancient_city": "tief, dunkel und staubig",
@@ -112,6 +113,7 @@
   "advancements.minecraft_extra.title.tp_stick": "",
   "advancements.minecraft_extra.title.void_pig": "",
   "advancements.minecraft_extra.title.weather": "",
+  "advancements.minecraft_extra.title.time_control_device": "Zeitgesteuert",
 
 
   "block.minecraft_extra.xp_storage": "XP Speicher",

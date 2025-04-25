@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "imp": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.time_control_device"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:time_control_device"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.time_control_device"
+    }
+  },
+  "requirements": [
+    [
+      "imp"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

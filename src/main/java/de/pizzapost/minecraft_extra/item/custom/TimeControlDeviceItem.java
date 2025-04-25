@@ -1,12 +1,16 @@
 package de.pizzapost.minecraft_extra.item.custom;
 
+import de.pizzapost.minecraft_extra.MinecraftExtra;
+import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.ServerTickManager;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
@@ -22,6 +26,13 @@ public class TimeControlDeviceItem extends Item {
             frozen = !frozen;
             ServerTickManager serverTickManager = player.getServer().getTickManager();
             serverTickManager.setFrozen(frozen);
+        }
+        Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "time_control_device");
+        if (player instanceof ServerPlayerEntity serverPlayer) {
+            AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+            if (advancement != null) {
+                serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
+            }
         }
         return TypedActionResult.success(player.getStackInHand(hand));
     }
