@@ -147,6 +147,9 @@
   "block.minecraft_extra.magenta_petals": "Magenta Petals",
   "block.minecraft_extra.pizzapost_block": "PizzaPost Block",
 
+  "bossbar.minecraft_extra.end_crystals_left": "Crystals Remaining: %s/%s",
+  "bossbar.minecraft_extra.end_crystals_searching": "searching crystals...",
+
   "command.minecraft_extra.bob": "Bob is the elder guardian.",
   "command.minecraft_extra.bug": "Submit a bug report here: ",
   "command.minecraft_extra.feedback": "Leave your feedback here: ",

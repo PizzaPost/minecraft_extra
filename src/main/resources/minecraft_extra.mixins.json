@@ -15,7 +15,9 @@
 		"FireBlockMixin",
 		"LightmapTextureManagerMixin",
 		"LivingEntityMixin",
-		"GameMenuScreenMixin"
+		"GameMenuScreenMixin",
+		"EnderDragonFightMixin",
+		"DragonFireballEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -147,6 +147,9 @@
   "block.minecraft_extra.magenta_petals": "Magenta Blütenblätter",
   "block.minecraft_extra.pizzapost_block": "PizzaPost Block",
 
+  "bossbar.minecraft_extra.end_crystals_left": "Übrige Kristalle: %s/%s",
+  "bossbar.minecraft_extra.end_crystals_searching": "suche Kristalle...",
+
   "command.minecraft_extra.bob": "Bob ist der Großwächter.",
   "command.minecraft_extra.bug": "Melde einen Bug hier: ",
   "command.minecraft_extra.feedback": "Reiche Feedback hier ein: ",
