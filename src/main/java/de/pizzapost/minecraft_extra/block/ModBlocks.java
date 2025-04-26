@@ -59,36 +59,6 @@ public class ModBlocks {
                     .strength(0.8F).instrument(NoteBlockInstrument.GUITAR)));
     public static final Block HONEY_BERRY_BUSH = registerBlock("honey_berry_bush",
             new HoneyBerryBushBlock(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH)));
-    public static final Block WHITE_PETALS = registerBlock("white_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block LIGHT_GRAY_PETALS = registerBlock("light_gray_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block GRAY_PETALS = registerBlock("gray_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block BLACK_PETALS = registerBlock("black_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block BROWN_PETALS = registerBlock("brown_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block RED_PETALS = registerBlock("red_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block ORANGE_PETALS = registerBlock("orange_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block YELLOW_PETALS = registerBlock("yellow_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block LIME_PETALS = registerBlock("lime_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block GREEN_PETALS = registerBlock("green_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block CYAN_PETALS = registerBlock("cyan_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block LIGHT_BLUE_PETALS = registerBlock("light_blue_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block BLUE_PETALS = registerBlock("blue_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block PURPLE_PETALS = registerBlock("purple_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
-    public static final Block MAGENTA_PETALS = registerBlock("magenta_petals",
-            new FlowerbedBlock(FabricBlockSettings.copyOf(Blocks.PINK_PETALS)));
     public static final Block PIZZAPOST_BLOCK = registerBlock("pizzapost_block",
             new Block(AbstractBlock.Settings.create().strength(-1F, -1F)
                     .sounds(BlockSoundGroup.METAL).mapColor(MapColor.LIME)
@@ -97,21 +67,6 @@ public class ModBlocks {
     public static void registerCompostables() {
         ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.ASH, 0.1f);
         ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.HONEY_BERRIES, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.WHITE_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.LIGHT_GRAY_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.GRAY_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.BLACK_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.BROWN_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.RED_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.ORANGE_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.YELLOW_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.LIME_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.GREEN_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.CYAN_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.LIGHT_BLUE_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.BLUE_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.PURPLE_PETALS, 0.3f);
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.MAGENTA_PETALS, 0.3f);
     }
 
     private static Block registerBlock(String name, Block block) {

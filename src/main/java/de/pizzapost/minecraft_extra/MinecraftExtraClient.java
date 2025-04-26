@@ -77,20 +77,5 @@ public class MinecraftExtraClient implements ClientModInitializer {
         });
         ParticleFactoryRegistry.getInstance().register(ModParticles.EFFECT_GEM_PUSH_PARTICLE, EffectGemPushParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.HARDENED_NETHERITE_AMBIENT, HardenedNetheriteAmbientParticle.Factory::new);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.WHITE_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.LIGHT_GRAY_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.GRAY_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.BLACK_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.BROWN_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.RED_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.ORANGE_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.YELLOW_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.LIME_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.GREEN_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.CYAN_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.LIGHT_BLUE_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.BLUE_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.PURPLE_PETALS);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), ModBlocks.MAGENTA_PETALS);
     }
 }

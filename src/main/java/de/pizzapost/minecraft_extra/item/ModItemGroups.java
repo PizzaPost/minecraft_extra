@@ -93,21 +93,6 @@ public class ModItemGroups {
                         entries.add(ModBlocks.EFFECT_FARMLAND);
                         entries.add(ModBlocks.FEATHER_BLOCK);
                         entries.add(ModBlocks.HONEY_BERRY_BUSH);
-                        entries.add(ModBlocks.WHITE_PETALS);
-                        entries.add(ModBlocks.LIGHT_GRAY_PETALS);
-                        entries.add(ModBlocks.GRAY_PETALS);
-                        entries.add(ModBlocks.BLACK_PETALS);
-                        entries.add(ModBlocks.BROWN_PETALS);
-                        entries.add(ModBlocks.RED_PETALS);
-                        entries.add(ModBlocks.ORANGE_PETALS);
-                        entries.add(ModBlocks.YELLOW_PETALS);
-                        entries.add(ModBlocks.LIME_PETALS);
-                        entries.add(ModBlocks.GREEN_PETALS);
-                        entries.add(ModBlocks.CYAN_PETALS);
-                        entries.add(ModBlocks.LIGHT_BLUE_PETALS);
-                        entries.add(ModBlocks.BLUE_PETALS);
-                        entries.add(ModBlocks.PURPLE_PETALS);
-                        entries.add(ModBlocks.MAGENTA_PETALS);
                     }).build());
 
     public static void registerItemGroups() {

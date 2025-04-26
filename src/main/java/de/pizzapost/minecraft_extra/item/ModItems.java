@@ -430,21 +430,6 @@ public class ModItems {
             new AliasedBlockItem(ModBlocks.HONEY_BERRY_BUSH, new Item.Settings().maxCount(64).food(ModFoodComponents.HONEY_BERRY)));
     public static final Item BIOME_COMPASS = registerItem("biome_compass",
             new BiomeCompassItem(new Item.Settings().maxCount(1)));
-    public static final Item WHITE_PETALS = registerBlock(ModBlocks.WHITE_PETALS);
-    public static final Item LIGHT_GRAY_PETALS = registerBlock(ModBlocks.LIGHT_GRAY_PETALS);
-    public static final Item GRAY_PETALS = registerBlock(ModBlocks.GRAY_PETALS);
-    public static final Item BLACK_PETALS = registerBlock(ModBlocks.BLACK_PETALS);
-    public static final Item BROWN_PETALS = registerBlock(ModBlocks.BROWN_PETALS);
-    public static final Item RED_PETALS = registerBlock(ModBlocks.RED_PETALS);
-    public static final Item ORANGE_PETALS = registerBlock(ModBlocks.ORANGE_PETALS);
-    public static final Item YELLOW_PETALS = registerBlock(ModBlocks.YELLOW_PETALS);
-    public static final Item LIME_PETALS = registerBlock(ModBlocks.LIME_PETALS);
-    public static final Item GREEN_PETALS = registerBlock(ModBlocks.GREEN_PETALS);
-    public static final Item CYAN_PETALS = registerBlock(ModBlocks.CYAN_PETALS);
-    public static final Item LIGHT_BLUE_PETALS = registerBlock(ModBlocks.LIGHT_BLUE_PETALS);
-    public static final Item BLUE_PETALS = registerBlock(ModBlocks.BLUE_PETALS);
-    public static final Item PURPLE_PETALS = registerBlock(ModBlocks.PURPLE_PETALS);
-    public static final Item MAGENTA_PETALS = registerBlock(ModBlocks.MAGENTA_PETALS);
     public static final Item PIZZAPOST_HEAD_ITEM = registerItem("pizzapost_item",
             new Item(new Item.Settings()));
     public static final Item FAT = registerItem("fat",
