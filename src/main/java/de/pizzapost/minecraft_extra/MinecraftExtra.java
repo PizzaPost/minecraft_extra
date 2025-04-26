@@ -17,6 +17,7 @@ import de.pizzapost.minecraft_extra.item.custom.TimeControlDeviceItem;
 import de.pizzapost.minecraft_extra.keybinds.ModKeys;
 import de.pizzapost.minecraft_extra.particle.ModParticles;
 import de.pizzapost.minecraft_extra.sound.ModSounds;
+import de.pizzapost.minecraft_extra.util.DelayedSpawnManager;
 import de.pizzapost.minecraft_extra.util.ModLootTableModifiers;
 import de.pizzapost.minecraft_extra.villager.CustomVillagerTrades;
 import de.pizzapost.minecraft_extra.villager.ModVillagers;
@@ -98,6 +99,7 @@ public class MinecraftExtra implements ModInitializer {
 		FuelRegistry.INSTANCE.add(ModItems.ROTTEN_CHUNK, 150);
 		ModWorldGeneration.generateModWorldGen();
 		ModParticles.registerParticles();
+		DelayedSpawnManager.registerDelayedSpawnManager();
 		new SleepRegeneration().onInitialize();
 		ServerTickEvents.END_WORLD_TICK.register(this::onWorldTick);
 		ServerTickEvents.START_WORLD_TICK.register(world -> {

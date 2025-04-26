@@ -1,21 +1,17 @@
 package de.pizzapost.minecraft_extra.mixin;
 
-import net.minecraft.entity.attribute.EntityAttributes;
+import de.pizzapost.minecraft_extra.util.DelayedSpawnManager;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.boss.dragon.EnderDragonFight;
-import net.minecraft.entity.boss.dragon.phase.HoldingPatternPhase;
 import net.minecraft.entity.boss.dragon.phase.PhaseType;
-import net.minecraft.entity.projectile.DragonFireballEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.decoration.EndCrystalEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.WorldEvents;
 import net.minecraft.world.gen.feature.EndSpikeFeature;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
@@ -41,18 +37,9 @@ public abstract class EnderDragonFightMixin {
     private @Nullable UUID dragonUuid;
     private ServerBossBar crystalsBossBar;
 
-    @Inject(
-            method = "<init>(Lnet/minecraft/server/world/ServerWorld;JLnet/minecraft/entity/boss/dragon/EnderDragonFight$Data;Lnet/minecraft/util/math/BlockPos;)V",
-            at = @At("RETURN")
-    )
+    @Inject(method = "<init>(Lnet/minecraft/server/world/ServerWorld;JLnet/minecraft/entity/boss/dragon/EnderDragonFight$Data;Lnet/minecraft/util/math/BlockPos;)V", at = @At("RETURN"))
     private void initCrystalsBossBar(ServerWorld world, long gatewaysSeed, EnderDragonFight.Data data, BlockPos origin, CallbackInfo ci) {
-        this.crystalsBossBar = (ServerBossBar) new ServerBossBar(
-                Text.translatable("bossbar.minecraft_extra.end_crystals_searching"),
-                BossBar.Color.GREEN,
-                BossBar.Style.PROGRESS
-        )
-                .setDarkenSky(false)
-                .setThickenFog(false);
+        this.crystalsBossBar = (ServerBossBar) new ServerBossBar(Text.translatable("bossbar.minecraft_extra.end_crystals_searching"), BossBar.Color.GREEN, BossBar.Style.PROGRESS).setDarkenSky(false).setThickenFog(false);
     }
 
     @Inject(method = "countAliveCrystals", at = @At("TAIL"))
@@ -78,9 +65,7 @@ public abstract class EnderDragonFightMixin {
         this.crystalsBossBar.setVisible(false);
     }
 
-    @Redirect(method = "dragonKilled(Lnet/minecraft/entity/boss/dragon/EnderDragonEntity;)V",
-            at = @At(value = "FIELD", target = "Lnet/minecraft/entity/boss/dragon/EnderDragonFight;previouslyKilled:Z",
-                    opcode = Opcodes.GETFIELD))
+    @Redirect(method = "dragonKilled(Lnet/minecraft/entity/boss/dragon/EnderDragonEntity;)V", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/boss/dragon/EnderDragonFight;previouslyKilled:Z", opcode = Opcodes.GETFIELD))
     private boolean redirectPreviouslyKilled(EnderDragonFight instance) {
         return false;
     }
@@ -91,6 +76,13 @@ public abstract class EnderDragonFightMixin {
             bossBar.setColor(BossBar.Color.RED);
         } else {
             bossBar.setColor(BossBar.Color.PINK);
+        }
+    }
+
+    @Inject(method = "crystalDestroyed", at = @At("TAIL"))
+    private void onCrystalDestroyed(EndCrystalEntity enderCrystal, DamageSource source, CallbackInfo ci) {
+        if (source.getAttacker() instanceof PlayerEntity player) {
+            DelayedSpawnManager.scheduleSpawn((ServerWorld) enderCrystal.getWorld(), player.getUuid(), enderCrystal.getBlockPos(), 20);
         }
     }
 }
