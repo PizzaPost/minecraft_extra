@@ -3,10 +3,7 @@ package de.pizzapost.minecraft_extra;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.pizzapost.minecraft_extra.block.ModBlocks;
 import de.pizzapost.minecraft_extra.effect.ModEffects;
-import de.pizzapost.minecraft_extra.entity.client.IceblazeModel;
-import de.pizzapost.minecraft_extra.entity.client.IceblazeRenderer;
-import de.pizzapost.minecraft_extra.entity.client.SoapBubbleModel;
-import de.pizzapost.minecraft_extra.entity.client.SoapBubbleRenderer;
+import de.pizzapost.minecraft_extra.entity.client.*;
 import de.pizzapost.minecraft_extra.keybinds.ModKeys;
 import de.pizzapost.minecraft_extra.particle.ModParticles;
 import de.pizzapost.minecraft_extra.particle.custom.EffectGemPushParticle;
@@ -39,6 +36,9 @@ public class MinecraftExtraClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.ICEBLAZE, IceblazeRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(SoapBubbleModel.SoapBubble, SoapBubbleModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.SOAP_BUBBLE, SoapBubbleRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(EndCrystalMobModel.END_CRYSTAL_MOB, EndCrystalMobModel::getTexturedModelData);
+        EntityRendererRegistry.register(ModEntities.END_CRYSTAL_MOB, EndCrystalMobRenderer::new);
+
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.HONEY_BERRY_BUSH, RenderLayer.getCutout());
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player != null) {

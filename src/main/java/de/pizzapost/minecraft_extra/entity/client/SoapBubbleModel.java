@@ -8,7 +8,6 @@ import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
-import org.lwjgl.opengl.GL11;
 
 public class SoapBubbleModel<T extends SoapBubbleEntity> extends EntityModel<T> {
     public static final EntityModelLayer SoapBubble = new EntityModelLayer(Identifier.of(MinecraftExtra.MOD_ID, "soap_bubble"), "main");

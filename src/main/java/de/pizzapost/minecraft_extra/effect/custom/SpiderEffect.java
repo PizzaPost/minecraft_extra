@@ -1,6 +1,9 @@
 package de.pizzapost.minecraft_extra.effect.custom;
 
+import de.pizzapost.minecraft_extra.keybinds.ModKeys;
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.control.JumpControl;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.math.Vec3d;

@@ -71,6 +71,7 @@ public class ModItemGroups {
                         entries.add(ModItems.BIOME_COMPASS);
                         entries.add(ModItems.FAT);
                         entries.add(ModItems.SOAP);
+                        entries.add(ModItems.END_CRYSTAL_MOB_SPAWN_EGG);
                     }).build());
 
     public static final ItemGroup MINECRAFT_EXTRA_BLOCKS = Registry.register(Registries.ITEM_GROUP,

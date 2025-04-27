@@ -93,5 +93,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ICE_BLAZE_ROD, Models.GENERATED);
         itemModelGenerator.register(ModItems.TIME_CONTROL_DEVICE, Models.GENERATED);
         itemModelGenerator.register(ModItems.TIME_CONTROL_DEVICE_PIECE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.END_CRYSTAL_MOB_SPAWN_EGG,
+                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
     }
 }

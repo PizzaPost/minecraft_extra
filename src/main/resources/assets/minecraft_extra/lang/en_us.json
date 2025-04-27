@@ -184,6 +184,7 @@
   "entity.minecraft_extra.iceblaze": "Iceblaze",
   "entity.minecraft.villager.beekeeper": "Beekeeper",
   "entity.minecraft_extra.soap_bubble": "Soap Bubble",
+  "entity.minecraft_extra.end_crystal_mob": "End Crystal Mob",
 
 
   "item.minecraft_extra.attribute_core": "Attribute Core",
@@ -241,6 +242,7 @@
   "item.minecraft_extra.time_control_device": "Time Control Device",
   "item.minecraft_extra.time_control_device_piece": "Time Control Device Piece",
   "item.minecraft_extra.ice_blaze_rod": "Iceblaze Rod",
+  "item.minecraft_extra.end_crystal_mob_spawn_egg": "End Crystal-Spawn-Egg",
 
 
   "itemgroup.minecraft_extra.minecraft_extra_items": "Minecraft Extra - Items",

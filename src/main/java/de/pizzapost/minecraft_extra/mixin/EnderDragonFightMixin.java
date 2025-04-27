@@ -1,6 +1,7 @@
 package de.pizzapost.minecraft_extra.mixin;
 
-import de.pizzapost.minecraft_extra.util.DelayedSpawnManager;
+import de.pizzapost.minecraft_extra.entity.ModEntities;
+import de.pizzapost.minecraft_extra.entity.custom.EndCrystalMobEntity;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.boss.dragon.EnderDragonEntity;
@@ -82,7 +83,17 @@ public abstract class EnderDragonFightMixin {
     @Inject(method = "crystalDestroyed", at = @At("TAIL"))
     private void onCrystalDestroyed(EndCrystalEntity enderCrystal, DamageSource source, CallbackInfo ci) {
         if (source.getAttacker() instanceof PlayerEntity player) {
-            DelayedSpawnManager.scheduleSpawn((ServerWorld) enderCrystal.getWorld(), player.getUuid(), enderCrystal.getBlockPos(), 20);
+            if (player == null || !player.isAlive()) return;
+            EndCrystalMobEntity endCrystalMob = new EndCrystalMobEntity(ModEntities.END_CRYSTAL_MOB, world);
+            endCrystalMob.refreshPositionAndAngles(
+                    enderCrystal.getX() + 0.5,
+                    enderCrystal.getY(),
+                    enderCrystal.getZ() + 0.5,
+                    world.random.nextFloat() * 360.0F,
+                    0.0F
+            );
+            endCrystalMob.setTarget(player);
+            world.spawnEntity(endCrystalMob);
         }
     }
 }

@@ -184,6 +184,7 @@
   "entity.minecraft_extra.iceblaze": "Eislohe",
   "entity.minecraft.villager.beekeeper": "Imker",
   "entity.minecraft_extra.soap_bubble": "Seifenblase",
+  "entity.minecraft_extra.end_crystal_mob": "Endkristallmob",
 
 
   "item.minecraft_extra.attribute_core": "Attributkern",
@@ -241,6 +242,8 @@
   "item.minecraft_extra.time_control_device": "Zeitsteuergerät",
   "item.minecraft_extra.time_control_device_piece": "Zeitsteuergerätstück",
   "item.minecraft_extra.ice_blaze_rod": "Eislohenrute",
+  "item.minecraft_extra.end_crystal_mob_spawn_egg": "Enderkristall-Spawn-Ei",
+
 
 
   "itemgroup.minecraft_extra.minecraft_extra_items": "Minecraft Extra - Gegenstände",

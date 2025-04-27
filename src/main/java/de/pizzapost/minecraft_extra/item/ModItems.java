@@ -442,6 +442,8 @@ public class ModItems {
             new Item(new Item.Settings()));
     public static final Item ICE_BLAZE_ROD = registerItem("ice_blaze_rod",
             new Item(new Item.Settings()));
+    public static final Item END_CRYSTAL_MOB_SPAWN_EGG = registerItem("end_crystal_mob_spawn_egg",
+            new SpawnEggItem(ModEntities.END_CRYSTAL_MOB, 0xD877FF, 0xF76AD2, new Item.Settings()));
 
     public static Item registerBlock(Block block) {
         return registerBlock(new BlockItem(block, new Item.Settings()));

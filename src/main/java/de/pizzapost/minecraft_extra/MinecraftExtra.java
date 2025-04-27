@@ -5,6 +5,7 @@ import de.pizzapost.minecraft_extra.block.custom.HoneyBerryBushBlock;
 import de.pizzapost.minecraft_extra.commands.ModCommands;
 import de.pizzapost.minecraft_extra.effect.ModEffects;
 import de.pizzapost.minecraft_extra.entity.ModEntities;
+import de.pizzapost.minecraft_extra.entity.custom.EndCrystalMobEntity;
 import de.pizzapost.minecraft_extra.entity.custom.IceblazeEntity;
 import de.pizzapost.minecraft_extra.entity.custom.SoapBubbleEntity;
 import de.pizzapost.minecraft_extra.event.LightningStrikeHandler;
@@ -13,11 +14,9 @@ import de.pizzapost.minecraft_extra.item.custom.AttributeCoreScaledItem;
 import de.pizzapost.minecraft_extra.item.ModItemGroups;
 import de.pizzapost.minecraft_extra.item.ModItems;
 import de.pizzapost.minecraft_extra.item.custom.HardenedNetheriteAxeItem;
-import de.pizzapost.minecraft_extra.item.custom.TimeControlDeviceItem;
 import de.pizzapost.minecraft_extra.keybinds.ModKeys;
 import de.pizzapost.minecraft_extra.particle.ModParticles;
 import de.pizzapost.minecraft_extra.sound.ModSounds;
-import de.pizzapost.minecraft_extra.util.DelayedSpawnManager;
 import de.pizzapost.minecraft_extra.util.ModLootTableModifiers;
 import de.pizzapost.minecraft_extra.villager.CustomVillagerTrades;
 import de.pizzapost.minecraft_extra.villager.ModVillagers;
@@ -36,7 +35,6 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
@@ -63,7 +61,6 @@ import org.slf4j.LoggerFactory;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.world.World;
 
-import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 
@@ -99,7 +96,6 @@ public class MinecraftExtra implements ModInitializer {
 		FuelRegistry.INSTANCE.add(ModItems.ROTTEN_CHUNK, 150);
 		ModWorldGeneration.generateModWorldGen();
 		ModParticles.registerParticles();
-		DelayedSpawnManager.registerDelayedSpawnManager();
 		new SleepRegeneration().onInitialize();
 		ServerTickEvents.END_WORLD_TICK.register(this::onWorldTick);
 		ServerTickEvents.START_WORLD_TICK.register(world -> {
@@ -301,6 +297,7 @@ public class MinecraftExtra implements ModInitializer {
         });
 		FabricDefaultAttributeRegistry.register(ModEntities.ICEBLAZE, IceblazeEntity.createAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.SOAP_BUBBLE, SoapBubbleEntity.createAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.END_CRYSTAL_MOB, EndCrystalMobEntity.createAttributes());
 	}
 
 	private void onWorldTick(ServerWorld world) {

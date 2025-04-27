@@ -1,6 +1,7 @@
 package de.pizzapost.minecraft_extra.entity;
 
 import de.pizzapost.minecraft_extra.MinecraftExtra;
+import de.pizzapost.minecraft_extra.entity.custom.EndCrystalMobEntity;
 import de.pizzapost.minecraft_extra.entity.custom.IceblazeEntity;
 import de.pizzapost.minecraft_extra.entity.custom.IcebombEntity;
 import de.pizzapost.minecraft_extra.entity.custom.SoapBubbleEntity;
@@ -31,6 +32,13 @@ public class ModEntities {
             Identifier.of(MinecraftExtra.MOD_ID, "soap_bubble"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, SoapBubbleEntity::new)
                     .dimensions(EntityDimensions.fixed(1.6f, 1.6f))
+                    .build());
+
+    public static final EntityType<EndCrystalMobEntity> END_CRYSTAL_MOB = Registry.register(
+            Registries.ENTITY_TYPE,
+            Identifier.of(MinecraftExtra.MOD_ID, "end_crystal_mob"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EndCrystalMobEntity::new)
+                    .dimensions(EntityDimensions.fixed(1f, 1f))
                     .build());
 
     public static void registerModEntities() {
