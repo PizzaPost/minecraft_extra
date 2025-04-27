@@ -36,8 +36,8 @@ public class EndCrystalMobEntity extends HostileEntity {
     public static DefaultAttributeContainer.Builder createAttributes() {
         return HostileEntity.createHostileAttributes()
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 100)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 70)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 75)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 50)
                 .add(EntityAttributes.GENERIC_STEP_HEIGHT, 200);
     }
 
