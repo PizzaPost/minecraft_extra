@@ -1,11 +1,9 @@
 package de.pizzapost.minecraft_extra.entity.custom;
 
-import de.pizzapost.minecraft_extra.MinecraftExtra;
 import de.pizzapost.minecraft_extra.effect.ModEffects;
 import de.pizzapost.minecraft_extra.entity.ModEntities;
 import de.pizzapost.minecraft_extra.item.ModItems;
 import de.pizzapost.minecraft_extra.sound.ModSounds;
-import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityStatuses;
@@ -13,18 +11,18 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.BlazeEntity;
+import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
@@ -34,13 +32,14 @@ public class IcebombEntity extends ThrownItemEntity {
     private final Map<BlockPos, Integer> growingBlocks = new HashMap<>();
     private int animationTick = 0;
 
-    public IcebombEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
+    public IcebombEntity(EntityType<? extends IcebombEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    public IcebombEntity(World world, LivingEntity owner) {
-        super(ModEntities.ICEBOMB, owner, world);
+    public IcebombEntity(World world, LivingEntity owner, ItemStack stack) {
+        super(ModEntities.ICEBOMB, owner, world, stack);
     }
+
 
     protected Item getDefaultItem() {
         return ModItems.ICEBOMB;
@@ -64,7 +63,7 @@ public class IcebombEntity extends ThrownItemEntity {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
         int damage = entity instanceof BlazeEntity ? 5 : 2;
-        entity.damage(this.getDamageSources().thrown(this, this.getOwner()), (float) damage+1);
+        entity.serverDamage(this.getDamageSources().thrown(this, this.getOwner()), (float) damage + 1);
         if (entity instanceof LivingEntity) {
             ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(ModEffects.FREEZE, 600, 0));
         }

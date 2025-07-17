@@ -177,6 +177,9 @@
   "command.minecraft_extra.hover.click": "click",
 
 
+  "death.attack.honey_berry_bush": "%1$s was poked to death by a honey berry bush",
+
+
   "effect.minecraft_extra.spider": "Spider",
   "effect.minecraft_extra.freeze": "Freeze",
   "effect.minecraft_extra.soaped": "Soaped",

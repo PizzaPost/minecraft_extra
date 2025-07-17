@@ -22,14 +22,11 @@ public class ModVillagers {
 
 
     private static VillagerProfession registerProfession(String name, RegistryKey<PointOfInterestType> type) {
-        return Registry.register(Registries.VILLAGER_PROFESSION, Identifier.of(MinecraftExtra.MOD_ID, name),
-                new VillagerProfession(name, entry -> entry.matchesKey(type), entry -> entry.matchesKey(type),
-                        ImmutableSet.of(), ImmutableSet.of(), SoundEvents.ENTITY_VILLAGER_WORK_LIBRARIAN));
+        return Registry.register(Registries.VILLAGER_PROFESSION, Identifier.of(MinecraftExtra.MOD_ID, name), new VillagerProfession(name, entry -> entry.matchesKey(type), entry -> entry.matchesKey(type), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.ENTITY_VILLAGER_WORK_LIBRARIAN));
     }
 
     private static PointOfInterestType registerPOI(String name, Block block) {
-        return PointOfInterestHelper.register(Identifier.of(MinecraftExtra.MOD_ID, name),
-                1, 1, block);
+        return PointOfInterestHelper.register(Identifier.of(MinecraftExtra.MOD_ID, name), 1, 1, block);
     }
 
     private static RegistryKey<PointOfInterestType> registerPoiKey(String name) {

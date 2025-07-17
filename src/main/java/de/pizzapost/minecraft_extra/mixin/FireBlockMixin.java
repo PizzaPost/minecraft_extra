@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class FireBlockMixin {
     @Shadow
     protected abstract int getSpreadChance(BlockState state);
+
     @Inject(method = "trySpreadingFire", at = @At("HEAD"), cancellable = true)
     private void modifyFireSpread(World world, BlockPos pos, int spreadFactor, Random random, int currentAge, CallbackInfo ci) {
         int i = this.getSpreadChance(world.getBlockState(pos));
@@ -27,7 +28,7 @@ public abstract class FireBlockMixin {
                 world.setBlockState(pos, fireState, Block.NOTIFY_ALL);
             } else {
                 if (random.nextFloat() < 0.6) {
-                    world.setBlockState(pos, ModBlocks.ASH_LAYER.getDefaultState().with(Properties.LAYERS, random.nextInt(3)+1), Block.NOTIFY_ALL);
+                    world.setBlockState(pos, ModBlocks.ASH_LAYER.getDefaultState().with(Properties.LAYERS, random.nextInt(3) + 1), Block.NOTIFY_ALL);
                 } else {
                     world.removeBlock(pos, false);
                 }

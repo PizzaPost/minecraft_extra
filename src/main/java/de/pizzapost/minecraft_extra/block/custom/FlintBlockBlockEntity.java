@@ -11,6 +11,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
@@ -157,24 +158,28 @@ public class FlintBlockBlockEntity extends BlockWithEntity {
         PlayerEntity player = (PlayerEntity) placer;
         for (PlayerEntity targetPlayer : world.getPlayers()) {
             if (area.contains(targetPlayer.getPos())) {
-                targetPlayer.damage(world.getDamageSources().playerAttack(player), 1.5F);
-                Vec3d direction = targetPlayer.getPos().subtract(Vec3d.ofCenter(pos));
-                double distance = direction.length();
-                double boost = Math.max(0, 1 / (distance + 1)*1.5);
-                targetPlayer.addVelocity(direction.x * boost, 0.02 * boost, direction.z * boost);
-                Vec3d currentVelocity = targetPlayer.getVelocity();
-                targetPlayer.setVelocity(currentVelocity);
+                if (world instanceof ServerWorld serverWorld) {
+                    targetPlayer.damage(serverWorld, world.getDamageSources().playerAttack(player), 1.5F);
+                    Vec3d direction = targetPlayer.getPos().subtract(Vec3d.ofCenter(pos));
+                    double distance = direction.length();
+                    double boost = Math.max(0, 1 / (distance + 1) * 1.5);
+                    targetPlayer.addVelocity(direction.x * boost, 0.02 * boost, direction.z * boost);
+                    Vec3d currentVelocity = targetPlayer.getVelocity();
+                    targetPlayer.setVelocity(currentVelocity);
+                }
             }
         }
         for (LivingEntity targetEntity : world.getEntitiesByClass(MobEntity.class, area, e -> true)) {
             if (area.contains(targetEntity.getPos())) {
-                targetEntity.damage(world.getDamageSources().playerAttack(player), 1.5F);
-                Vec3d direction = targetEntity.getPos().subtract(Vec3d.ofCenter(pos));
-                double distance = direction.length();
-                double boost = Math.max(0, 1 / (distance + 1)*1.5);
-                targetEntity.addVelocity(direction.x * boost, 0.02 * boost, direction.z * boost);
-                Vec3d currentVelocity = targetEntity.getVelocity();
-                targetEntity.setVelocity(currentVelocity);
+                if (world instanceof ServerWorld serverWorld) {
+                    targetEntity.damage(serverWorld, world.getDamageSources().playerAttack(player), 1.5F);
+                    Vec3d direction = targetEntity.getPos().subtract(Vec3d.ofCenter(pos));
+                    double distance = direction.length();
+                    double boost = Math.max(0, 1 / (distance + 1) * 1.5);
+                    targetEntity.addVelocity(direction.x * boost, 0.02 * boost, direction.z * boost);
+                    Vec3d currentVelocity = targetEntity.getVelocity();
+                    targetEntity.setVelocity(currentVelocity);
+                }
             }
         }
     }

@@ -1,12 +1,7 @@
 package de.pizzapost.minecraft_extra.item.custom;
 
 import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.block.AbstractFireBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CampfireBlock;
-import net.minecraft.block.CandleBlock;
-import net.minecraft.block.CandleCakeBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -52,10 +47,10 @@ public class BigFlintAndSteelItem extends Item {
             if (anyBlockLit) {
                 ItemStack itemStack = context.getStack();
                 if (playerEntity instanceof ServerPlayerEntity) {
-                    Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity)playerEntity, blockPos, itemStack);
+                    Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity) playerEntity, blockPos, itemStack);
                     itemStack.damage(1, playerEntity, LivingEntity.getSlotForHand(context.getHand()));
                 }
-                return ActionResult.success(world.isClient());
+                return ActionResult.SUCCESS;
             } else {
                 return ActionResult.FAIL;
             }
@@ -66,7 +61,7 @@ public class BigFlintAndSteelItem extends Item {
             if (playerEntity != null) {
                 context.getStack().damage(1, playerEntity, LivingEntity.getSlotForHand(context.getHand()));
             }
-            return ActionResult.success(world.isClient());
+            return ActionResult.SUCCESS;
         }
     }
 }

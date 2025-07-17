@@ -15,7 +15,7 @@ import net.minecraft.util.Formatting;
 
 import java.util.List;
 
-import static net.minecraft.server.command.CommandManager.*;
+import static net.minecraft.server.command.CommandManager.literal;
 
 public class ModCommands {
     public static void initializeCommands() {
@@ -100,7 +100,7 @@ public class ModCommands {
                                 ServerCommandSource source = context.getSource();
 
                                 Text socialsMessage;
-                                switch(username) {
+                                switch (username) {
                                     case "PizzaPost":
                                         socialsMessage = createSocialsMessage(
                                                 "PizzaPost",
@@ -156,7 +156,7 @@ public class ModCommands {
                         .executes(context -> {
                             String command = StringArgumentType.getString(context, "command");
                             ServerCommandSource source = context.getSource();
-                            switch(command) {
+                            switch (command) {
                                 case "bob":
                                     source.sendMessage(Text.translatable("command.minecraft_extra.commands.bob"));
                                     break;
@@ -190,9 +190,9 @@ public class ModCommands {
                 .formatted(nameColor)
                 .append(Text.literal(":\n"));
 
-        for(int i = 0; i < links.length; i++) {
+        for (int i = 0; i < links.length; i++) {
             base.append(links[i]);
-            if(i < links.length - 1) base.append(Text.literal(" "));
+            if (i < links.length - 1) base.append(Text.literal(" "));
         }
 
         return base;
@@ -212,7 +212,6 @@ public class ModCommands {
                                 Text.translatable("command.minecraft_extra.hover.click", url)
                         )));
     }
-
 
 
     public static void registerModCommands() {

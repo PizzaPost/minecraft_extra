@@ -16,9 +16,7 @@ public abstract class DragonFireballEntityMixin {
     private void preventDragonCollision(HitResult hitResult, CallbackInfo ci) {
         if (hitResult.getType() == HitResult.Type.ENTITY) {
             EntityHitResult entityHit = (EntityHitResult) hitResult;
-            if (entityHit.getEntity() instanceof EnderDragonEntity ||
-                    (entityHit.getEntity() instanceof EnderDragonPart &&
-                            ((EnderDragonPart) entityHit.getEntity()).owner instanceof EnderDragonEntity)) {
+            if (entityHit.getEntity() instanceof EnderDragonEntity || (entityHit.getEntity() instanceof EnderDragonPart && ((EnderDragonPart) entityHit.getEntity()).owner instanceof EnderDragonEntity)) {
                 ci.cancel();
             }
         }

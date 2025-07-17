@@ -2,16 +2,16 @@ package de.pizzapost.minecraft_extra.entity.custom;
 
 import de.pizzapost.minecraft_extra.effect.ModEffects;
 import de.pizzapost.minecraft_extra.sound.ModSounds;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -30,13 +30,13 @@ public class SoapBubbleEntity extends HostileEntity {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0);
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.MOVEMENT_SPEED, 0).add(EntityAttributes.MAX_HEALTH, 999);
     }
 
     @Override
     public void tick() {
         super.tick();
+        this.setVelocity(Vec3d.ZERO);
         if (!this.getWorld().isClient) {
             PlayerEntity targetPlayer = findNearestSoapedPlayer();
             if (targetPlayer == null) {
@@ -51,6 +51,7 @@ public class SoapBubbleEntity extends HostileEntity {
                 this.setVelocity(Vec3d.ZERO);
                 this.velocityDirty = true;
             }
+            this.getAttributeInstance(EntityAttributes.SCALE).setBaseValue(targetPlayer.getAttributeInstance(EntityAttributes.SCALE).getValue()*1.2);
         }
         this.setVelocity(this.getVelocity().multiply(1, 0, 1));
         this.velocityDirty = true;
@@ -58,20 +59,11 @@ public class SoapBubbleEntity extends HostileEntity {
     }
 
     private PlayerEntity findNearestSoapedPlayer() {
-        return this.getWorld().getPlayers().stream()
-                .filter(player ->
-                        player.isAlive() &&
-                                player.hasStatusEffect(ModEffects.SOAPED) &&
-                                this.squaredDistanceTo(player) <= DESPAWN_RANGE * DESPAWN_RANGE
-                )
-                .min((p1, p2) ->
-                        Double.compare(this.squaredDistanceTo(p1), this.squaredDistanceTo(p2))
-                )
-                .orElse(null);
+        return this.getWorld().getPlayers().stream().filter(player -> player.isAlive() && player.hasStatusEffect(ModEffects.SOAPED) && this.squaredDistanceTo(player) <= DESPAWN_RANGE * DESPAWN_RANGE).min((p1, p2) -> Double.compare(this.squaredDistanceTo(p1), this.squaredDistanceTo(p2))).orElse(null);
     }
 
     @Override
-    public boolean isInvulnerableTo(DamageSource damageSource) {
+    public boolean isInvulnerableTo(ServerWorld serverWorld, DamageSource damageSource) {
         return true;
     }
 
@@ -91,12 +83,6 @@ public class SoapBubbleEntity extends HostileEntity {
 
     @Override
     public void pushAway(Entity entity) {
-    }
-
-    @Override
-    protected void mobTick() {
-        this.setVelocity(Vec3d.ZERO);
-        super.mobTick();
     }
 
     @Override

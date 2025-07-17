@@ -6,6 +6,4 @@ public class HoneyKeyCleanItem extends Item {
     public HoneyKeyCleanItem(Settings settings) {
         super(settings);
     }
-
-
 }

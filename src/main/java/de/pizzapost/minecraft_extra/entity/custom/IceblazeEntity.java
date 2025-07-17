@@ -1,27 +1,34 @@
 package de.pizzapost.minecraft_extra.entity.custom;
 
 import de.pizzapost.minecraft_extra.goals.ChaseAndAttackPlayerGoal;
+import de.pizzapost.minecraft_extra.item.ModItems;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.*;
+import net.minecraft.entity.AnimationState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.*;
+import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Random;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
+
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Random;
 
 public class IceblazeEntity extends HostileEntity {
     public final AnimationState idleAnimationState = new AnimationState();
@@ -31,8 +38,7 @@ public class IceblazeEntity extends HostileEntity {
     private boolean grounded = false;
     private final Random random = new Random();
 
-    private final ServerBossBar bossbar = new ServerBossBar(Text.translatable("entity.minecraft_extra.iceblaze"),
-            BossBar.Color.BLUE, BossBar.Style.PROGRESS);
+    private final ServerBossBar bossbar = new ServerBossBar(Text.translatable("entity.minecraft_extra.iceblaze"), BossBar.Color.BLUE, BossBar.Style.PROGRESS);
 
     public IceblazeEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -52,11 +58,7 @@ public class IceblazeEntity extends HostileEntity {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 80.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.5)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 1.0);
+        return MobEntity.createMobAttributes().add(EntityAttributes.MAX_HEALTH, 80.0).add(EntityAttributes.MOVEMENT_SPEED, 0.5).add(EntityAttributes.ATTACK_DAMAGE, 6.5).add(EntityAttributes.ATTACK_SPEED, 1.0);
     }
 
     private void setupAnimationStates() {
@@ -107,28 +109,20 @@ public class IceblazeEntity extends HostileEntity {
     }
 
     @Override
-    public boolean tryAttack(Entity target) {
-        float f = (float) this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+    public boolean tryAttack(ServerWorld serverWorld, Entity target) {
+        float f = (float) this.getAttributeValue(EntityAttributes.ATTACK_DAMAGE);
         DamageSource damageSource = this.getDamageSources().mobAttack(this);
-        if (this.getWorld() instanceof ServerWorld serverWorld) {
-            f = EnchantmentHelper.getDamage(serverWorld, this.getWeaponStack(), target, damageSource, f);
-        }
+        f = EnchantmentHelper.getDamage(serverWorld, this.getWeaponStack(), target, damageSource, f);
 
-        boolean bl = target.damage(damageSource, f);
+        boolean bl = target.damage(serverWorld, damageSource, f);
         if (bl) {
             float g = this.getKnockbackAgainst(target, damageSource);
             if (g > 0.0F && target instanceof LivingEntity livingEntity) {
-                livingEntity.takeKnockback(
-                        (double) (g * 0.5F),
-                        (double) MathHelper.sin(this.getYaw() * (float) (Math.PI / 180.0)),
-                        (double) (-MathHelper.cos(this.getYaw() * (float) (Math.PI / 180.0)))
-                );
+                livingEntity.takeKnockback((double) (g * 0.5F), (double) MathHelper.sin(this.getYaw() * (float) (Math.PI / 180.0)), (double) (-MathHelper.cos(this.getYaw() * (float) (Math.PI / 180.0))));
                 this.setVelocity(this.getVelocity().multiply(0.6, 1.0, 0.6));
             }
 
-            if (this.getWorld() instanceof ServerWorld serverWorld2) {
-                EnchantmentHelper.onTargetDamaged(serverWorld2, target, damageSource);
-            }
+            EnchantmentHelper.onTargetDamaged(serverWorld, target, damageSource);
 
             this.onAttacking(target);
             this.playAttackSound();
@@ -188,7 +182,7 @@ public class IceblazeEntity extends HostileEntity {
                     }
                     if (this.icebombCooldown <= 0) {
                         this.icebombCooldown = 20;
-                        this.iceblaze.tryAttack(livingEntity);
+                        this.iceblaze.tryAttack(getServerWorld(this.iceblaze), livingEntity);
                     }
                     this.iceblaze.getMoveControl().moveTo(livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), 1.0);
                 } else if (d < this.getFollowRange() * this.getFollowRange() && bl) {
@@ -212,7 +206,7 @@ public class IceblazeEntity extends HostileEntity {
                             }
                             for (int i = 0; i < 16; i++) {
                                 Vec3d vec3d = new Vec3d(this.iceblaze.getRandom().nextTriangular(e, 2.297 * h), f, this.iceblaze.getRandom().nextTriangular(g, 2.297 * h));
-                                IcebombEntity IcebombEntity = new IcebombEntity(this.iceblaze.getWorld(), this.iceblaze);
+                                IcebombEntity IcebombEntity = new IcebombEntity(this.iceblaze.getWorld(), this.iceblaze, new ItemStack(ModItems.ICEBOMB));
                                 IcebombEntity.setVelocity(vec3d.x + random.nextDouble(-.2, .2), vec3d.y + random.nextDouble(-.2, .2), vec3d.z + random.nextDouble(-.2, .2));
                                 IcebombEntity.setPosition(IcebombEntity.getX(), this.iceblaze.getBodyY(0.5) + 0.5, IcebombEntity.getZ());
                                 this.iceblaze.getWorld().spawnEntity(IcebombEntity);
@@ -228,7 +222,7 @@ public class IceblazeEntity extends HostileEntity {
         }
 
         private double getFollowRange() {
-            return this.iceblaze.getAttributeValue(EntityAttributes.GENERIC_FOLLOW_RANGE);
+            return this.iceblaze.getAttributeValue(EntityAttributes.FOLLOW_RANGE);
         }
     }
 
@@ -245,8 +239,8 @@ public class IceblazeEntity extends HostileEntity {
     }
 
     @Override
-    protected void mobTick() {
-        super.mobTick();
-        this.bossbar.setPercent(this.getHealth()/this.getMaxHealth());
+    protected void mobTick(ServerWorld serverWorld) {
+        super.mobTick(serverWorld);
+        this.bossbar.setPercent(this.getHealth() / this.getMaxHealth());
     }
 }

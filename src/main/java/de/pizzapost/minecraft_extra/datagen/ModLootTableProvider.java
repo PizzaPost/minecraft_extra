@@ -31,7 +31,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+        RegistryWrapper.Impl<Enchantment> impl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
         addDrop(ModBlocks.FLINT_BLOCK);
         addDrop(ModBlocks.FLINT_BRICKS);
         addDrop(ModBlocks.CHISELED_FLINT_BRICKS);

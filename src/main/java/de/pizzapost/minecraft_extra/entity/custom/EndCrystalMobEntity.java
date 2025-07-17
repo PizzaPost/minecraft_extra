@@ -4,14 +4,17 @@ import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.ActiveTargetGoal;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.tag.DamageTypeTags;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 
 public class EndCrystalMobEntity extends HostileEntity {
@@ -35,10 +38,10 @@ public class EndCrystalMobEntity extends HostileEntity {
 
     public static DefaultAttributeContainer.Builder createAttributes() {
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 75)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 50)
-                .add(EntityAttributes.GENERIC_STEP_HEIGHT, 200);
+                .add(EntityAttributes.MOVEMENT_SPEED, 0.5)
+                .add(EntityAttributes.MAX_HEALTH, 75)
+                .add(EntityAttributes.ATTACK_DAMAGE, 50)
+                .add(EntityAttributes.STEP_HEIGHT, 200);
     }
 
     private void setupAnimationStates() {
@@ -69,10 +72,10 @@ public class EndCrystalMobEntity extends HostileEntity {
     }
 
     @Override
-    public boolean tryAttack(Entity target) {
+    public boolean tryAttack(ServerWorld serverWorld, Entity target) {
         this.attackTick = 10;
         this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_ATTACK_SOUND);
-        return super.tryAttack(target);
+        return super.tryAttack(serverWorld, target);
     }
 
     @Override
@@ -95,9 +98,9 @@ public class EndCrystalMobEntity extends HostileEntity {
     }
 
     @Override
-    public boolean isInvulnerableTo(DamageSource damageSource) {
+    public boolean isInvulnerableTo(ServerWorld serverWorld, DamageSource damageSource) {
         return damageSource.isIn(DamageTypeTags.IS_EXPLOSION)
                 || damageSource.isIn(DamageTypeTags.IS_FALL)
-                || super.isInvulnerableTo(damageSource);
+                || super.isInvulnerableTo(serverWorld, damageSource);
     }
 }

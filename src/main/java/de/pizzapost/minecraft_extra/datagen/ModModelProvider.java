@@ -1,7 +1,9 @@
 package de.pizzapost.minecraft_extra.datagen;
 
+import de.pizzapost.minecraft_extra.MinecraftExtra;
 import de.pizzapost.minecraft_extra.block.ModBlocks;
 import de.pizzapost.minecraft_extra.block.custom.HoneyBerryBushBlock;
+import de.pizzapost.minecraft_extra.item.ModArmorMaterials;
 import de.pizzapost.minecraft_extra.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -9,6 +11,7 @@ import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Model;
 import net.minecraft.data.client.Models;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.util.Identifier;
 
@@ -33,7 +36,7 @@ public class ModModelProvider extends FabricModelProvider {
         flintBrickBlockPool.wall(ModBlocks.FLINT_BRICK_WALL);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.FEATHER_BLOCK);
         blockStateModelGenerator.registerTintableCrossBlockStateWithStages(ModBlocks.HONEY_BERRY_BUSH, BlockStateModelGenerator.TintType.NOT_TINTED,
-            HoneyBerryBushBlock.AGE, 0, 1, 2, 3);
+                HoneyBerryBushBlock.AGE, 0, 1, 2, 3);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PIZZAPOST_BLOCK);
     }
 
@@ -51,10 +54,14 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ROTTEN_CHUNK, Models.GENERATED);
         itemModelGenerator.register(ModItems.LOOTBOX, Models.GENERATED);
         itemModelGenerator.register(ModItems.HARDENED_NETHERITE_INGOT, Models.GENERATED);
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.HARDENED_NETHERITE_HELMET));
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.HARDENED_NETHERITE_CHESTPLATE));
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.HARDENED_NETHERITE_LEGGINGS));
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.HARDENED_NETHERITE_BOOTS));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.HARDENED_NETHERITE_HELMET), Identifier.of(MinecraftExtra.MOD_ID, "hardened_netherite"),
+                ModArmorMaterials.HARDENED_NETHERITE_INGOT, EquipmentSlot.HEAD);
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.HARDENED_NETHERITE_CHESTPLATE), Identifier.of(MinecraftExtra.MOD_ID, "hardened_netherite"),
+                ModArmorMaterials.HARDENED_NETHERITE_INGOT, EquipmentSlot.CHEST);
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.HARDENED_NETHERITE_LEGGINGS), Identifier.of(MinecraftExtra.MOD_ID, "hardened_netherite"),
+                ModArmorMaterials.HARDENED_NETHERITE_INGOT, EquipmentSlot.LEGS);
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.HARDENED_NETHERITE_BOOTS), Identifier.of(MinecraftExtra.MOD_ID, "hardened_netherite"),
+                ModArmorMaterials.HARDENED_NETHERITE_INGOT, EquipmentSlot.FEET);
         itemModelGenerator.register(ModItems.FLUTE, Models.GENERATED);
         itemModelGenerator.register(ModItems.GRAVITY_SHARD, Models.GENERATED);
         itemModelGenerator.register(ModItems.TP_STICK, Models.GENERATED);

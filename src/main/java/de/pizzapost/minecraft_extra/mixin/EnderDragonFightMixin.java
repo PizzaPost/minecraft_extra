@@ -85,13 +85,7 @@ public abstract class EnderDragonFightMixin {
         if (source.getAttacker() instanceof PlayerEntity player) {
             if (player == null || !player.isAlive()) return;
             EndCrystalMobEntity endCrystalMob = new EndCrystalMobEntity(ModEntities.END_CRYSTAL_MOB, world);
-            endCrystalMob.refreshPositionAndAngles(
-                    enderCrystal.getX() + 0.5,
-                    enderCrystal.getY(),
-                    enderCrystal.getZ() + 0.5,
-                    world.random.nextFloat() * 360.0F,
-                    0.0F
-            );
+            endCrystalMob.refreshPositionAndAngles(enderCrystal.getX() + 0.5, enderCrystal.getY(), enderCrystal.getZ() + 0.5, world.random.nextFloat() * 360.0F, 0.0F);
             endCrystalMob.setTarget(player);
             world.spawnEntity(endCrystalMob);
         }

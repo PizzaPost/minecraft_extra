@@ -12,8 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class EnderDragonEntityMixin {
     @Inject(method = "createEnderDragonAttributes", at = @At("RETURN"), cancellable = true)
     private static void modifyMaxHealth(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
-        cir.setReturnValue(
-                cir.getReturnValue().add(EntityAttributes.GENERIC_MAX_HEALTH, 500.0)
-        );
+        cir.setReturnValue(cir.getReturnValue().add(EntityAttributes.MAX_HEALTH, 500.0));
     }
 }

@@ -1,16 +1,13 @@
 package de.pizzapost.minecraft_extra.entity.client;
 
 import de.pizzapost.minecraft_extra.MinecraftExtra;
-import de.pizzapost.minecraft_extra.entity.custom.IceblazeEntity;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.SinglePartEntityModel;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
-public class IceblazeModel<T extends IceblazeEntity> extends SinglePartEntityModel<T> {
+public class IceblazeModel extends EntityModel<IceblazeRenderState> {
     public static final EntityModelLayer ICEBLAZE = new EntityModelLayer(Identifier.of(MinecraftExtra.MOD_ID, "iceblaze"), "main");
 
     private final ModelPart root;
@@ -18,13 +15,16 @@ public class IceblazeModel<T extends IceblazeEntity> extends SinglePartEntityMod
     private final ModelPart body0;
     private final ModelPart body1;
     private final ModelPart body2;
+
     public IceblazeModel(ModelPart root) {
+        super(root);
         this.root = root.getChild("root");
         this.Head = this.root.getChild("Head");
         this.body0 = this.root.getChild("body0");
         this.body1 = this.root.getChild("body1");
         this.body2 = this.root.getChild("body2");
     }
+
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
@@ -63,12 +63,13 @@ public class IceblazeModel<T extends IceblazeEntity> extends SinglePartEntityMod
         ModelPartData upperBodyParts11 = body2.addChild("upperBodyParts11", ModelPartBuilder.create().uv(0, 16).cuboid(0.0F, 0.0F, 0.0F, 2.0F, 8.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(2.0F, -8.0F, -5.0F));
         return TexturedModelData.of(modelData, 64, 32);
     }
-    @Override
-    public void setAngles(IceblazeEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.getPart().traverse().forEach(ModelPart::resetTransform);
-        this.setHeadAngles(netHeadYaw, headPitch);
 
-        this.updateAnimation(entity.idleAnimationState, IceblazeAnimations.idle, ageInTicks, 1f);
+    @Override
+    public void setAngles(IceblazeRenderState state) {
+        super.setAngles(state);
+        this.setHeadAngles(state.yawDegrees, state.pitch);
+
+        this.animate(state.idleAnimationState, IceblazeAnimations.idle, state.age, 1f);
     }
 
     private void setHeadAngles(float headYaw, float headPitch) {
@@ -76,16 +77,6 @@ public class IceblazeModel<T extends IceblazeEntity> extends SinglePartEntityMod
         headPitch = MathHelper.clamp(headPitch, -25.0F, 45.0F);
 
         this.Head.yaw = headYaw * 0.017453292F;
-        this.Head.pitch = headPitch *0.017453292F;
-    }
-
-    @Override
-    public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, int color) {
-        root.render(matrices, vertexConsumer, light, overlay, color);
-    }
-
-    @Override
-    public ModelPart getPart() {
-        return root;
+        this.Head.pitch = headPitch * 0.017453292F;
     }
 }

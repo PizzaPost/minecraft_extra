@@ -17,6 +17,7 @@ public class LightningStrikeHandler {
             }
         });
     }
+
     private static void handleLightningStrike(ServerWorld world, LightningEntity lightning) {
         for (PlayerEntity player : world.getPlayers()) {
             if (player.distanceTo(lightning) <= 10 && player.getMainHandStack().getItem() == Items.STICK) {

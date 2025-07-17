@@ -3,6 +3,7 @@ package de.pizzapost.minecraft_extra.goals;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 
 import java.util.List;
 
@@ -20,11 +21,7 @@ public class ChaseAndAttackPlayerGoal extends Goal {
 
     @Override
     public boolean canStart() {
-        List<PlayerEntity> players = this.mob.getWorld().getEntitiesByClass(
-                PlayerEntity.class,
-                this.mob.getBoundingBox().expand(detectionRange),
-                player -> true
-        );
+        List<PlayerEntity> players = this.mob.getWorld().getEntitiesByClass(PlayerEntity.class, this.mob.getBoundingBox().expand(detectionRange), player -> true);
         if (!players.isEmpty()) {
             this.target = players.get(0);
             return true;
@@ -46,7 +43,9 @@ public class ChaseAndAttackPlayerGoal extends Goal {
     @Override
     public void tick() {
         if (this.target != null && this.mob.squaredDistanceTo(this.target) <= 10.5) {
-            this.mob.tryAttack(this.target);
+            if (this.mob.getWorld() instanceof ServerWorld serverWorld) {
+                this.mob.tryAttack(serverWorld, this.target);
+            }
         } else {
             this.mob.getNavigation().startMovingTo(this.target, this.speed);
         }

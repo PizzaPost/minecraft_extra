@@ -1,46 +1,42 @@
 package de.pizzapost.minecraft_extra.item.custom;
 
-import de.pizzapost.minecraft_extra.item.ModItems;
 import net.minecraft.component.ComponentChanges;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class HardenedNetheritePickaxeItem extends PickaxeItem {
 
-    public HardenedNetheritePickaxeItem(ToolMaterial material, Settings settings) {
-        super(material, settings);
+
+    public HardenedNetheritePickaxeItem(ToolMaterial material, float attackDamage, float attackSpeed, Settings settings) {
+        super(material, attackDamage, attackSpeed, settings);
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult use(World world, PlayerEntity player, Hand hand) {
         ItemStack item = player.getMainHandStack();
-        if (player.experienceLevel>=25) {
+        if (player.experienceLevel >= 25) {
             if (!item.hasEnchantments()) {
                 player.addExperienceLevels(-25);
-                var changes = ComponentChanges.builder()
-                        .add(DataComponentTypes.ITEM_NAME, item.getName().copy().formatted(Formatting.DARK_RED).formatted(Formatting.ITALIC))
-                        .add(DataComponentTypes.CUSTOM_NAME, item.getName().copy().formatted(Formatting.DARK_RED))
-                        .build();
+                var changes = ComponentChanges.builder().add(DataComponentTypes.ITEM_NAME, item.getName().copy().formatted(Formatting.DARK_RED).formatted(Formatting.ITALIC)).add(DataComponentTypes.CUSTOM_NAME, item.getName().copy().formatted(Formatting.DARK_RED)).build();
                 item.applyChanges(changes);
-                var enchantmentRegistry = player.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT);
-                item.addEnchantment(enchantmentRegistry.entryOf(Enchantments.EFFICIENCY), 5);
-                item.addEnchantment(enchantmentRegistry.entryOf(Enchantments.FORTUNE), 3);
-                item.addEnchantment(enchantmentRegistry.entryOf(Enchantments.UNBREAKING), 3);
-                return TypedActionResult.success(item, true);
+                RegistryWrapper<Enchantment> enchantmentRegistry = player.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
+                item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.EFFICIENCY), 5);
+                item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.UNBREAKING), 3);
+                item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.FORTUNE), 3);
+                return ActionResult.SUCCESS;
             }
         }
-        return TypedActionResult.fail(item);
+        return ActionResult.FAIL;
     }
 }

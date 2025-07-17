@@ -3,21 +3,22 @@
 	"package": "de.pizzapost.minecraft_extra.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin",
-		"FarmlandBlockMixin",
-		"PlayerEntityMixin",
-      	"ArmorItemMixin",
-		"ZombieHorseEntityMixin",
-		"EnderDragonEntityMixin",
-		"SpikeCacheMixin",
+		"canHitDragonWithoutCrashMixin",
+		"ArmorItemMixin",
 		"BlocksMixin",
 		"CropBlockMixin",
+		"DragonFireballEntityMixin",
+		"EnderDragonEntityMixin",
+		"EnderDragonFightMixin",
+		"ExampleMixin",
+		"FarmlandBlockMixin",
 		"FireBlockMixin",
+		"GameMenuScreenMixin",
 		"LightmapTextureManagerMixin",
 		"LivingEntityMixin",
-		"GameMenuScreenMixin",
-		"EnderDragonFightMixin",
-		"DragonFireballEntityMixin"
+		"PlayerEntityMixin",
+		"SpikeCacheMixin",
+		"ZombieHorseEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -6,6 +6,8 @@ import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
@@ -28,15 +30,19 @@ public abstract class ZombieHorseEntityMixin extends AbstractHorseEntity {
         if (itemStack.isOf(Items.ROTTEN_FLESH)) {
             if (!this.getWorld().isClient) {
                 if (!(this.isTame())) {
-                    if (this.random.nextInt(3) == 0) {
+                    if (this.random.nextInt(7) == 0) {
                         this.setTame(true);
                         itemStack.decrement(1);
+                        for (int i = 0; i < 7; i++)
+                            if (player.getWorld() instanceof ServerWorld serverWorld)
+                                serverWorld.spawnParticles(ParticleTypes.HEART, this.getX() + (random.nextDouble() * 2 - 1), this.getY() + 1 + (random.nextDouble() * 2 - 1), this.getZ() + (random.nextDouble() * 2 - 1), 1, 0.0, 0.0, 0.0, 1.0);
+                        cir.setReturnValue(ActionResult.FAIL);
                     } else {
                         itemStack.decrement(1);
+                        cir.setReturnValue(ActionResult.SUCCESS);
                     }
                 }
             }
-            cir.setReturnValue(ActionResult.SUCCESS);
         }
     }
 }

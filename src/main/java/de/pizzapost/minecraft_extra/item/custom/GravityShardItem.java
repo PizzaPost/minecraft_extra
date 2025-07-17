@@ -27,7 +27,7 @@ public class GravityShardItem extends Item {
         if (entity instanceof PlayerEntity player) {
             if (player.getMainHandStack().getItem() == ModItems.GRAVITY_SHARD || player.getOffHandStack().getItem() == ModItems.GRAVITY_SHARD) {
                 if (!world.isClient) {
-                    List<ItemEntity> items = world.getEntitiesByClass(ItemEntity.class, player.getBoundingBox().expand(10*player.getAttributeInstance(EntityAttributes.GENERIC_SCALE).getValue()), itemEntity -> true);
+                    List<ItemEntity> items = world.getEntitiesByClass(ItemEntity.class, player.getBoundingBox().expand(10 * player.getAttributeInstance(EntityAttributes.SCALE).getValue()), itemEntity -> true);
                     if (!items.isEmpty()) {
                         for (ItemEntity itemEntity : items) {
                             itemEntity.refreshPositionAndAngles(player.getX(), player.getY(), player.getZ(), itemEntity.getYaw(), itemEntity.getPitch());

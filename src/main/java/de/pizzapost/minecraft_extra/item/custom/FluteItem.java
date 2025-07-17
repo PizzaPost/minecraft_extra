@@ -10,8 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -23,12 +23,12 @@ public class FluteItem extends Item {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         player.incrementStat(Stats.USED.getOrCreateStat(this));
         if (!world.isClient) {
-            if (!player.getItemCooldownManager().isCoolingDown(this)) {
-                player.getItemCooldownManager().set(this, 120 * 20);
+            if (!player.getItemCooldownManager().isCoolingDown(itemStack)) {
+                player.getItemCooldownManager().set(itemStack, 120 * 20);
                 world.playSound(null, player.getBlockPos(), ModSounds.FLUTE, SoundCategory.PLAYERS, 1f, 1f);
                 List<LivingEntity> livingEntitys = world.getEntitiesByClass(LivingEntity.class, player.getBoundingBox().expand(75), entity -> entity != player);
                 for (LivingEntity livingEntity : livingEntitys) {
@@ -43,6 +43,6 @@ public class FluteItem extends Item {
                 }
             }
         }
-        return TypedActionResult.success(itemStack);
+        return ActionResult.SUCCESS;
     }
 }

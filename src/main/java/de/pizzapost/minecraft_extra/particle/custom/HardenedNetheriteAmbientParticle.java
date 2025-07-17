@@ -8,8 +8,7 @@ import org.jetbrains.annotations.Nullable;
 public class HardenedNetheriteAmbientParticle extends SpriteBillboardParticle {
     private final SpriteProvider spriteProvider;
 
-    public HardenedNetheriteAmbientParticle(ClientWorld clientWorld, double x, double y, double z,
-                                            SpriteProvider spriteProvider, double xSpeed, double ySpeed, double zSpeed) {
+    public HardenedNetheriteAmbientParticle(ClientWorld clientWorld, double x, double y, double z, SpriteProvider spriteProvider, double xSpeed, double ySpeed, double zSpeed) {
         super(clientWorld, x, y, z, xSpeed, ySpeed, zSpeed);
         this.spriteProvider = spriteProvider;
         this.velocityMultiplier = 0.8f;
@@ -53,8 +52,7 @@ public class HardenedNetheriteAmbientParticle extends SpriteBillboardParticle {
 
         @Nullable
         @Override
-        public Particle createParticle(SimpleParticleType parameters, ClientWorld world, double x, double y, double z,
-                                       double velocityX, double velocityY, double velocityZ) {
+        public Particle createParticle(SimpleParticleType parameters, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
             return new HardenedNetheriteAmbientParticle(world, x, y, z, this.spriteProvider, velocityX, velocityY, velocityZ);
         }
     }

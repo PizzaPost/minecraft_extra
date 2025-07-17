@@ -1,21 +1,21 @@
 package de.pizzapost.minecraft_extra.entity.client;
 
 import de.pizzapost.minecraft_extra.MinecraftExtra;
-import de.pizzapost.minecraft_extra.entity.custom.EndCrystalMobEntity;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.SinglePartEntityModel;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
-public class EndCrystalMobModel<T extends EndCrystalMobEntity> extends SinglePartEntityModel<T> {
+public class EndCrystalMobModel extends EntityModel<EndCrystalMobRenderState> {
     public static final EntityModelLayer END_CRYSTAL_MOB = new EntityModelLayer(Identifier.of(MinecraftExtra.MOD_ID, "end_crystal_mob"), "main");
     private final ModelPart cube;
+
     public EndCrystalMobModel(ModelPart root) {
+        super(root);
         this.cube = root.getChild("cube");
     }
+
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
@@ -24,11 +24,11 @@ public class EndCrystalMobModel<T extends EndCrystalMobEntity> extends SinglePar
     }
 
     @Override
-    public void setAngles(EndCrystalMobEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.getPart().traverse().forEach(ModelPart::resetTransform);
-        this.setHeadAngles(netHeadYaw, headPitch);
-        this.updateAnimation(entity.idleAnimationState, EndCrystalMobAnimations.IDLE, ageInTicks, 1f);
-        this.updateAnimation(entity.walkingAnimationState, EndCrystalMobAnimations.WALKING, ageInTicks, MathHelper.clamp(limbSwingAmount * 2f, 0f, 1f));
+    public void setAngles(EndCrystalMobRenderState state) {
+        super.setAngles(state);
+        this.setHeadAngles(state.yawDegrees, state.pitch);
+        this.animate(state.idleAnimationState, EndCrystalMobAnimations.IDLE, state.age, 1f);
+        this.animateWalking(EndCrystalMobAnimations.WALKING, state.limbFrequency, state.limbAmplitudeMultiplier, 0f, 1f);
     }
 
     private void setHeadAngles(float headYaw, float headPitch) {
@@ -37,15 +37,5 @@ public class EndCrystalMobModel<T extends EndCrystalMobEntity> extends SinglePar
 
         this.cube.yaw = headYaw * 0.017453292F;
         this.cube.pitch = headPitch * 0.017453292F;
-    }
-
-    @Override
-    public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, int color) {
-        cube.render(matrices, vertexConsumer, light, overlay, color);
-    }
-
-    @Override
-    public ModelPart getPart() {
-        return this.cube;
     }
 }

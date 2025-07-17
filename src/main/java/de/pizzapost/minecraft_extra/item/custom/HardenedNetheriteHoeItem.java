@@ -1,66 +1,52 @@
 package de.pizzapost.minecraft_extra.item.custom;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
-import com.mojang.datafixers.util.Pair;
 import de.pizzapost.minecraft_extra.block.ModBlocks;
 import de.pizzapost.minecraft_extra.block.custom.EffectFarmlandBlock;
 import de.pizzapost.minecraft_extra.block.custom.EffectType;
-import de.pizzapost.minecraft_extra.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.component.ComponentChanges;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class HardenedNetheriteHoeItem extends HoeItem {
-    private static final List<Block> TILLABLE_BLOCKS = Arrays.asList(
-            Blocks.GRASS_BLOCK,
-            Blocks.DIRT_PATH,
-            Blocks.DIRT
-    );
+    private static final List<Block> TILLABLE_BLOCKS = Arrays.asList(Blocks.GRASS_BLOCK, Blocks.DIRT_PATH, Blocks.DIRT);
 
-    public HardenedNetheriteHoeItem(ToolMaterial material, Settings settings) {
-        super(material, settings);
+    public HardenedNetheriteHoeItem(ToolMaterial material, float attackDamage, float attackSpeed, Settings settings) {
+        super(material, attackDamage, attackSpeed, settings);
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult use(World world, PlayerEntity player, Hand hand) {
         ItemStack item = player.getMainHandStack();
-        if (player.experienceLevel>=25) {
+        if (player.experienceLevel >= 25) {
             if (!item.hasEnchantments()) {
                 player.addExperienceLevels(-25);
-                var changes = ComponentChanges.builder()
-                        .add(DataComponentTypes.ITEM_NAME, item.getName().copy().formatted(Formatting.DARK_RED).formatted(Formatting.ITALIC))
-                        .add(DataComponentTypes.CUSTOM_NAME, item.getName().copy().formatted(Formatting.DARK_RED))
-                        .build();
+                var changes = ComponentChanges.builder().add(DataComponentTypes.ITEM_NAME, item.getName().copy().formatted(Formatting.DARK_RED).formatted(Formatting.ITALIC)).add(DataComponentTypes.CUSTOM_NAME, item.getName().copy().formatted(Formatting.DARK_RED)).build();
                 item.applyChanges(changes);
-                var enchantmentRegistry = player.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT);
-                item.addEnchantment(enchantmentRegistry.entryOf(Enchantments.EFFICIENCY), 5);
-                item.addEnchantment(enchantmentRegistry.entryOf(Enchantments.UNBREAKING), 3);
-                item.addEnchantment(enchantmentRegistry.entryOf(Enchantments.FORTUNE), 3);
-                return TypedActionResult.success(item, true);
+                RegistryWrapper<Enchantment> enchantmentRegistry = player.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
+                item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.EFFICIENCY), 5);
+                item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.UNBREAKING), 3);
+                item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.FORTUNE), 3);
+                return ActionResult.SUCCESS;
             }
         }
-        return TypedActionResult.fail(item);
+        return ActionResult.FAIL;
     }
 
     @Override

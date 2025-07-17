@@ -8,20 +8,31 @@ import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
-public class IceblazeRenderer extends MobEntityRenderer<IceblazeEntity, IceblazeModel<IceblazeEntity>> {
+public class IceblazeRenderer extends MobEntityRenderer<IceblazeEntity, IceblazeRenderState, IceblazeModel> {
+
     public IceblazeRenderer(EntityRendererFactory.Context context) {
-        super(context, new IceblazeModel<>(context.getPart(IceblazeModel.ICEBLAZE)), 0.5f);
+        super(context, new IceblazeModel(context.getPart(IceblazeModel.ICEBLAZE)), 0.5f);
     }
 
     @Override
-    public Identifier getTexture(IceblazeEntity entity) {
+    public Identifier getTexture(IceblazeRenderState state) {
         return Identifier.of(MinecraftExtra.MOD_ID, "textures/entity/iceblaze/iceblaze.png");
     }
 
     @Override
-    public void render(IceblazeEntity livingEntity, float f, float g, MatrixStack matrixStack,
-                       VertexConsumerProvider vertexConsumerProvider, int i) {
+    public void render(IceblazeRenderState state, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
         matrixStack.scale(1f, 1f, 1f);
-        super.render(livingEntity, f, g, matrixStack, vertexConsumerProvider, i);
+        super.render(state, matrixStack, vertexConsumerProvider, i);
+    }
+
+    @Override
+    public IceblazeRenderState createRenderState() {
+        return new IceblazeRenderState();
+    }
+
+    @Override
+    public void updateRenderState(IceblazeEntity livingEntity, IceblazeRenderState livingEntityRenderState, float f) {
+        super.updateRenderState(livingEntity, livingEntityRenderState, f);
+        livingEntityRenderState.idleAnimationState.copyFrom(livingEntity.idleAnimationState);
     }
 }

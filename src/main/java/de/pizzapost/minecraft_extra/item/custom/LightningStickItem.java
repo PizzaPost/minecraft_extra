@@ -13,11 +13,12 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
 import java.util.List;
 
 public class LightningStickItem extends Item {
@@ -25,12 +26,13 @@ public class LightningStickItem extends Item {
     public LightningStickItem(Settings settings) {
         super(settings);
     }
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+
+    public ActionResult use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         player.incrementStat(Stats.USED.getOrCreateStat(this));
         if (!world.isClient()) {
-            if (!player.getItemCooldownManager().isCoolingDown(this)) {
-                player.getItemCooldownManager().set(this, 10 * 20);
+            if (!player.getItemCooldownManager().isCoolingDown(itemStack)) {
+                player.getItemCooldownManager().set(itemStack, 10 * 20);
                 List<LivingEntity> livingEntities = world.getEntitiesByClass(LivingEntity.class, player.getBoundingBox().expand(50), entity -> entity != player);
                 for (LivingEntity livingEntity : livingEntities) {
                     BlockPos pos = livingEntity.getBlockPos();
@@ -39,11 +41,6 @@ public class LightningStickItem extends Item {
                     }
                 }
                 if (!livingEntities.isEmpty()) {
-                    itemStack.setDamage(itemStack.getDamage() + 1);
-                    if (itemStack.getDamage() == 64) {
-                        player.getStackInHand(hand).decrementUnlessCreative(1, player);
-                        world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.AMBIENT, 1f, 1f);
-                    }
                     if (player instanceof ServerPlayerEntity serverPlayer) {
                         Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "lightning_stick");
                         AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
@@ -53,7 +50,8 @@ public class LightningStickItem extends Item {
                     }
                 }
             }
+            itemStack.decrement(1);
         }
-        return TypedActionResult.success(itemStack);
+        return ActionResult.SUCCESS;
     }
 }

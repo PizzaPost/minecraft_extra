@@ -5,6 +5,7 @@ import de.pizzapost.minecraft_extra.entity.custom.SoapBubbleEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
@@ -16,8 +17,8 @@ public class SoapedEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        entity.setVelocity(0, 0.01,0);
+    public boolean applyUpdateEffect(ServerWorld serverWorld, LivingEntity entity, int amplifier) {
+        entity.setVelocity(0, 0.1, 0);
         World world = entity.getWorld();
         if (!world.isClient) {
             Box area = new Box(
@@ -35,7 +36,9 @@ public class SoapedEffect extends StatusEffect {
                 world.spawnEntity(bubble);
             }
         }
-        return super.applyUpdateEffect(entity, amplifier);
+        entity.velocityModified = true;
+        entity.velocityDirty = true;
+        return super.applyUpdateEffect(serverWorld, entity, amplifier);
     }
 
     @Override

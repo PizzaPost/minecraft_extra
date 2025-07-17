@@ -1,19 +1,17 @@
 {
   "category": "misc",
-  "group": "minecraft_extra:attribute_core",
   "ingredients": [
     {
       "item": "minecraft:book"
-    },
-    {
-      "item": "minecraft_extra:attribute_core_spikes"
     }
   ],
   "result": {
     "id": "minecraft:enchanted_book",
     "components": {
       "minecraft:stored_enchantments": {
-        "minecraft:thorns": 1
+        "levels": {
+          "minecraft:thorns": 1
+        }
       }
     }
   },

@@ -64,7 +64,7 @@ public class SuperFertilizerItem extends Item {
             if (!(blockState == block2)) {
                 context.getStack().decrementUnlessCreative(1, context.getPlayer());
                 world.syncWorldEvent(WorldEvents.BONE_MEAL_USED, blockPos, 0);
-                return ActionResult.success(world.isClient);
+                return ActionResult.SUCCESS;
             }
         }
         return ActionResult.PASS;
