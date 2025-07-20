@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "inv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft_extra:flute"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.flute"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:flute"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.flute"
+    }
+  },
+  "requirements": [
+    [
+      "inv"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

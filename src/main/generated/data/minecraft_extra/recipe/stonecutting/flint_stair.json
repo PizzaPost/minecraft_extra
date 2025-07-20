@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "minecraft_extra:flint_block",
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:flint_stair"
+  }
+}

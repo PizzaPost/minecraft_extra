@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "minecraft_extra:hardened_netherite_hoe",
+  "key": {
+    "h": "minecraft_extra:hardened_netherite_ingot",
+    "s": "minecraft:stick"
+  },
+  "pattern": [
+    "hh",
+    " s",
+    " s"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:hardened_netherite_hoe"
+  }
+}

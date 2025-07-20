@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "minecraft_extra:hardened_netherite"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "minecraft_extra:hardened_netherite"
+      }
+    ]
+  }
+}

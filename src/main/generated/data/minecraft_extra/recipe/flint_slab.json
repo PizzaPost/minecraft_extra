@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": "minecraft_extra:flint_block"
+  },
+  "pattern": [
+    "fff"
+  ],
+  "result": {
+    "count": 6,
+    "id": "minecraft_extra:flint_slab"
+  }
+}

@@ -1,24 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "group": "bed",
-  "key": {
-    "w": {
-      "item": "minecraft:white_wool"
-    },
-    "f": {
-      "item": "minecraft_extra:feather_block"
-    },
-    "p": {
-      "tag": "minecraft:planks"
-    }
-  },
+  "category": "misc",
   "pattern": [
     "wwf",
     "ppp"
   ],
+  "key": {
+    "w": "minecraft:white_wool",
+    "f": "minecraft_extra:feather_block",
+    "p": "#minecraft:planks"
+  },
   "result": {
-    "count": 1,
-    "id": "minecraft:white_bed"
-  }
+    "id": "minecraft:white_bed",
+    "count": 1
+  },
+  "type": "minecraft:crafting_shaped"
 }

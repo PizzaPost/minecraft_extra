@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": "minecraft_extra:flint_bricks"
+  },
+  "pattern": [
+    "fff",
+    "fff"
+  ],
+  "result": {
+    "count": 6,
+    "id": "minecraft_extra:flint_brick_wall"
+  }
+}

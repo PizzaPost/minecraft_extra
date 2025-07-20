@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "minecraft_extra:tp_stick",
+  "key": {
+    "e": "minecraft:ender_pearl",
+    "f": "minecraft:string",
+    "s": "minecraft:stick"
+  },
+  "pattern": [
+    "  e",
+    " f ",
+    "s  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:tp_stick"
+  }
+}

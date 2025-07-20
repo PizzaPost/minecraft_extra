@@ -1,24 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "group": "bed",
-  "key": {
-    "w": {
-      "item": "minecraft:pink_wool"
-    },
-    "f": {
-      "item": "minecraft_extra:feather_block"
-    },
-    "p": {
-      "tag": "minecraft:planks"
-    }
-  },
+  "category": "misc",
   "pattern": [
     "wwf",
     "ppp"
   ],
+  "key": {
+    "w": "minecraft:pink_wool",
+    "f": "minecraft_extra:feather_block",
+    "p": "#minecraft:planks"
+  },
   "result": {
-    "count": 1,
-    "id": "minecraft:pink_bed"
-  }
+    "id": "minecraft:pink_bed",
+    "count": 1
+  },
+  "type": "minecraft:crafting_shaped"
 }

@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "cra": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "minecraft_extra:attribute_core"
+      }
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.attribute_core"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:attribute_core"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.attribute_core"
+    }
+  },
+  "requirements": [
+    [
+      "cra"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

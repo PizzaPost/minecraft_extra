@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft_extra:illusioner",
+  "criteria": {
+    "eff": {
+      "conditions": {
+        "effects": {
+          "minecraft_extra:spider": {}
+        }
+      },
+      "trigger": "minecraft:effects_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.hardened_netherite_armor"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:hardened_netherite_chestplate"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.hardened_netherite_armor"
+    }
+  },
+  "requirements": [
+    [
+      "eff"
+    ]
+  ],
+  "rewards": {
+    "experience": 220
+  },
+  "sends_telemetry_event": true
+}

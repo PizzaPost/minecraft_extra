@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "minecraft_extra:attribute_core",
+  "ingredients": [
+    "minecraft_extra:attribute_core",
+    "minecraft:cactus"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:attribute_core_spikes"
+  }
+}

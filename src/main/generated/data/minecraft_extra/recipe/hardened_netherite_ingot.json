@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:netherite_ingot",
+    "minecraft:netherite_ingot",
+    "minecraft_extra:gilded_illusioner_essence"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:hardened_netherite_ingot"
+  }
+}

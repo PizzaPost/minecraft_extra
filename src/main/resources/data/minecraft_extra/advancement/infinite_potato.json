@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "con": {
+      "conditions": {
+        "item": {
+          "items": "minecraft_extra:infinite_potato"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.infinite_potato"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:infinite_potato"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.infinite_potato"
+    }
+  },
+  "requirements": [
+    [
+      "con"
+    ]
+  ],
+  "rewards": {
+    "experience": 140
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "minecraft_extra:effect_gems",
+  "ingredients": [
+    "minecraft_extra:effect_gem",
+    "minecraft:phantom_membrane"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:effect_gem_slow_falling"
+  }
+}

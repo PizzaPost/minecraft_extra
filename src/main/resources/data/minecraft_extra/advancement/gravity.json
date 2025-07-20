@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft_extra:attribute_core",
+  "criteria": {
+    "imp": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.gravity"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:attribute_core_gravity"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.gravity"
+    }
+  },
+  "requirements": [
+    [
+      "imp"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

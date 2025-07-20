@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "clear": {
+      "trigger": "minecraft:impossible"
+    },
+    "rain": {
+      "trigger": "minecraft:impossible"
+    },
+    "thunder": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.weather"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:weather_item"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.weather"
+    }
+  },
+  "requirements": [
+    [
+      "clear"
+    ],
+    [
+      "rain"
+    ],
+    [
+      "thunder"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

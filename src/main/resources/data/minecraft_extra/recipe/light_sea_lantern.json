@@ -1,0 +1,17 @@
+{
+  "group": "light_15",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:sea_lantern"
+  ],
+  "result": {
+    "id": "minecraft:light",
+    "components": {
+      "minecraft:block_state": {
+        "level": "15"
+      }
+    },
+    "count": 1
+  },
+  "type": "minecraft:crafting_shapeless"
+}

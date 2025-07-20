@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "minecraft_extra:flint_block",
+    "minecraft:iron_block"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:big_flint_and_steel"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft_extra:attribute_core",
+  "criteria": {
+    "imp": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.scale"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:attribute_core_scaled"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.scale"
+    }
+  },
+  "requirements": [
+    [
+      "imp"
+    ]
+  ],
+  "rewards": {
+    "experience": 70
+  },
+  "sends_telemetry_event": true
+}

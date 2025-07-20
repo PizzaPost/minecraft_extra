@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft_extra:attribute_core",
+  "criteria": {
+    "inv": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft_extra:heart"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.heart"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:heart"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.heart"
+    }
+  },
+  "requirements": [
+    [
+      "inv"
+    ]
+  ],
+  "rewards": {
+    "experience": 70
+  },
+  "sends_telemetry_event": true
+}

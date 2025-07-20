@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "kil": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:illusioner"
+        },
+        "killing_blow": {
+          "source_entity": {
+            "location": {
+              "dimension": "the_nether"
+            }
+          }
+        }
+      }
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.illusioner"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:illusioner_essence"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.illusioner"
+    }
+  },
+  "requirements": [
+    [
+      "kil"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

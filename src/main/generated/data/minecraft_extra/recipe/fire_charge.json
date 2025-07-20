@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft_extra:throwable_fire_charge"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:fire_charge"
+  }
+}

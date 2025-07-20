@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft_extra:root",
+  "criteria": {
+    "imp": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.minecraft_extra.description.gravity_shard"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft_extra:gravity_shard"
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.gravity_shard"
+    }
+  },
+  "requirements": [
+    [
+      "imp"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
