@@ -51,7 +51,7 @@ public class SoapBubbleEntity extends HostileEntity {
                 this.setVelocity(Vec3d.ZERO);
                 this.velocityDirty = true;
             }
-            this.getAttributeInstance(EntityAttributes.SCALE).setBaseValue(targetPlayer.getAttributeInstance(EntityAttributes.SCALE).getValue()*1.2);
+            this.getAttributeInstance(EntityAttributes.SCALE).setBaseValue(targetPlayer.getAttributeInstance(EntityAttributes.SCALE).getValue() * 1.2);
         }
         this.setVelocity(this.getVelocity().multiply(1, 0, 1));
         this.velocityDirty = true;

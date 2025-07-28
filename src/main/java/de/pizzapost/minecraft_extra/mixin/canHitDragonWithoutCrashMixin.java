@@ -10,11 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntity.class)
 public class canHitDragonWithoutCrashMixin {
-    @Inject(
-            method = "attack",
-            at = @At("HEAD"),
-            cancellable = true
-    )
+    @Inject(method = "attack", at = @At("HEAD"), cancellable = true)
     private void onAttackEntity(Entity target, CallbackInfo ci) {
         // Skip Architectury's client damage handling for Ender Dragon parts
         if (target instanceof EnderDragonPart) {

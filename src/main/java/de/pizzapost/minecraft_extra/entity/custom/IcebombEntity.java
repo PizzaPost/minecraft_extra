@@ -11,7 +11,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.BlazeEntity;
-import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -54,7 +53,7 @@ public class IcebombEntity extends ThrownItemEntity {
             ParticleEffect particleEffect = this.getParticleParameters();
 
             for (int i = 0; i < 8; i++) {
-                this.getWorld().addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
+                this.getWorld().addParticleClient(particleEffect, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
             }
         }
     }

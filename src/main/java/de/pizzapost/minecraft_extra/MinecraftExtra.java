@@ -117,7 +117,7 @@ public class MinecraftExtra implements ModInitializer {
                 } else if (!ModKeys.silkTouchKey.isPressed() && itemStack.isOf(ModItems.HARDENED_NETHERITE_PICKAXE)) {
                     if (itemStack.getEnchantments().toString().contains("minecraft:silk_touch")) {
                         PlayerInventory inventory = player.getInventory();
-                        inventory.setStack(inventory.selectedSlot, ModItems.HARDENED_NETHERITE_PICKAXE.getDefaultStack());
+                        inventory.setStack(inventory.getSelectedSlot(), ModItems.HARDENED_NETHERITE_PICKAXE.getDefaultStack());
                         ItemStack itemStack2 = player.getStackInHand(Hand.MAIN_HAND);
                         var changes = ComponentChanges.builder().add(DataComponentTypes.ITEM_NAME, itemStack.getName().copy().formatted(Formatting.DARK_RED).formatted(Formatting.ITALIC)).add(DataComponentTypes.CUSTOM_NAME, itemStack.getName().copy().formatted(Formatting.DARK_RED)).build();
                         itemStack2.applyChanges(changes);
@@ -430,7 +430,7 @@ public class MinecraftExtra implements ModInitializer {
         boolean hasPushGem = player.getStackInHand(Hand.MAIN_HAND).isOf(ModItems.EFFECT_GEM_PUSH) || player.getStackInHand(Hand.OFF_HAND).isOf(ModItems.EFFECT_GEM_PUSH);
 
         if (hasHasteGem) {
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 10, 0, false, false));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 10, 1, false, false));
         }
         if (hasWaterBreathingGem) {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 5, 0, false, false));

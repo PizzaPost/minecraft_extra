@@ -4,14 +4,16 @@ import de.pizzapost.minecraft_extra.MinecraftExtra;
 import de.pizzapost.minecraft_extra.item.ModItems;
 import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -22,8 +24,8 @@ public class GravityShardItem extends Item {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        super.inventoryTick(stack, world, entity, slot, selected);
+    public void inventoryTick(ItemStack stack, ServerWorld world, Entity entity, @Nullable EquipmentSlot slot) {
+        super.inventoryTick(stack, world, entity, slot);
         if (entity instanceof PlayerEntity player) {
             if (player.getMainHandStack().getItem() == ModItems.GRAVITY_SHARD || player.getOffHandStack().getItem() == ModItems.GRAVITY_SHARD) {
                 if (!world.isClient) {

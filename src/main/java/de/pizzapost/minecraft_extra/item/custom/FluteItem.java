@@ -8,7 +8,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -35,11 +34,7 @@ public class FluteItem extends Item {
                     livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 600, 0, false, false));
                 }
                 if (!livingEntitys.isEmpty()) {
-                    itemStack.setDamage(itemStack.getDamage() + 1);
-                    if (itemStack.getDamage() == 64) {
-                        player.getStackInHand(hand).decrementUnlessCreative(1, player);
-                        world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.AMBIENT, 1f, 1f);
-                    }
+                    itemStack.damage(1, player);
                 }
             }
         }

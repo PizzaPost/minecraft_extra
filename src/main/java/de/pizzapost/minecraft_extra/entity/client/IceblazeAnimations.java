@@ -25,7 +25,7 @@ public class IceblazeAnimations {
                         new Keyframe(1.5F, AnimationHelper.createRotationalVector(0.0F, -270.0F, 0.0F), Transformation.Interpolations.LINEAR),
                         new Keyframe(2.0F, AnimationHelper.createRotationalVector(0.0F, -360.0F, 0.0F), Transformation.Interpolations.LINEAR)
                 ))
-                .addBoneAnimation("body1", new Transformation(Transformation.Targets.TRANSLATE,
+                .addBoneAnimation("body1", new Transformation(Transformation.Targets.MOVE_ORIGIN,
                         new Keyframe(0.0F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR),
                         new Keyframe(1.0F, AnimationHelper.createTranslationalVector(0.0F, 2.0F, 0.0F), Transformation.Interpolations.LINEAR),
                         new Keyframe(2.0F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR)
@@ -37,7 +37,7 @@ public class IceblazeAnimations {
                         new Keyframe(1.5F, AnimationHelper.createRotationalVector(0.0F, 270.0F, 0.0F), Transformation.Interpolations.LINEAR),
                         new Keyframe(2.0F, AnimationHelper.createRotationalVector(0.0F, 360.0F, 0.0F), Transformation.Interpolations.LINEAR)
                 ))
-                .addBoneAnimation("body2", new Transformation(Transformation.Targets.TRANSLATE,
+                .addBoneAnimation("body2", new Transformation(Transformation.Targets.MOVE_ORIGIN,
                         new Keyframe(0.5F, AnimationHelper.createTranslationalVector(0.0F, 2.0F, 0.0F), Transformation.Interpolations.LINEAR),
                         new Keyframe(1.5F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR),
                         new Keyframe(2.0F, AnimationHelper.createTranslationalVector(0.0F, 2.0F, 0.0F), Transformation.Interpolations.LINEAR)

@@ -10,7 +10,6 @@ import net.minecraft.client.data.BlockStateModelGenerator;
 import net.minecraft.client.data.ItemModelGenerator;
 import net.minecraft.client.data.Model;
 import net.minecraft.client.data.Models;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.util.Identifier;
 
 import java.util.Optional;
@@ -33,8 +32,7 @@ public class ModModelProvider extends FabricModelProvider {
         flintBrickBlockPool.stairs(ModBlocks.FLINT_BRICK_STAIR);
         flintBrickBlockPool.wall(ModBlocks.FLINT_BRICK_WALL);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.FEATHER_BLOCK);
-        blockStateModelGenerator.registerTintableCrossBlockStateWithStages(ModBlocks.HONEY_BERRY_BUSH, BlockStateModelGenerator.CrossType.NOT_TINTED,
-                HoneyBerryBushBlock.AGE, 0, 1, 2, 3);
+        blockStateModelGenerator.registerTintableCrossBlockStateWithStages(ModBlocks.HONEY_BERRY_BUSH, BlockStateModelGenerator.CrossType.NOT_TINTED, HoneyBerryBushBlock.AGE, 0, 1, 2, 3);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PIZZAPOST_BLOCK);
     }
 
@@ -52,10 +50,10 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ROTTEN_CHUNK, Models.GENERATED);
         itemModelGenerator.register(ModItems.LOOTBOX, Models.GENERATED);
         itemModelGenerator.register(ModItems.HARDENED_NETHERITE_INGOT, Models.GENERATED);
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.HARDENED_NETHERITE_HELMET), ModArmorMaterials.HARDENED_NETHERITE_KEY, "helmet", false);
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.HARDENED_NETHERITE_CHESTPLATE), ModArmorMaterials.HARDENED_NETHERITE_KEY, "chestplate", false);
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.HARDENED_NETHERITE_LEGGINGS), ModArmorMaterials.HARDENED_NETHERITE_KEY, "leggings", false);
-        itemModelGenerator.registerArmor(((ArmorItem) ModItems.HARDENED_NETHERITE_BOOTS), ModArmorMaterials.HARDENED_NETHERITE_KEY, "boots", false);
+        itemModelGenerator.registerArmor((ModItems.HARDENED_NETHERITE_HELMET), ModArmorMaterials.HARDENED_NETHERITE_KEY, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
+        itemModelGenerator.registerArmor((ModItems.HARDENED_NETHERITE_CHESTPLATE), ModArmorMaterials.HARDENED_NETHERITE_KEY, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
+        itemModelGenerator.registerArmor((ModItems.HARDENED_NETHERITE_LEGGINGS), ModArmorMaterials.HARDENED_NETHERITE_KEY, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
+        itemModelGenerator.registerArmor((ModItems.HARDENED_NETHERITE_BOOTS), ModArmorMaterials.HARDENED_NETHERITE_KEY, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
         itemModelGenerator.register(ModItems.FLUTE, Models.GENERATED);
         itemModelGenerator.register(ModItems.GRAVITY_SHARD, Models.GENERATED);
         itemModelGenerator.register(ModItems.TP_STICK, Models.GENERATED);
@@ -77,8 +75,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.EFFECT_GEM_SPEED, Models.GENERATED);
         itemModelGenerator.register(ModItems.EFFECT_GEM_PUSH, Models.GENERATED);
         itemModelGenerator.register(ModItems.HAMMER, Models.GENERATED);
-        itemModelGenerator.register(ModItems.ICEBLAZE_SPAWN_EGG,
-                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.ICEBLAZE_SPAWN_EGG, Models.GENERATED);
         itemModelGenerator.register(ModItems.HARDENED_NETHERITE_PICKAXE, Models.GENERATED);
         itemModelGenerator.register(ModItems.HARDENED_NETHERITE_SWORD, Models.GENERATED);
         itemModelGenerator.register(ModItems.HARDENED_NETHERITE_AXE, Models.GENERATED);
@@ -94,7 +91,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ICE_BLAZE_ROD, Models.GENERATED);
         itemModelGenerator.register(ModItems.TIME_CONTROL_DEVICE, Models.GENERATED);
         itemModelGenerator.register(ModItems.TIME_CONTROL_DEVICE_PIECE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.END_CRYSTAL_MOB_SPAWN_EGG,
-                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.END_CRYSTAL_MOB_SPAWN_EGG, Models.GENERATED);
     }
 }

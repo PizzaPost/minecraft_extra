@@ -21,15 +21,8 @@ public class SoapedEffect extends StatusEffect {
         entity.setVelocity(0, 0.1, 0);
         World world = entity.getWorld();
         if (!world.isClient) {
-            Box area = new Box(
-                    entity.getX() - 3, entity.getY() - 3, entity.getZ() - 3,
-                    entity.getX() + 3, entity.getY() + 3, entity.getZ() + 3
-            );
-            List<SoapBubbleEntity> bubbles = world.getEntitiesByType(
-                    ModEntities.SOAP_BUBBLE,
-                    area,
-                    e -> true
-            );
+            Box area = new Box(entity.getX() - 3, entity.getY() - 3, entity.getZ() - 3, entity.getX() + 3, entity.getY() + 3, entity.getZ() + 3);
+            List<SoapBubbleEntity> bubbles = world.getEntitiesByType(ModEntities.SOAP_BUBBLE, area, e -> true);
             if (bubbles.isEmpty()) {
                 SoapBubbleEntity bubble = new SoapBubbleEntity(ModEntities.SOAP_BUBBLE, world);
                 bubble.setPosition(entity.getPos());

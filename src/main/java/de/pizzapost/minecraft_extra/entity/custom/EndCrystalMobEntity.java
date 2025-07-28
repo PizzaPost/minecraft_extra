@@ -47,6 +47,7 @@ public class EndCrystalMobEntity extends HostileEntity {
     private void setupAnimationStates() {
         if (this.getWorld().isClient()) {
             boolean isMoving = this.getVelocity().horizontalLengthSquared() > 0 || this.navigation.isFollowingPath();
+            System.out.println(isMoving);
             this.idleAnimationState.startIfNotRunning(this.age);
             this.walkingAnimationState.startIfNotRunning(this.age);
             if (isMoving) {
@@ -85,11 +86,6 @@ public class EndCrystalMobEntity extends HostileEntity {
             return;
         }
         super.handleStatus(status);
-    }
-
-    @Override
-    public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
-        return false;
     }
 
     @Override

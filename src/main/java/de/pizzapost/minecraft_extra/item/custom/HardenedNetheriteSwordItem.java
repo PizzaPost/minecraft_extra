@@ -5,21 +5,22 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class HardenedNetheriteSwordItem extends SwordItem {
+public class HardenedNetheriteSwordItem extends Item {
 
 
     public HardenedNetheriteSwordItem(ToolMaterial material, float attackDamage, float attackSpeed, Settings settings) {
-        super(material, attackDamage, attackSpeed, settings);
+        super(settings.tool(material, BlockTags.SHOVEL_MINEABLE, attackDamage, attackSpeed, 0));
     }
 
     @Override

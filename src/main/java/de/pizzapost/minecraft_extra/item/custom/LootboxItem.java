@@ -27,7 +27,6 @@ public class LootboxItem extends Item {
 
     @Override
     public ActionResult use(World world, PlayerEntity player, Hand hand) {
-        ItemStack itemStack = player.getStackInHand(hand);
         player.incrementStat(Stats.USED.getOrCreateStat(this));
         if (player instanceof ServerPlayerEntity serverPlayer) {
             RegistryKey lootTableId = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of(MinecraftExtra.MOD_ID, "items/lootbox"));

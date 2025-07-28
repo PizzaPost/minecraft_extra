@@ -12,10 +12,8 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
 import java.util.List;
-import java.util.Random;
 
 public class ModConfiguredFeatures {
-    static Random random = new Random();
     public static final RegistryKey<ConfiguredFeature<?, ?>> HONEY_BERRY_BUSH_KEY = registerKey("honey_berry_bush");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {

@@ -18,6 +18,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -104,11 +105,6 @@ public class IceblazeEntity extends HostileEntity {
     }
 
     @Override
-    public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
-        return false;
-    }
-
-    @Override
     public boolean tryAttack(ServerWorld serverWorld, Entity target) {
         float f = (float) this.getAttributeValue(EntityAttributes.ATTACK_DAMAGE);
         DamageSource damageSource = this.getDamageSources().mobAttack(this);
@@ -116,7 +112,7 @@ public class IceblazeEntity extends HostileEntity {
 
         boolean bl = target.damage(serverWorld, damageSource, f);
         if (bl) {
-            float g = this.getKnockbackAgainst(target, damageSource);
+            float g = this.getAttackKnockbackAgainst(target, damageSource);
             if (g > 0.0F && target instanceof LivingEntity livingEntity) {
                 livingEntity.takeKnockback((double) (g * 0.5F), (double) MathHelper.sin(this.getYaw() * (float) (Math.PI / 180.0)), (double) (-MathHelper.cos(this.getYaw() * (float) (Math.PI / 180.0))));
                 this.setVelocity(this.getVelocity().multiply(0.6, 1.0, 0.6));
@@ -242,5 +238,11 @@ public class IceblazeEntity extends HostileEntity {
     protected void mobTick(ServerWorld serverWorld) {
         super.mobTick(serverWorld);
         this.bossbar.setPercent(this.getHealth() / this.getMaxHealth());
+    }
+
+    @Override
+    public boolean isInvulnerableTo(ServerWorld serverWorld, DamageSource damageSource) {
+        return damageSource.isIn(DamageTypeTags.IS_FALL)
+                || super.isInvulnerableTo(serverWorld, damageSource);
     }
 }

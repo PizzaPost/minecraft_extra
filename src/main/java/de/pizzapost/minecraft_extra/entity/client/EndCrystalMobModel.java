@@ -19,16 +19,16 @@ public class EndCrystalMobModel extends EntityModel<EndCrystalMobRenderState> {
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
-        ModelPartData cube = modelPartData.addChild("cube", ModelPartBuilder.create().uv(0, 0).cuboid(-8.0F, -6.0F, -8.0F, 16.0F, 16.0F, 16.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 14.0F, 0.0F));
+        ModelPartData cube = modelPartData.addChild("cube", ModelPartBuilder.create().uv(0, 0).cuboid(-8.0F, -6.0F, -8.0F, 16.0F, 16.0F, 16.0F, new Dilation(0.0F)), ModelTransform.rotation(0.0F, 14.0F, 0.0F));
         return TexturedModelData.of(modelData, 64, 64);
     }
 
     @Override
     public void setAngles(EndCrystalMobRenderState state) {
         super.setAngles(state);
-        this.setHeadAngles(state.yawDegrees, state.pitch);
+        this.setHeadAngles(state.relativeHeadYaw, state.pitch);
         this.animate(state.idleAnimationState, EndCrystalMobAnimations.IDLE, state.age, 1f);
-        this.animateWalking(EndCrystalMobAnimations.WALKING, state.limbFrequency, state.limbAmplitudeMultiplier, 0f, 1f);
+        this.animateWalking(EndCrystalMobAnimations.WALKING, state.limbSwingAnimationProgress, state.limbSwingAmplitude, 0f, 1f);
     }
 
     private void setHeadAngles(float headYaw, float headPitch) {

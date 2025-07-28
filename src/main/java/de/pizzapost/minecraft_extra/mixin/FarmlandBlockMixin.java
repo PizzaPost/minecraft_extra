@@ -12,9 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(FarmlandBlock.class)
 public abstract class FarmlandBlockMixin {
-
     @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
-    private void disableFarmlandTrample(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
+    private void disableFarmlandTrample(World world, BlockState state, BlockPos pos, Entity entity, double fallDistance, CallbackInfo ci) {
         ci.cancel();
     }
 }

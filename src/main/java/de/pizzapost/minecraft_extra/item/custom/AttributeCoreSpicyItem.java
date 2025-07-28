@@ -11,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -38,7 +37,6 @@ public class AttributeCoreSpicyItem extends Item {
                     itemStack.damage(2, player, LivingEntity.getSlotForHand(hand));
                     if (itemStack.getDamage() >= 100) {
                         player.getStackInHand(hand).decrementUnlessCreative(1, player);
-                        world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.AMBIENT, 1f, 1f);
                         if (player instanceof ServerPlayerEntity serverPlayer) {
                             Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "spicy");
                             AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
@@ -59,7 +57,6 @@ public class AttributeCoreSpicyItem extends Item {
                     itemStack.damage(1, player, LivingEntity.getSlotForHand(hand));
                     if (itemStack.getDamage() >= 100) {
                         player.getStackInHand(hand).decrementUnlessCreative(1, player);
-                        world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.AMBIENT, 1f, 1f);
                         if (player instanceof ServerPlayerEntity serverPlayer) {
                             Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "spicy");
                             AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);

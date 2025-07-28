@@ -25,78 +25,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FlintBlockBlockEntity extends BlockWithEntity {
-    private static final List<Block> FLAMMABLE_BLOCKS = Arrays.asList(
-            Blocks.DEAD_BUSH,
-            Blocks.BLUE_ORCHID,
-            Blocks.LILY_OF_THE_VALLEY,
-            Blocks.PITCHER_CROP,
-            Blocks.TORCHFLOWER_CROP,
-            Blocks.DANDELION,
-            Blocks.OXEYE_DAISY,
-            Blocks.PINK_TULIP,
-            Blocks.ALLIUM,
-            Blocks.AZURE_BLUET,
-            Blocks.WITHER_ROSE,
-            Blocks.PINK_PETALS,
-            Blocks.RED_TULIP,
-            Blocks.ORANGE_TULIP,
-            Blocks.WHITE_TULIP,
-            Blocks.ROSE_BUSH,
-            Blocks.LILAC,
-            Blocks.PEONY,
-            Blocks.PITCHER_PLANT,
-            Blocks.SUNFLOWER,
-            Blocks.POPPY,
-            Blocks.CORNFLOWER,
-            Blocks.TORCHFLOWER,
-            Blocks.LARGE_FERN,
-            Blocks.TALL_GRASS,
-            Blocks.FERN,
-            Blocks.SHORT_GRASS,
-            Blocks.MOSS_CARPET,
-            Blocks.AZALEA,
-            Blocks.MOSS_BLOCK,
-            Blocks.DARK_OAK_SAPLING,
-            Blocks.ACACIA_SAPLING,
-            Blocks.BIRCH_SAPLING,
-            Blocks.FLOWERING_AZALEA,
-            Blocks.CHERRY_SAPLING,
-            Blocks.MANGROVE_PROPAGULE,
-            Blocks.JUNGLE_SAPLING,
-            Blocks.SPRUCE_SAPLING,
-            Blocks.OAK_SAPLING,
-            Blocks.OAK_LEAVES,
-            Blocks.CHERRY_LEAVES,
-            Blocks.AZALEA_LEAVES,
-            Blocks.SPRUCE_LEAVES,
-            Blocks.DARK_OAK_LEAVES,
-            Blocks.BIRCH_LEAVES,
-            Blocks.ACACIA_LEAVES,
-            Blocks.JUNGLE_LEAVES,
-            Blocks.MANGROVE_LEAVES,
-            Blocks.FLOWERING_AZALEA_LEAVES,
-            Blocks.NETHERRACK,
-            Blocks.CRIMSON_NYLIUM,
-            Blocks.WARPED_NYLIUM,
-            Blocks.SOUL_SAND,
-            Blocks.SOUL_SOIL,
-            Blocks.MANGROVE_ROOTS,
-            Blocks.SWEET_BERRY_BUSH,
-            Blocks.CAVE_VINES,
-            Blocks.CAVE_VINES_PLANT,
-            Blocks.HAY_BLOCK
-    );
+    private static final List<Block> FLAMMABLE_BLOCKS = Arrays.asList(Blocks.DEAD_BUSH, Blocks.BLUE_ORCHID, Blocks.LILY_OF_THE_VALLEY, Blocks.PITCHER_CROP, Blocks.TORCHFLOWER_CROP, Blocks.DANDELION, Blocks.OXEYE_DAISY, Blocks.PINK_TULIP, Blocks.ALLIUM, Blocks.AZURE_BLUET, Blocks.WITHER_ROSE, Blocks.PINK_PETALS, Blocks.RED_TULIP, Blocks.ORANGE_TULIP, Blocks.WHITE_TULIP, Blocks.ROSE_BUSH, Blocks.LILAC, Blocks.PEONY, Blocks.PITCHER_PLANT, Blocks.SUNFLOWER, Blocks.POPPY, Blocks.CORNFLOWER, Blocks.TORCHFLOWER, Blocks.LARGE_FERN, Blocks.TALL_GRASS, Blocks.FERN, Blocks.SHORT_GRASS, Blocks.MOSS_CARPET, Blocks.AZALEA, Blocks.MOSS_BLOCK, Blocks.DARK_OAK_SAPLING, Blocks.ACACIA_SAPLING, Blocks.BIRCH_SAPLING, Blocks.FLOWERING_AZALEA, Blocks.CHERRY_SAPLING, Blocks.MANGROVE_PROPAGULE, Blocks.JUNGLE_SAPLING, Blocks.SPRUCE_SAPLING, Blocks.OAK_SAPLING, Blocks.OAK_LEAVES, Blocks.CHERRY_LEAVES, Blocks.AZALEA_LEAVES, Blocks.SPRUCE_LEAVES, Blocks.DARK_OAK_LEAVES, Blocks.BIRCH_LEAVES, Blocks.ACACIA_LEAVES, Blocks.JUNGLE_LEAVES, Blocks.MANGROVE_LEAVES, Blocks.FLOWERING_AZALEA_LEAVES, Blocks.NETHERRACK, Blocks.CRIMSON_NYLIUM, Blocks.WARPED_NYLIUM, Blocks.SOUL_SAND, Blocks.SOUL_SOIL, Blocks.MANGROVE_ROOTS, Blocks.SWEET_BERRY_BUSH, Blocks.CAVE_VINES, Blocks.CAVE_VINES_PLANT, Blocks.HAY_BLOCK);
 
-    private static final List<Block> FLAMMABLE_BLOCKS2 = Arrays.asList(
-            Blocks.POTATOES,
-            Blocks.CARROTS,
-            Blocks.BEETROOTS,
-            Blocks.PUMPKIN_STEM,
-            Blocks.ATTACHED_PUMPKIN_STEM,
-            Blocks.MELON_STEM,
-            Blocks.ATTACHED_MELON_STEM,
-            Blocks.WHEAT
-    );
+    private static final List<Block> FLAMMABLE_BLOCKS2 = Arrays.asList(Blocks.POTATOES, Blocks.CARROTS, Blocks.BEETROOTS, Blocks.PUMPKIN_STEM, Blocks.ATTACHED_PUMPKIN_STEM, Blocks.MELON_STEM, Blocks.ATTACHED_MELON_STEM, Blocks.WHEAT);
 
     public FlintBlockBlockEntity(AbstractBlock.Settings settings) {
         super(settings);
@@ -118,7 +49,7 @@ public class FlintBlockBlockEntity extends BlockWithEntity {
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
         if (placer.isSneaking()) return;
         boolean proceed = false;
-        for (int x=-1; x<2; x++) {
+        for (int x = -1; x < 2; x++) {
             for (int y = -1; y < 2; y++) {
                 for (int z = -1; z < 2; z++) {
                     if ((world.getBlockState(pos.add(x, y, z)).getBlock() == ModBlocks.FLINT_BLOCK)) {
@@ -145,7 +76,7 @@ public class FlintBlockBlockEntity extends BlockWithEntity {
                     if (FLAMMABLE_BLOCKS.contains(world.getBlockState(pos.add(x, y, z)).getBlock())) {
                         world.setBlockState(pos.add(x, y, z), Blocks.FIRE.getDefaultState());
                     } else if (FLAMMABLE_BLOCKS2.contains(world.getBlockState(pos.add(x, y, z)).getBlock())) {
-                        world.setBlockState(pos.add(x, y-1, z), Blocks.DIRT.getDefaultState());
+                        world.setBlockState(pos.add(x, y - 1, z), Blocks.DIRT.getDefaultState());
                         world.setBlockState(pos.add(x, y, z), Blocks.FIRE.getDefaultState());
                     }
                 }

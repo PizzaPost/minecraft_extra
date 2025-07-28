@@ -84,7 +84,7 @@ public class BiomeCompassItem extends Item {
                 if (!player.isInCreativeMode()) {
                     itemStack.decrement(1);
                 }
-                int selectedSlot = player.getInventory().selectedSlot;
+                int selectedSlot = player.getInventory().getSelectedSlot();
                 ItemStack currentInHand = player.getInventory().getStack(selectedSlot);
                 if (currentInHand.isEmpty()) {
                     player.getInventory().setStack(selectedSlot, compassStack);

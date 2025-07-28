@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -51,22 +52,18 @@ public class HoneyBerryBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
-            entity.slowMovement(state, new Vec3d((double)0.2F, (double)0.15F, (double)0.2F));
+            entity.slowMovement(state, new Vec3d((double) 0.2F, (double) 0.15F, (double) 0.2F));
             if (world instanceof ServerWorld) {
-                ServerWorld serverWorld = (ServerWorld)world;
-                if ((Integer)state.get(AGE) != 0) {
+                ServerWorld serverWorld = (ServerWorld) world;
+                if ((Integer) state.get(AGE) != 0) {
                     Vec3d vec3d = entity.isControlledByPlayer() ? entity.getMovement() : entity.getLastRenderPos().subtract(entity.getPos());
-                    if (vec3d.horizontalLengthSquared() > (double)0.0F) {
+                    if (vec3d.horizontalLengthSquared() > (double) 0.0F) {
                         double d = Math.abs(vec3d.getX());
                         double e = Math.abs(vec3d.getZ());
-                        if (d >= (double)0.003F || e >= (double)0.003F) {
-                            DamageSource damageSource = new DamageSource(
-                                    world.getRegistryManager()
-                                            .getOrThrow(RegistryKeys.DAMAGE_TYPE)
-                                            .getEntry(ModDamageTypes.HONEY_BERRY_BUSH_DAMAGE.getValue()).get()
-                            );
+                        if (d >= (double) 0.003F || e >= (double) 0.003F) {
+                            DamageSource damageSource = new DamageSource(world.getRegistryManager().getOrThrow(RegistryKeys.DAMAGE_TYPE).getEntry(ModDamageTypes.HONEY_BERRY_BUSH_DAMAGE.getValue()).get());
                             entity.damage(serverWorld, damageSource, 1.5F);
                         }
                     }
