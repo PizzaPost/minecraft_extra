@@ -14,6 +14,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public class SoapBubbleEntity extends HostileEntity {
     private static final double DESPAWN_RANGE = 3.0;
@@ -73,7 +74,7 @@ public class SoapBubbleEntity extends HostileEntity {
     }
 
     @Override
-    public boolean isCollidable() {
+    public boolean isCollidable(@Nullable Entity entity) {
         return false;
     }
 

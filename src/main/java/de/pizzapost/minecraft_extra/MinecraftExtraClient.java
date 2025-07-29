@@ -9,13 +9,13 @@ import de.pizzapost.minecraft_extra.particle.ModParticles;
 import de.pizzapost.minecraft_extra.particle.custom.EffectGemPushParticle;
 import de.pizzapost.minecraft_extra.particle.custom.HardenedNetheriteAmbientParticle;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.BlockRenderLayer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.world.World;
 
@@ -36,7 +36,7 @@ public class MinecraftExtraClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(EndCrystalMobModel.END_CRYSTAL_MOB, EndCrystalMobModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.END_CRYSTAL_MOB, EndCrystalMobRenderer::new);
 
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.HONEY_BERRY_BUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.putBlock(ModBlocks.HONEY_BERRY_BUSH, BlockRenderLayer.CUTOUT);
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player != null) {
                 if (!(client.player.getWorld().getRegistryKey() == World.END)) {

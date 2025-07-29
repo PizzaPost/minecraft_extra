@@ -18,7 +18,7 @@ public class SoapBubbleModel extends EntityModel<EntityRenderState> {
     }
 
     public static TexturedModelData getTexturedModelData() {
-        ModelData     modelData     = new ModelData();
+        ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
         modelPartData.addChild(
                 "bb_main",

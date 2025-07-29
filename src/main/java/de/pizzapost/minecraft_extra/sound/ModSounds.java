@@ -8,7 +8,6 @@ import net.minecraft.util.Identifier;
 
 public class ModSounds {
     public static final SoundEvent CHANGE_WEATHER = registerSoundEvent("change_weather");
-    public static final SoundEvent SUPER_FERTILIZER = registerSoundEvent("super_fertilizer");
     public static final SoundEvent ATTRIBUTE_CORE_USE = registerSoundEvent("attribute_core.use");
     public static final SoundEvent WIRELESS_REDSTONE_SEND = registerSoundEvent("wire_redstone.send");
     public static final SoundEvent FLUTE = registerSoundEvent("flute");

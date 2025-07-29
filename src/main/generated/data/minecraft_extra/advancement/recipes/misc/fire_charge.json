@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:fire_charge"
+        "recipe": "minecraft_extra:fire_charge"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:fire_charge"
+      "minecraft_extra:fire_charge"
     ]
   }
 }

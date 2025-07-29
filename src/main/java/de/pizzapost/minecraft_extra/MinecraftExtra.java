@@ -154,15 +154,15 @@ public class MinecraftExtra implements ModInitializer {
                     if (player.getWorld().getRegistryKey() == World.END && player.getY() <= -55) {
                         if (player instanceof ServerPlayerEntity serverPlayer) {
                             Vec3d pos = player.getPos();
-                            player.teleport(player.server.getWorld(World.OVERWORLD), pos.getX(), 499, pos.getZ(), EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
+                            player.teleport(player.getServer().getWorld(World.OVERWORLD), pos.getX(), 499, pos.getZ(), EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
                             serverPlayer.refreshPositionAfterTeleport(player.getX(), player.getY(), player.getZ());
                         }
                     } else if (player.getWorld().getRegistryKey() == World.OVERWORLD && player.getY() >= 500) {
                         if (player instanceof ServerPlayerEntity serverPlayer) {
-                            boolean hasEnteredTheEnd = serverPlayer.getAdvancementTracker().getProgress(serverPlayer.server.getAdvancementLoader().get(Identifier.of("minecraft:story/enter_the_end"))).isDone();
+                            boolean hasEnteredTheEnd = serverPlayer.getAdvancementTracker().getProgress(serverPlayer.getServer().getAdvancementLoader().get(Identifier.of("minecraft:story/enter_the_end"))).isDone();
                             if (hasEnteredTheEnd) {
                                 Vec3d pos = player.getPos();
-                                player.teleport(player.server.getWorld(World.END), pos.getX(), -40, pos.getZ(), EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
+                                player.teleport(player.getServer().getWorld(World.END), pos.getX(), -40, pos.getZ(), EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
                                 serverPlayer.refreshPositionAfterTeleport(player.getX(), player.getY(), player.getZ());
                                 Vec3d boost = new Vec3d(0, 1.5, 0);
                                 player.setVelocity(player.getVelocity().add(boost));
@@ -174,10 +174,10 @@ public class MinecraftExtra implements ModInitializer {
                         }
                     } else if (player.getWorld().getRegistryKey() == World.OVERWORLD && player.getY() <= -95) {
                         if (player instanceof ServerPlayerEntity serverPlayer) {
-                            boolean hasEnteredTheNether = serverPlayer.getAdvancementTracker().getProgress(serverPlayer.server.getAdvancementLoader().get(Identifier.of("minecraft:nether/root"))).isDone();
+                            boolean hasEnteredTheNether = serverPlayer.getAdvancementTracker().getProgress(serverPlayer.getServer().getAdvancementLoader().get(Identifier.of("minecraft:nether/root"))).isDone();
                             if (hasEnteredTheNether) {
                                 Vec3d pos = player.getPos();
-                                player.teleport(player.server.getWorld(World.NETHER), pos.getX() * 8, 250, pos.getZ() * 8, EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
+                                player.teleport(player.getServer().getWorld(World.NETHER), pos.getX() * 8, 250, pos.getZ() * 8, EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
                                 serverPlayer.refreshPositionAfterTeleport(player.getX(), player.getY(), player.getZ());
                             } else {
                                 Text actionbarMessage = Text.translatable("actionbar.minecraft_extra.levitate_between_dimensions");
@@ -187,7 +187,7 @@ public class MinecraftExtra implements ModInitializer {
                     } else if (player.getWorld().getRegistryKey() == World.NETHER && player.getY() >= 251) {
                         if (player instanceof ServerPlayerEntity serverPlayer) {
                             Vec3d pos = player.getPos();
-                            player.teleport(player.server.getWorld(World.OVERWORLD), pos.getX() / 8, -80, pos.getZ() / 8, EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
+                            player.teleport(player.getServer().getWorld(World.OVERWORLD), pos.getX() / 8, -80, pos.getZ() / 8, EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
                             serverPlayer.refreshPositionAfterTeleport(player.getX(), player.getY(), player.getZ());
                             Vec3d boost = new Vec3d(0, 1.5, 0);
                             player.setVelocity(player.getVelocity().add(boost));
@@ -456,7 +456,7 @@ public class MinecraftExtra implements ModInitializer {
                 angle = Math.toRadians(i);
                 double x = player.getX() + Math.cos(angle) * 1.5;
                 double z = player.getZ() + Math.sin(angle) * 1.5;
-                ServerWorld serverWorld = player.getServerWorld();
+                ServerWorld serverWorld = player.getWorld();
                 serverWorld.spawnParticles(ModParticles.EFFECT_GEM_PUSH_PARTICLE, x, player.getY() + 0.2, z, 1, 0.0, 0.0, 0.0, 0.0);
             }
             world.getEntitiesByClass(MobEntity.class, player.getBoundingBox().expand(1.5), Entity::isAlive).forEach(mob -> {

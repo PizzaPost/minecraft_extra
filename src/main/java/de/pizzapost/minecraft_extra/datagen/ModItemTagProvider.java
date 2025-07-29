@@ -16,8 +16,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(ModItems.HARDENED_NETHERITE_HELMET).add(ModItems.HARDENED_NETHERITE_CHESTPLATE).add(ModItems.HARDENED_NETHERITE_LEGGINGS).add(ModItems.HARDENED_NETHERITE_BOOTS);
-
-        getOrCreateTagBuilder(ModTags.Items.HARDENED_NETHERITE_REPAIR).add(ModItems.HARDENED_NETHERITE_INGOT);
+        valueLookupBuilder(ItemTags.TRIMMABLE_ARMOR).add(ModItems.HARDENED_NETHERITE_HELMET).add(ModItems.HARDENED_NETHERITE_CHESTPLATE).add(ModItems.HARDENED_NETHERITE_LEGGINGS).add(ModItems.HARDENED_NETHERITE_BOOTS);
+        valueLookupBuilder(ModTags.Items.HARDENED_NETHERITE_REPAIR).add(ModItems.HARDENED_NETHERITE_INGOT);
     }
 }

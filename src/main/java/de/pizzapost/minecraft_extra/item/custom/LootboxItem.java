@@ -30,7 +30,7 @@ public class LootboxItem extends Item {
         player.incrementStat(Stats.USED.getOrCreateStat(this));
         if (player instanceof ServerPlayerEntity serverPlayer) {
             RegistryKey lootTableId = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of(MinecraftExtra.MOD_ID, "items/lootbox"));
-            LootTable lootTable = serverPlayer.server.getReloadableRegistries().getLootTable(lootTableId);
+            LootTable lootTable = serverPlayer.getServer().getReloadableRegistries().getLootTable(lootTableId);
             LootWorldContext parameters = new LootWorldContext.Builder((ServerWorld) world).add(LootContextParameters.ORIGIN, serverPlayer.getPos()).add(LootContextParameters.THIS_ENTITY, serverPlayer).build(LootContextTypes.CHEST);
             List<ItemStack> items = lootTable.generateLoot(parameters);
             for (ItemStack item : items) {

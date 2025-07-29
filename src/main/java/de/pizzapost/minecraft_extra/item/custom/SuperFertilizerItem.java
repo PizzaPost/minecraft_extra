@@ -1,12 +1,14 @@
 package de.pizzapost.minecraft_extra.item.custom;
 
 import de.pizzapost.minecraft_extra.MinecraftExtra;
+import de.pizzapost.minecraft_extra.sound.ModSounds;
 import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
