@@ -17,6 +17,7 @@ import de.pizzapost.minecraft_extra.item.custom.HardenedNetheriteAxeItem;
 import de.pizzapost.minecraft_extra.keybinds.ModKeys;
 import de.pizzapost.minecraft_extra.particle.ModParticles;
 import de.pizzapost.minecraft_extra.sound.ModSounds;
+import de.pizzapost.minecraft_extra.util.InventoryShuffler;
 import de.pizzapost.minecraft_extra.util.ModLootTableModifiers;
 import de.pizzapost.minecraft_extra.villager.CustomVillagerTrades;
 import de.pizzapost.minecraft_extra.villager.ModVillagers;
@@ -66,9 +67,7 @@ import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.EnumSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class MinecraftExtra implements ModInitializer {
     public static final String MOD_ID = "minecraft_extra";
@@ -96,6 +95,14 @@ public class MinecraftExtra implements ModInitializer {
         ModWorldGeneration.generateModWorldGen();
         ModParticles.registerParticles();
         new SleepRegeneration().onInitialize();
+        ServerTickEvents.END_SERVER_TICK.register(server -> {
+            for (UUID uuid : new HashSet<>(InventoryShuffler.getPlayers())) {
+                ServerPlayerEntity player = server.getPlayerManager().getPlayer(uuid);
+                if (player != null) {
+                    InventoryShuffler.tick(player);
+                }
+            }
+        });
         ServerTickEvents.END_WORLD_TICK.register(this::onWorldTick);
         ServerTickEvents.START_WORLD_TICK.register(world -> {
             for (ServerPlayerEntity player : world.getPlayers()) {
