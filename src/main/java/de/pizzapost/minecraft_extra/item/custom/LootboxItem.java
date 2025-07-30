@@ -4,17 +4,23 @@ import de.pizzapost.minecraft_extra.MinecraftExtra;
 import de.pizzapost.minecraft_extra.item.ModItems;
 import de.pizzapost.minecraft_extra.util.InventoryShuffler;
 import net.minecraft.block.Block;
-import net.minecraft.entity.TntEntity;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.loot.context.LootWorldContext;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -28,6 +34,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Position;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
@@ -59,8 +66,8 @@ public class LootboxItem extends Item {
         player.incrementStat(Stats.USED.getOrCreateStat(this));
         player.getStackInHand(hand).decrement(1);
         if (player instanceof ServerPlayerEntity serverPlayer) {
-            if (random.nextInt(2) == 0) {
-                int x = 0;
+            if (random.nextInt(20) == 0) {
+                int x = random.nextInt(5+paths.size());
                 if (x == 0) {
                     Inventory inventory = player.getInventory();
                     if (!inventory.isEmpty()) {
@@ -84,7 +91,43 @@ public class LootboxItem extends Item {
                     player.velocityModified = true;
                     player.velocityDirty = true;
                     return ActionResult.SUCCESS;
-                } else if (x > 3) {
+                } else if (x == 3) {
+                    BlockPos blockPos = player.getBlockPos();
+                    LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(world, SpawnReason.EVENT);
+                    lightning.setPosition(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+                    world.spawnEntity(lightning);
+                    return ActionResult.SUCCESS;
+                } else if (x == 4) {
+                    BlockPos blockPos = player.getBlockPos();
+                    List<BlockState> ORES=List.of(
+                            Blocks.COAL_ORE.getDefaultState(),
+                            Blocks.COPPER_ORE.getDefaultState(),
+                            Blocks.GOLD_ORE.getDefaultState(),
+                            Blocks.LAPIS_ORE.getDefaultState(),
+                            Blocks.REDSTONE_ORE.getDefaultState(),
+                            Blocks.IRON_ORE.getDefaultState(),
+                            Blocks.EMERALD_ORE.getDefaultState(),
+                            Blocks.DIAMOND_ORE.getDefaultState());
+                    ((ServerPlayerEntity) player).networkHandler.requestTeleport(
+                            blockPos.getX() + 0.5,
+                            blockPos.getY(),
+                            blockPos.getZ() + 0.5,
+                            player.getYaw(),
+                            -90
+                    );
+                    for (int i = 0; i < 30; i++) {
+                        world.setBlockState(new BlockPos(blockPos.getX(), blockPos.getY()+i, blockPos.getZ()), Blocks.AIR.getDefaultState());
+                    }
+                    for (int i = 0; i < ORES.size(); i++) {
+                        FallingBlockEntity fallingBlock = FallingBlockEntity.spawnFromBlock(
+                                world,
+                                new BlockPos(player.getBlockPos().getX(), player.getBlockPos().getY()+i+30, player.getBlockPos().getZ()),
+                                ORES.get(i)
+                        );
+                        world.spawnEntity(fallingBlock);
+                    }
+                    return ActionResult.SUCCESS;
+                } else if (x > 4) {
                     placeStructure((ServerWorld) world, player.getBlockPos(), player);
                     return ActionResult.SUCCESS;
                 }

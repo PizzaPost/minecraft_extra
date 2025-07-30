@@ -1142,6 +1142,18 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:black_wool"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stick",
+          "functions": [
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "minecraft:knockback": 10
+              }
+            }
+          ]
         }
       ]
     }
