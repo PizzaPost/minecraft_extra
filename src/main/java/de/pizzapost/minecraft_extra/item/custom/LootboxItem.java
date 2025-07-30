@@ -39,6 +39,19 @@ public class LootboxItem extends Item {
     public LootboxItem(Settings settings) {
         super(settings);
     }
+    List paths = List.of(
+            List.of("lootbox/1", -1, -1, -1),
+            List.of("lootbox/2", 3, -1, 1),
+            List.of("lootbox/3", 0, -14, 0),
+            List.of("lootbox/4", 0, -1, 2),
+            List.of("lootbox/5", 0, -1, 0),
+            List.of("lootbox/6", 0, 0, 0),
+            List.of("lootbox/7", 0, 0, 0),
+            List.of("lootbox/8", 0, 0, 0),
+            List.of("lootbox/9", 0, 0, 8),
+            List.of("lootbox/10", 0, 0, 0),
+            List.of("lootbox/11", 0, 0, 0),
+            List.of("lootbox/12", 0, 0, 0));
 
     @Override
     public ActionResult use(World world, PlayerEntity player, Hand hand) {
@@ -47,7 +60,7 @@ public class LootboxItem extends Item {
         player.getStackInHand(hand).decrement(1);
         if (player instanceof ServerPlayerEntity serverPlayer) {
             if (random.nextInt(1) == 0) {
-                int x = random.nextInt(4);
+                int x = random.nextInt(4+paths.size());
                 if (x == 0) {
                     Inventory inventory = player.getInventory();
                     if (!inventory.isEmpty()) {
@@ -71,7 +84,7 @@ public class LootboxItem extends Item {
                     player.velocityModified = true;
                     player.velocityDirty = true;
                     return ActionResult.SUCCESS;
-                } else if (x == 3) {
+                } else if (x > 3) {
                     placeStructure((ServerWorld) world, player.getBlockPos(), player);
                     return ActionResult.SUCCESS;
                 }
@@ -88,19 +101,6 @@ public class LootboxItem extends Item {
     }
 
     private boolean placeStructure(ServerWorld world, BlockPos pos, PlayerEntity player) {
-        List paths = List.of(
-                List.of("lootbox/1", -1, -1, -1),
-                List.of("lootbox/2", 3, -1, 1),
-                List.of("lootbox/3", 0, -14, 0),
-                List.of("lootbox/4", 0, -1, 2),
-                List.of("lootbox/5", 0, -1, 0),
-                List.of("lootbox/6", 0, 0, 0),
-                List.of("lootbox/7", 0, 0, 0),
-                List.of("lootbox/8", 0, 0, 0),
-                List.of("lootbox/9", 0, 0, 8),
-                List.of("lootbox/10", 0, 0, 0),
-                List.of("lootbox/11", 0, 0, 0),
-                List.of("lootbox/12", 0, 0, 0));
         Object path = paths.get(world.getRandom().nextInt(paths.size()));
         StructureTemplateManager manager = world.getStructureTemplateManager();
         Identifier id = Identifier.of(MinecraftExtra.MOD_ID, (String) ((List<?>) path).get(0));
