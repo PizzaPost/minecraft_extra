@@ -59,8 +59,8 @@ public class LootboxItem extends Item {
         player.incrementStat(Stats.USED.getOrCreateStat(this));
         player.getStackInHand(hand).decrement(1);
         if (player instanceof ServerPlayerEntity serverPlayer) {
-            if (random.nextInt(1) == 0) {
-                int x = random.nextInt(4+paths.size());
+            if (random.nextInt(2) == 0) {
+                int x = 0;
                 if (x == 0) {
                     Inventory inventory = player.getInventory();
                     if (!inventory.isEmpty()) {

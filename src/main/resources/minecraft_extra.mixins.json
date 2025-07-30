@@ -1,26 +1,29 @@
 {
-	"required": true,
-	"package": "de.pizzapost.minecraft_extra.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"canHitDragonWithoutCrashMixin",
-		"ArmorItemMixin",
-		"BlocksMixin",
-		"CropBlockMixin",
-		"DragonFireballEntityMixin",
-		"EnderDragonEntityMixin",
-		"EnderDragonFightMixin",
-		"ExampleMixin",
-		"FarmlandBlockMixin",
-		"FireBlockMixin",
-		"GameMenuScreenMixin",
-		"LightmapTextureManagerMixin",
-		"LivingEntityMixin",
-		"PlayerEntityMixin",
-		"SpikeCacheMixin",
-		"ZombieHorseEntityMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "de.pizzapost.minecraft_extra.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ArmorItemMixin",
+    "BlocksMixin",
+    "canHitDragonWithoutCrashMixin",
+    "CropBlockMixin",
+    "DragonFireballEntityMixin",
+    "EnderDragonEntityMixin",
+    "EnderDragonFightMixin",
+    "ExampleMixin",
+    "FarmlandBlockMixin",
+    "FireBlockMixin",
+    "GameMenuScreenMixin",
+    "LightmapTextureManagerMixin",
+    "LivingEntityMixin",
+    "PlayerEntityMixin",
+    "ScreenHandlerMixin",
+    "ServerPlayerEntityMixin",
+    "ServerPlayerInteractionManagerMixin",
+    "SpikeCacheMixin",
+    "ZombieHorseEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }
