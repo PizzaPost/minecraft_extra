@@ -17,13 +17,15 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.render.BlockRenderLayer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
-import net.minecraft.world.World;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 
 public class MinecraftExtraClient implements ClientModInitializer {
     public static Integer LIGHT_BOOST = 0;
     private static float freezeOverlayAlpha = 0f;
     private static final float FADE_SPEED = 0.01f;
     private static final float MAX_ALPHA = 0.4f;
+    private static boolean NIGHT_VISION = false;
 
     @Override
     public void onInitializeClient() {
@@ -39,13 +41,13 @@ public class MinecraftExtraClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(ModBlocks.HONEY_BERRY_BUSH, BlockRenderLayer.CUTOUT);
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player != null) {
-                if (!(client.player.getWorld().getRegistryKey() == World.END)) {
-                    if (ModKeys.nightVisionKey.wasPressed()) {
-                        if (LIGHT_BOOST == 0) LIGHT_BOOST = 5;
-                        else LIGHT_BOOST = 0;
-                    }
+                if (ModKeys.nightVisionKey.wasPressed()) {
+                    NIGHT_VISION = !NIGHT_VISION;
+                }
+                if (NIGHT_VISION) {
+                    client.player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 300, 0, false, false));
                 } else {
-                    LIGHT_BOOST = 0;
+                    client.player.removeStatusEffect(StatusEffects.NIGHT_VISION);
                 }
                 boolean isFreezeActive = client.player.hasStatusEffect(ModEffects.FREEZE);
                 if (isFreezeActive) {
