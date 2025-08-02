@@ -139,7 +139,7 @@ public class MinecraftExtra implements ModInitializer {
         });
         ServerTickEvents.END_WORLD_TICK.register(world -> {
             if (world.isRaining()) {
-                if (world.random.nextFloat() < 0.000025f) {
+                if (world.random.nextFloat() < 0.0025f) {
                     var players = world.getPlayers();
                     if (players.isEmpty()) return;
                     ServerPlayerEntity player = players.get(world.random.nextInt(players.size()));
