@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradedItem;
+import net.minecraft.village.VillagerProfession;
 
 import java.util.Optional;
 
@@ -16,25 +17,37 @@ public class CustomVillagerTrades {
             factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.HONEYCOMB), new ItemStack(Items.HONEY_BOTTLE), 7, 2, 0.04F));
             factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.SHEARS), new ItemStack(Items.HONEYCOMB, 5), 7, 2, 0.02F));
         });
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.PIZZA_KEY, 1, factories -> {
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.HONEY_BOTTLE), new ItemStack(Items.EMERALD, 3), 7, 2, 0.04F));
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.CORNFLOWER), new ItemStack(Items.EMERALD), 7, 2, 0.02F));
+        });
         TradeOfferHelper.registerVillagerOffers(ModVillagers.PIZZA_KEY, 2, factories -> {
-            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.OXEYE_DAISY), new ItemStack(Items.RED_TULIP), 6, 4, 0.1F));
-            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.ORANGE_TULIP), new ItemStack(Items.WHITE_TULIP), 6, 4, 0.1F));
-            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.SUNFLOWER), new ItemStack(Items.PINK_TULIP), 6, 4, 0.1F));
-            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.ROSE_BUSH), new ItemStack(Items.LILY_OF_THE_VALLEY), 6, 4, 0.1F));
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.OXEYE_DAISY), new ItemStack(Items.HONEY_BLOCK), 6, 3, 0.1F));
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.ORANGE_TULIP), new ItemStack(Items.SUNFLOWER, 2), 6, 3, 0.1F));
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.RED_TULIP, 2), new ItemStack(Items.CORNFLOWER), 6, 3, 0.1F));
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.WHITE_TULIP, 12), new ItemStack(Items.BEEHIVE), 6, 3, 0.1F));
+        });
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.PIZZA_KEY, 2, factories -> {
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.EMERALD), new ItemStack(Items.SUNFLOWER, 9), 4, 6, -0.1F));
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.EMERALD), new ItemStack(Items.ROSE_BUSH, 8), 4, 6, -0.1F));
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.EMERALD), new ItemStack(Items.PINK_TULIP, 4), 4, 6, 0.1F));
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.EMERALD), new ItemStack(Items.LILY_OF_THE_VALLEY, 3), 4, 7, 0.1F));
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagers.PIZZA_KEY, 3, factories -> {
             factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.BEEHIVE), new ItemStack(Items.HONEY_BOTTLE), 6, 9, 0.03F));
             factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.HONEY_BOTTLE), new ItemStack(Items.HONEYCOMB), 6, 4, 0.1F));
-            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.GLASS_BOTTLE), Optional.of(new TradedItem(Items.HONEYCOMB)), new ItemStack(Items.HONEY_BOTTLE), 6, 6, 0.04F));
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.GLASS_BOTTLE), Optional.of(new TradedItem(Items.HONEYCOMB)), new ItemStack(Items.HONEY_BOTTLE), 6, 4, 0.04F));
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagers.PIZZA_KEY, 4, factories -> {
-            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.CORNFLOWER), new ItemStack(Items.PEONY), 6, 4, 0.1F));
-            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.LILAC), new ItemStack(Items.ALLIUM), 6, 4, 0.1F));
-            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.BLUE_ORCHID), new ItemStack(Items.DANDELION), 6, 4, 0.1F));
-            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.POPPY), new ItemStack(Items.AZURE_BLUET), 6, 4, 0.1F));
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.BLUE_ORCHID), new ItemStack(Items.DANDELION), 12, 2, 0.1F));
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.POPPY), new ItemStack(Items.AZURE_BLUET), 12, 2, 0.1F));
+        });
+        TradeOfferHelper.registerVillagerOffers(ModVillagers.PIZZA_KEY, 4, factories -> {
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.CORNFLOWER), new ItemStack(Items.PEONY), 12, 2, 0.1F));
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(Items.LILAC), new ItemStack(Items.ALLIUM), 12, 2, 0.1F));
         });
         TradeOfferHelper.registerVillagerOffers(ModVillagers.PIZZA_KEY, 5, factories -> {
-            factories.add((entity, random) -> new TradeOffer(new TradedItem(ModItems.HONEY_BERRIES, 64), Optional.of(new TradedItem(Blocks.HONEY_BLOCK, 9)), new ItemStack(ModItems.HONEY_KEY), 1, 0, 2F));
+            factories.add((entity, random) -> new TradeOffer(new TradedItem(ModItems.HONEY_BERRIES, 32), Optional.of(new TradedItem(Blocks.HONEY_BLOCK, 7)), new ItemStack(ModItems.HONEY_KEY), 1, 0, 2F));
         });
     }
 }
