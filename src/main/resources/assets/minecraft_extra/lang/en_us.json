@@ -147,6 +147,9 @@
   "block.minecraft_extra.purple_petals": "Purple Petals",
   "block.minecraft_extra.magenta_petals": "Magenta Petals",
   "block.minecraft_extra.pizzapost_block": "PizzaPost Block",
+  "block.minecraft_extra.xp_storage.player_empty": "You have no XP left.",
+  "block.minecraft_extra.xp_storage.full": "The XP Storage is full.",
+  "block.minecraft_extra.xp_storage.storage_empty": "The XP Storage is empty.",
 
   "bossbar.minecraft_extra.end_crystals_left": "Crystals Remaining: %s/%s",
   "bossbar.minecraft_extra.end_crystals_searching": "searching crystals...",

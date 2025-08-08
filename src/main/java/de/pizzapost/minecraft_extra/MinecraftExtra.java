@@ -1,5 +1,6 @@
 package de.pizzapost.minecraft_extra;
 
+import de.pizzapost.minecraft_extra.block.ModBlockEntities;
 import de.pizzapost.minecraft_extra.block.ModBlocks;
 import de.pizzapost.minecraft_extra.block.custom.HoneyBerryBushBlock;
 import de.pizzapost.minecraft_extra.commands.ModCommands;
@@ -94,6 +95,7 @@ public class MinecraftExtra implements ModInitializer {
         }));
         ModWorldGeneration.generateModWorldGen();
         ModParticles.registerParticles();
+        ModBlockEntities.registerBlockEntities();
         new SleepRegeneration().onInitialize();
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             for (UUID uuid : new HashSet<>(InventoryShuffler.getPlayers())) {

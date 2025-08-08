@@ -117,7 +117,7 @@
   "advancements.minecraft_extra.title.time_control_device": "Zeitgesteuert",
 
 
-  "block.minecraft_extra.xp_storage": "XP Speicher",
+  "block.minecraft_extra.xp_storage": "Erfahrungsspeicher",
   "block.minecraft_extra.flint_block": "Feuerstein Block",
   "block.minecraft_extra.flint_bricks": "Feuersteinziegel",
   "block.minecraft_extra.chiseled_flint_bricks": "Gemeißelte Feuersteinziegel",
@@ -147,6 +147,9 @@
   "block.minecraft_extra.purple_petals": "Violette Blütenblätter",
   "block.minecraft_extra.magenta_petals": "Magenta Blütenblätter",
   "block.minecraft_extra.pizzapost_block": "PizzaPost Block",
+  "block.minecraft_extra.xp_storage.player_empty": "Du hast keine Erfahrung mehr.",
+  "block.minecraft_extra.xp_storage.full": "Der Erfahrungsspeicher ist voll.",
+  "block.minecraft_extra.xp_storage.storage_empty": "Der Erfahrungsspeicher ist leer.",
 
   "bossbar.minecraft_extra.end_crystals_left": "Übrige Kristalle: %s/%s",
   "bossbar.minecraft_extra.end_crystals_searching": "suche Kristalle...",

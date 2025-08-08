@@ -18,7 +18,7 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 public class ModBlocks {
-    public static final Block XP_STORAGE = registerBlock("xp_storage", properties -> new Block(properties.strength(30F, 30F).sounds(BlockSoundGroup.METAL).mapColor(MapColor.LIME).instrument(NoteBlockInstrument.BASEDRUM)));
+    public static final Block XP_STORAGE = registerBlock("xp_storage", properties -> new XPStorage(properties.strength(30F, 30F).sounds(BlockSoundGroup.METAL).mapColor(MapColor.LIME).instrument(NoteBlockInstrument.BASEDRUM).nonOpaque()));
 
     public static final Block FLINT_BLOCK = registerBlock("flint_block", properties -> new FlintBlockBlockEntity(properties.strength(1.5F, 6.0F).sounds(BlockSoundGroup.GRAVEL).mapColor(MapColor.DEEPSLATE_GRAY).instrument(NoteBlockInstrument.SNARE)));
 

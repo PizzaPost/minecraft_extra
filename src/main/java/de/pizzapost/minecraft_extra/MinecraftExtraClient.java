@@ -1,6 +1,8 @@
 package de.pizzapost.minecraft_extra;
 
+import de.pizzapost.minecraft_extra.block.ModBlockEntities;
 import de.pizzapost.minecraft_extra.block.ModBlocks;
+import de.pizzapost.minecraft_extra.block.renderer.XPStorageEntityRenderer;
 import de.pizzapost.minecraft_extra.effect.ModEffects;
 import de.pizzapost.minecraft_extra.entity.ModEntities;
 import de.pizzapost.minecraft_extra.entity.client.*;
@@ -16,6 +18,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.render.BlockRenderLayer;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -76,5 +80,7 @@ public class MinecraftExtraClient implements ClientModInitializer {
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.EFFECT_GEM_PUSH_PARTICLE, EffectGemPushParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.HARDENED_NETHERITE_AMBIENT, HardenedNetheriteAmbientParticle.Factory::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.XP_STORAGE_BE, XPStorageEntityRenderer::new);
+        BlockRenderLayerMap.putBlock(ModBlocks.XP_STORAGE, BlockRenderLayer.CUTOUT);
     }
 }
