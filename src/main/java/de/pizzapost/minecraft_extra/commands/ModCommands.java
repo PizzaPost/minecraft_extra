@@ -92,34 +92,6 @@ public class ModCommands {
                 return 1;
             })));
         });
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("commands").then(CommandManager.argument("command", StringArgumentType.word()).suggests(COMMAND_SUGGESTIONS).executes(context -> {
-            String command = StringArgumentType.getString(context, "command");
-            ServerCommandSource source = context.getSource();
-            switch (command) {
-                case "bob":
-                    source.sendMessage(Text.translatable("command.minecraft_extra.commands.bob"));
-                    break;
-                case "bug":
-                    source.sendMessage(Text.translatable("command.minecraft_extra.commands.bug"));
-                    break;
-                case "credits":
-                    source.sendMessage(Text.translatable("command.minecraft_extra.commands.credits"));
-                    break;
-                case "discord":
-                    source.sendMessage(Text.translatable("command.minecraft_extra.commands.discord"));
-                    break;
-                case "feedback":
-                    source.sendMessage(Text.translatable("command.minecraft_extra.commands.feedback"));
-                    break;
-                case "socials":
-                    source.sendMessage(Text.translatable("command.minecraft_extra.commands.socials"));
-                    break;
-                default:
-                    source.sendError(Text.translatable("command.minecraft_extra.commands.error").formatted(Formatting.RED));
-                    return 0;
-            }
-            return 1;
-        }))));
     }
 
     private static Text createSocialsMessage(String username, Formatting nameColor, Text... links) {

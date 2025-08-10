@@ -170,12 +170,6 @@
   "command.minecraft_extra.credits9": "§5   - lay123\n",
   "command.minecraft_extra.socials.error": "That's not a valid user.",
   "command.minecraft_extra.commands.error": "That's not a valid command.",
-  "command.minecraft_extra.commands.bob": "/bob",
-  "command.minecraft_extra.commands.bug": "/bug",
-  "command.minecraft_extra.commands.feedback": "/feedback",
-  "command.minecraft_extra.commands.discord": "/discord",
-  "command.minecraft_extra.commands.credits": "/credits",
-  "command.minecraft_extra.commands.socials": "/socials <username>",
 
   "command.minecraft_extra.hover.click": "click",
 

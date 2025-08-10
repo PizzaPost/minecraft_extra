@@ -170,12 +170,6 @@
   "command.minecraft_extra.credits9": "§5§nlay123\n",
   "command.minecraft_extra.socials.error": "Das ist kein gültiger Nutzer.",
   "command.minecraft_extra.commands.error": "Das ist kein gültiger Befehl.",
-  "command.minecraft_extra.commands.bob": "/bob",
-  "command.minecraft_extra.commands.bug": "/bug",
-  "command.minecraft_extra.commands.feedback": "/feedback",
-  "command.minecraft_extra.commands.discord": "/discord",
-  "command.minecraft_extra.commands.credits": "/credits",
-  "command.minecraft_extra.commands.socials": "/socials <username>",
 
   "command.minecraft_extra.hover.click": "klicke",
 
