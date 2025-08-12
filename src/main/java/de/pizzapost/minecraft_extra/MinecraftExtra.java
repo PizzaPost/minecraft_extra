@@ -11,6 +11,7 @@ import de.pizzapost.minecraft_extra.entity.custom.IceblazeEntity;
 import de.pizzapost.minecraft_extra.entity.custom.SoapBubbleEntity;
 import de.pizzapost.minecraft_extra.event.LightningStrikeHandler;
 import de.pizzapost.minecraft_extra.event.SleepRegeneration;
+import de.pizzapost.minecraft_extra.item.ModFuel;
 import de.pizzapost.minecraft_extra.item.ModItemGroups;
 import de.pizzapost.minecraft_extra.item.ModItems;
 import de.pizzapost.minecraft_extra.item.custom.AttributeCoreScaledItem;
@@ -29,7 +30,6 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.block.*;
 import net.minecraft.component.ComponentChanges;
@@ -90,9 +90,7 @@ public class MinecraftExtra implements ModInitializer {
         ModVillagers.registerVillagers();
         CustomVillagerTrades.registerVillagerTrades();
         ModCommands.registerModCommands();
-        FuelRegistryEvents.BUILD.register(((builder, context) -> {
-            builder.add(ModItems.ROTTEN_CHUNK, 150);
-        }));
+        ModFuel.registerFuelItems();
         ModWorldGeneration.generateModWorldGen();
         ModParticles.registerParticles();
         ModBlockEntities.registerBlockEntities();

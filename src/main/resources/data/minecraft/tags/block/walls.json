@@ -2,6 +2,22 @@
   "replace": false,
   "values": [
     "minecraft_extra:flint_wall",
-    "minecraft_extra:flint_brick_wall"
+    "minecraft_extra:flint_brick_wall",
+    "minecraft_extra:white_wool_wall",
+    "minecraft_extra:light_gray_wool_wall",
+    "minecraft_extra:gray_wool_wall",
+    "minecraft_extra:black_wool_wall",
+    "minecraft_extra:brown_wool_wall",
+    "minecraft_extra:red_wool_wall",
+    "minecraft_extra:orange_wool_wall",
+    "minecraft_extra:yellow_wool_wall",
+    "minecraft_extra:lime_wool_wall",
+    "minecraft_extra:green_wool_wall",
+    "minecraft_extra:cyan_wool_wall",
+    "minecraft_extra:light_blue_wool_wall",
+    "minecraft_extra:blue_wool_wall",
+    "minecraft_extra:purple_wool_wall",
+    "minecraft_extra:magenta_wool_wall",
+    "minecraft_extra:pink_wool_wall"
   ]
 }
