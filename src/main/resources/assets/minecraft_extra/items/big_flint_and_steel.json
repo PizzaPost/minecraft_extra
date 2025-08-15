@@ -2,5 +2,6 @@
   "model": {
     "type": "minecraft:model",
     "model": "minecraft_extra:item/big_flint_and_steel"
-  }
+  },
+  "oversized_in_gui": true
 }

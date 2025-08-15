@@ -6,7 +6,7 @@
   },
   "display": {
     "announce_to_chat": false,
-    "background": "minecraft:textures/gui/advancements/backgrounds/minecraft_extra.png",
+    "background": "minecraft:gui/advancements/backgrounds/minecraft_extra",
     "description": {
       "translate": "advancements.minecraft_extra.title.root"
     },

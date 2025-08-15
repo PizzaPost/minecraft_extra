@@ -1,21 +1,20 @@
 {
-  "group": "light",
   "category": "misc",
   "ingredients": [
-    "minecraft:book",
-    "minecraft_extra:attribute_core_spikes"
+    [
+      "minecraft:book"
+    ],
+    [
+      "minecraft_extra:attribute_core_spikes"
+    ]
   ],
   "result": {
     "id": "minecraft:enchanted_book",
     "components": {
       "minecraft:stored_enchantments": {
-        "levels": {
-          "minecraft:thorns": 1
-        },
-        "show_in_tooltip": true
+        "minecraft:thorns": 1
       }
-    },
-    "count": 1
+    }
   },
   "type": "minecraft:crafting_shapeless"
 }

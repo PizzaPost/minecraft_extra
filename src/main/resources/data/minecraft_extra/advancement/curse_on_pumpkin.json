@@ -1,15 +1,21 @@
 {
-	"display": {
-		"icon": {
-			"id": "minecraft:carved_pumpkin",
-			"nbt":"{Enchantments:[{}]}"
-		},
-		"title": {"translate":"advancements.minecraft_extra.title.curse_on_pumpkin"},
-		"description": {"translate":"advancements.minecraft_extra.description.curse_on_pumpkin"},
-		"frame": "goal"
-	},
-	"parent": "minecraft_extra:root",
-	"criteria": {
+  "display": {
+    "icon": {
+      "id": "minecraft:carved_pumpkin",
+      "components": {
+        "minecraft:enchantment_glint_override": true
+      }
+    },
+    "title": {
+      "translate": "advancements.minecraft_extra.title.curse_on_pumpkin"
+    },
+    "description": {
+      "translate": "advancements.minecraft_extra.description.curse_on_pumpkin"
+    },
+    "frame": "goal"
+  },
+  "parent": "minecraft_extra:root",
+  "criteria": {
     "inv": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -19,9 +25,7 @@
               "items": "minecraft:carved_pumpkin",
               "components": {
                 "minecraft:enchantments": {
-                  "levels": {
-                    "minecraft:binding_curse": 1
-                  }
+                  "minecraft:binding_curse": 1
                 }
               }
             }

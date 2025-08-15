@@ -5,6 +5,7 @@ import de.pizzapost.minecraft_extra.block.ModBlocks;
 import de.pizzapost.minecraft_extra.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
@@ -18,6 +19,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends FabricRecipeProvider {
@@ -30,6 +32,24 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         return new RecipeGenerator(wrapperLookup, recipeExporter) {
             @Override
             public void generate() {
+                String[] baseNames = {"WHITE_TERRACOTTA", "LIGHT_GRAY_TERRACOTTA", "GRAY_TERRACOTTA", "BLACK_TERRACOTTA", "BROWN_TERRACOTTA", "RED_TERRACOTTA", "ORANGE_TERRACOTTA", "YELLOW_TERRACOTTA", "LIME_TERRACOTTA", "GREEN_TERRACOTTA", "CYAN_TERRACOTTA", "LIGHT_BLUE_TERRACOTTA", "BLUE_TERRACOTTA", "PURPLE_TERRACOTTA", "MAGENTA_TERRACOTTA", "PINK_TERRACOTTA"};
+                for (String name : baseNames) {
+                    try {
+                        Block slab = (Block) ModBlocks.class.getField(name + "_SLAB").get(null);
+                        Block stairs = (Block) ModBlocks.class.getField(name + "_STAIR").get(null);
+                        Block wall = (Block) ModBlocks.class.getField(name + "_WALL").get(null);
+                        String glazedBase = name.replace("_TERRACOTTA", "_GLAZED_TERRACOTTA");
+                        Block glazedSlab = (Block) ModBlocks.class.getField(glazedBase + "_SLAB").get(null);
+                        Block glazedStair = (Block) ModBlocks.class.getField(glazedBase + "_STAIR").get(null);
+                        Block glazedWall = (Block) ModBlocks.class.getField(glazedBase + "_WALL").get(null);
+                        offerSmelting(List.of(slab), RecipeCategory.BUILDING_BLOCKS, glazedSlab, 0.1f, 200, glazedSlab.toString());
+                        offerSmelting(List.of(stairs), RecipeCategory.BUILDING_BLOCKS, glazedStair, 0.1f, 200, glazedStair.toString());
+                        offerSmelting(List.of(wall), RecipeCategory.BUILDING_BLOCKS, glazedWall, 0.1f, 200, glazedWall.toString());
+                    } catch (NoSuchFieldException | IllegalAccessException e) {
+                        throw new RuntimeException("Failed to add block for recipe generation: " + name, e);
+                    }
+                }
+
                 createShaped(RecipeCategory.MISC, ModItems.ATTRIBUTE_CORE).group("minecraft_extra:attribute_core").pattern(" g ").pattern("idi").pattern(" g ").input('g', Items.GOLD_INGOT).input('i', Items.IRON_INGOT).input('d', Items.DIAMOND).criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT)).criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT)).criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND)).offerTo(exporter);
 
                 createShapeless(RecipeCategory.MISC, ModItems.ATTRIBUTE_CORE_EXTRA_HEARTS).group("minecraft_extra:attribute_core").input(ModItems.ATTRIBUTE_CORE).input(ModItems.HEART).criterion(hasItem(ModItems.ATTRIBUTE_CORE), conditionsFromItem(ModItems.ATTRIBUTE_CORE)).criterion(hasItem(ModItems.HEART), conditionsFromItem(ModItems.HEART)).offerTo(exporter);
@@ -156,7 +176,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 createShapeless(RecipeCategory.MISC, ModItems.SOAP).input(ModItems.FAT).input(ModItems.ASH).input(Items.WATER_BUCKET).criterion(hasItem(ModItems.FAT), conditionsFromItem(ModItems.FAT)).criterion(hasItem(ModItems.ASH), conditionsFromItem(ModItems.ASH)).criterion(hasItem(Items.WATER_BUCKET), conditionsFromItem(Items.WATER_BUCKET)).offerTo(exporter);
 
                 createShaped(RecipeCategory.COMBAT, ModItems.TIME_CONTROL_DEVICE_PIECE).pattern(" gg").pattern("cig").pattern("cc ").input('g', Items.GOLD_INGOT).input('c', Items.COPPER_INGOT).input('i', ModItems.ICE_BLAZE_ROD).criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT)).criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT)).criterion(hasItem(ModItems.ICE_BLAZE_ROD), conditionsFromItem(ModItems.ICE_BLAZE_ROD)).offerTo(exporter);
-
 
                 createShaped(RecipeCategory.COMBAT, ModItems.TIME_CONTROL_DEVICE).pattern(" d ").pattern("iti").pattern("iii").input('d', Items.DAYLIGHT_DETECTOR).input('i', Items.IRON_INGOT).input('t', ModItems.TIME_CONTROL_DEVICE_PIECE).criterion(hasItem(Items.DAYLIGHT_DETECTOR), conditionsFromItem(Items.DAYLIGHT_DETECTOR)).criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT)).criterion(hasItem(ModItems.TIME_CONTROL_DEVICE_PIECE), conditionsFromItem(ModItems.TIME_CONTROL_DEVICE_PIECE)).offerTo(exporter);
             }
