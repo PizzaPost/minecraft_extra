@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "minecraft:magenta_wool",
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:magenta_wool_stair"
+  }
+}

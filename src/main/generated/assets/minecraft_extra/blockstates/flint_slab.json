@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "minecraft_extra:block/flint_slab"
+    },
+    "type=double": {
+      "model": "minecraft_extra:block/flint_block"
+    },
+    "type=top": {
+      "model": "minecraft_extra:block/flint_slab_top"
+    }
+  }
+}

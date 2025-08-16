@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_flint_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft_extra:flint_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft_extra:stonecutting/flint_brick_wall"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_flint_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft_extra:stonecutting/flint_brick_wall"
+    ]
+  }
+}

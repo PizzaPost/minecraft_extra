@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "minecraft_extra:attribute_core",
+  "key": {
+    "d": "minecraft:diamond",
+    "g": "minecraft:gold_ingot",
+    "i": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    " g ",
+    "idi",
+    " g "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:attribute_core"
+  }
+}

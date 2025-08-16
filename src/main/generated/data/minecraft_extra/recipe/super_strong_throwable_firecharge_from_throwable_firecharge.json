@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft_extra:throwable_fire_charge",
+    "minecraft:gunpowder",
+    "minecraft:gunpowder"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:super_strong_throwable_fire_charge"
+  }
+}

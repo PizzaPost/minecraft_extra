@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "i": "minecraft:black_glazed_terracotta"
+  },
+  "pattern": [
+    "iii"
+  ],
+  "result": {
+    "count": 4,
+    "id": "minecraft_extra:black_glazed_terracotta_slab"
+  }
+}

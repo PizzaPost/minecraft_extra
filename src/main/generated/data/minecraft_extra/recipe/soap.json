@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft_extra:fat",
+    "minecraft_extra:ash",
+    "minecraft:water_bucket"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:soap"
+  }
+}

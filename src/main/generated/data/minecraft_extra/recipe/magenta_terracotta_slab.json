@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "i": "minecraft:magenta_terracotta"
+  },
+  "pattern": [
+    "iii"
+  ],
+  "result": {
+    "count": 4,
+    "id": "minecraft_extra:magenta_terracotta_slab"
+  }
+}

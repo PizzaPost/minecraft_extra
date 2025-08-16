@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "i": "minecraft:light_blue_wool"
+  },
+  "pattern": [
+    "iii"
+  ],
+  "result": {
+    "count": 4,
+    "id": "minecraft_extra:light_blue_wool_slab"
+  }
+}

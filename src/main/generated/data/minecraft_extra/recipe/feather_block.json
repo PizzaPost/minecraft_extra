@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": "minecraft:feather"
+  },
+  "pattern": [
+    "fff",
+    "fff",
+    "fff"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:feather_block"
+  }
+}
