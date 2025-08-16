@@ -19,7 +19,6 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-        String[] baseNames = {"WHITE_WOOL", "LIGHT_GRAY_WOOL", "GRAY_WOOL", "BLACK_WOOL", "BROWN_WOOL", "RED_WOOL", "ORANGE_WOOL", "YELLOW_WOOL", "LIME_WOOL", "GREEN_WOOL", "CYAN_WOOL", "LIGHT_BLUE_WOOL", "BLUE_WOOL", "PURPLE_WOOL", "MAGENTA_WOOL", "PINK_WOOL", "TERRACOTTA", "WHITE_TERRACOTTA", "LIGHT_GRAY_TERRACOTTA", "GRAY_TERRACOTTA", "BLACK_TERRACOTTA", "BROWN_TERRACOTTA", "RED_TERRACOTTA", "ORANGE_TERRACOTTA", "YELLOW_TERRACOTTA", "LIME_TERRACOTTA", "GREEN_TERRACOTTA", "CYAN_TERRACOTTA", "LIGHT_BLUE_TERRACOTTA", "BLUE_TERRACOTTA", "PURPLE_TERRACOTTA", "MAGENTA_TERRACOTTA", "PINK_TERRACOTTA", "WHITE_GLAZED_TERRACOTTA", "LIGHT_GRAY_GLAZED_TERRACOTTA", "GRAY_GLAZED_TERRACOTTA", "BLACK_GLAZED_TERRACOTTA", "BROWN_GLAZED_TERRACOTTA", "RED_GLAZED_TERRACOTTA", "ORANGE_GLAZED_TERRACOTTA", "YELLOW_GLAZED_TERRACOTTA", "LIME_GLAZED_TERRACOTTA", "GREEN_GLAZED_TERRACOTTA", "CYAN_GLAZED_TERRACOTTA", "LIGHT_BLUE_GLAZED_TERRACOTTA", "BLUE_GLAZED_TERRACOTTA", "PURPLE_GLAZED_TERRACOTTA", "MAGENTA_GLAZED_TERRACOTTA", "PINK_GLAZED_TERRACOTTA", "WHITE_CONCRETE", "LIGHT_GRAY_CONCRETE", "GRAY_CONCRETE", "BLACK_CONCRETE", "BROWN_CONCRETE", "RED_CONCRETE", "ORANGE_CONCRETE", "YELLOW_CONCRETE", "LIME_CONCRETE", "GREEN_CONCRETE", "CYAN_CONCRETE", "LIGHT_BLUE_CONCRETE", "BLUE_CONCRETE", "PURPLE_CONCRETE", "MAGENTA_CONCRETE", "PINK_CONCRETE"};
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.XP_STORAGE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CHISELED_FLINT_BRICKS);
         BlockStateModelGenerator.BlockTexturePool flintBlockPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.FLINT_BLOCK);
@@ -33,7 +32,7 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.FEATHER_BLOCK);
         blockStateModelGenerator.registerTintableCrossBlockStateWithStages(ModBlocks.HONEY_BERRY_BUSH, BlockStateModelGenerator.CrossType.NOT_TINTED, HoneyBerryBushBlock.AGE, 0, 1, 2, 3);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PIZZAPOST_BLOCK);
-        for (String name : baseNames) {
+        for (String name : ModLootTableProvider.baseNames) {
             try {
                 Block base = (Block) Blocks.class.getField(name).get(null);
                 BlockStateModelGenerator.BlockTexturePool pool = blockStateModelGenerator.registerCubeAllModelTexturePool(base);

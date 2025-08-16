@@ -10,6 +10,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.data.recipe.StonecuttingRecipeJsonBuilder;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -49,6 +50,48 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         throw new RuntimeException("Failed to add block for recipe generation: " + name, e);
                     }
                 }
+
+                for (String name : ModLootTableProvider.baseNames) {
+                    Block block;
+                    Block slab;
+                    Block stair;
+                    Block wall;
+                    Ingredient ingredient;
+                    ItemConvertible itemConvertible;
+                    try {
+                        ingredient = Ingredient.ofItem((Block) Blocks.class.getField(name).get(null));
+                        block = (Block) Blocks.class.getField(name).get(null);
+                        slab = (Block) ModBlocks.class.getField(name + "_SLAB").get(null);
+                        stair = (Block) ModBlocks.class.getField(name + "_STAIR").get(null);
+                        wall = (Block) ModBlocks.class.getField(name + "_WALL").get(null);
+                        itemConvertible = (ItemConvertible) Items.class.getField(name).get(null);
+                        StonecuttingRecipeJsonBuilder.createStonecutting(ingredient, RecipeCategory.DECORATIONS, stair).criterion(hasItem(itemConvertible), conditionsFromItem(itemConvertible)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/" + block.getTranslationKey().replace("block.minecraft.", "") + "_stair")));
+                        StonecuttingRecipeJsonBuilder.createStonecutting(ingredient, RecipeCategory.DECORATIONS, slab, 2).criterion(hasItem(itemConvertible), conditionsFromItem(itemConvertible)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/" + block.getTranslationKey().replace("block.minecraft.", "") + "_slab")));
+                        createShaped(RecipeCategory.DECORATIONS, slab, 4).pattern("iii").input('i', ingredient).criterion(hasItem(itemConvertible), conditionsFromItem(itemConvertible)).offerTo(exporter);
+                        createShaped(RecipeCategory.DECORATIONS, stair, 4).pattern("i  ").pattern("ii ").pattern("iii").input('i', ingredient).criterion(hasItem(itemConvertible), conditionsFromItem(itemConvertible)).offerTo(exporter);
+                        createShaped(RecipeCategory.DECORATIONS, wall, 6).pattern("iii").pattern("iii").input('i', block).criterion(hasItem(block), conditionsFromItem(block)).offerTo(exporter);
+                        StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(block), RecipeCategory.DECORATIONS, wall).criterion(hasItem(block), conditionsFromItem(block)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/" + block.getTranslationKey().replace("block.minecraft.", "") + "_wall")));
+                    } catch (NoSuchFieldException | IllegalAccessException | NullPointerException e) {
+                        try {
+                            System.out.println(2);
+                            ingredient = Ingredient.ofItem((Block) ModBlocks.class.getField(name).get(null));
+                            block = (Block) ModBlocks.class.getField(name).get(null);
+                            slab = (Block) ModBlocks.class.getField(name + "_SLAB").get(null);
+                            stair = (Block) ModBlocks.class.getField(name + "_STAIR").get(null);
+                            wall = (Block) ModBlocks.class.getField(name + "_WALL").get(null);
+                            itemConvertible = (ItemConvertible) ModItems.class.getField(name).get(null);
+                            StonecuttingRecipeJsonBuilder.createStonecutting(ingredient, RecipeCategory.DECORATIONS, stair).criterion(hasItem(itemConvertible), conditionsFromItem(itemConvertible)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/" + block.getTranslationKey().replace("block.minecraft.", "") + "_stair")));
+
+                            StonecuttingRecipeJsonBuilder.createStonecutting(ingredient, RecipeCategory.DECORATIONS, slab, 2).criterion(hasItem(itemConvertible), conditionsFromItem(itemConvertible)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/" + block.getTranslationKey().replace("block.minecraft.", "") + "_slab")));
+                            createShaped(RecipeCategory.DECORATIONS, slab, 4).pattern("iii").input('i', ingredient).criterion(hasItem(itemConvertible), conditionsFromItem(itemConvertible)).offerTo(exporter);
+                            createShaped(RecipeCategory.DECORATIONS, stair, 4).pattern("i  ").pattern("ii ").pattern("iii").input('i', ingredient).criterion(hasItem(itemConvertible), conditionsFromItem(itemConvertible)).offerTo(exporter);
+                            createShaped(RecipeCategory.DECORATIONS, wall, 6).pattern("iii").pattern("iii").input('i', block).criterion(hasItem(block), conditionsFromItem(block)).offerTo(exporter);
+                            StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(block), RecipeCategory.DECORATIONS, wall).criterion(hasItem(block), conditionsFromItem(block)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/" + block.getTranslationKey().replace("block.minecraft.", "") + "_wall")));
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                }//This is a complete mess
 
                 createShaped(RecipeCategory.MISC, ModItems.ATTRIBUTE_CORE).group("minecraft_extra:attribute_core").pattern(" g ").pattern("idi").pattern(" g ").input('g', Items.GOLD_INGOT).input('i', Items.IRON_INGOT).input('d', Items.DIAMOND).criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT)).criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT)).criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND)).offerTo(exporter);
 
@@ -125,39 +168,39 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
                 createShapeless(RecipeCategory.MISC, Items.ROTTEN_FLESH, 9).input(ModItems.ROTTEN_CHUNK).criterion(hasItem(ModItems.ROTTEN_CHUNK), conditionsFromItem(ModItems.ROTTEN_CHUNK)).offerTo(exporter);
 
-                createShapeless(RecipeCategory.MISC, ModBlocks.FLINT_BLOCK).input(Items.FLINT, 9).criterion(hasItem(Items.FLINT), conditionsFromItem(Items.FLINT)).offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, ModBlocks.FLINT_BLOCK).input(Items.FLINT, 9).criterion(hasItem(Items.FLINT), conditionsFromItem(Items.FLINT)).offerTo(exporter);
 
                 createShapeless(RecipeCategory.MISC, Items.FLINT, 9).input(ModBlocks.FLINT_BLOCK).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter);
 
-                createShaped(RecipeCategory.MISC, ModBlocks.FLINT_BRICKS, 4).pattern("ff").pattern("ff").input('f', ModBlocks.FLINT_BLOCK).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter);
+                createShaped(RecipeCategory.DECORATIONS, ModBlocks.FLINT_BRICKS, 4).pattern("ff").pattern("ff").input('f', ModBlocks.FLINT_BLOCK).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter);
 
                 StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBlocks.FLINT_BLOCK), RecipeCategory.MISC, ModBlocks.FLINT_BRICKS).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/flint_brick")));
 
-                createShaped(RecipeCategory.MISC, ModBlocks.FLINT_SLAB, 6).pattern("fff").input('f', ModBlocks.FLINT_BLOCK).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter);
+                createShaped(RecipeCategory.DECORATIONS, ModBlocks.FLINT_SLAB, 6).pattern("fff").input('f', ModBlocks.FLINT_BLOCK).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter);
 
-                StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBlocks.FLINT_BLOCK), RecipeCategory.MISC, ModBlocks.FLINT_SLAB, 2).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/flint_slab")));
+                StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBlocks.FLINT_BLOCK), RecipeCategory.DECORATIONS, ModBlocks.FLINT_SLAB, 2).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/flint_slab")));
 
-                createShaped(RecipeCategory.MISC, ModBlocks.FLINT_STAIR, 4).pattern("f  ").pattern("ff ").pattern("fff").input('f', ModBlocks.FLINT_BLOCK).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter);
+                createShaped(RecipeCategory.DECORATIONS, ModBlocks.FLINT_STAIR, 4).pattern("f  ").pattern("ff ").pattern("fff").input('f', ModBlocks.FLINT_BLOCK).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter);
 
-                StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBlocks.FLINT_BLOCK), RecipeCategory.MISC, ModBlocks.FLINT_STAIR).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/flint_stair")));
+                StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBlocks.FLINT_BLOCK), RecipeCategory.DECORATIONS, ModBlocks.FLINT_STAIR).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/flint_stair")));
 
-                createShaped(RecipeCategory.MISC, ModBlocks.FLINT_WALL, 6).pattern("fff").pattern("fff").input('f', ModBlocks.FLINT_BLOCK).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter);
+                createShaped(RecipeCategory.DECORATIONS, ModBlocks.FLINT_WALL, 6).pattern("fff").pattern("fff").input('f', ModBlocks.FLINT_BLOCK).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter);
 
-                StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBlocks.FLINT_BLOCK), RecipeCategory.MISC, ModBlocks.FLINT_WALL).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/flint_wall")));
+                StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBlocks.FLINT_BLOCK), RecipeCategory.DECORATIONS, ModBlocks.FLINT_WALL).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/flint_wall")));
 
-                createShaped(RecipeCategory.MISC, ModBlocks.CHISELED_FLINT_BRICKS).pattern("f").pattern("f").input('f', ModBlocks.FLINT_BRICK_SLAB).criterion(hasItem(ModBlocks.FLINT_BRICK_SLAB), conditionsFromItem(ModBlocks.FLINT_BRICK_SLAB)).offerTo(exporter);
+                createShaped(RecipeCategory.DECORATIONS, ModBlocks.CHISELED_FLINT_BRICKS).pattern("f").pattern("f").input('f', ModBlocks.FLINT_BRICK_SLAB).criterion(hasItem(ModBlocks.FLINT_BRICK_SLAB), conditionsFromItem(ModBlocks.FLINT_BRICK_SLAB)).offerTo(exporter);
 
-                createShaped(RecipeCategory.MISC, ModBlocks.FLINT_BRICK_SLAB, 6).pattern("fff").input('f', ModBlocks.FLINT_BRICKS).criterion(hasItem(ModBlocks.FLINT_BRICKS), conditionsFromItem(ModBlocks.FLINT_BRICKS)).offerTo(exporter);
+                createShaped(RecipeCategory.DECORATIONS, ModBlocks.FLINT_BRICK_SLAB, 6).pattern("fff").input('f', ModBlocks.FLINT_BRICKS).criterion(hasItem(ModBlocks.FLINT_BRICKS), conditionsFromItem(ModBlocks.FLINT_BRICKS)).offerTo(exporter);
 
-                StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBlocks.FLINT_BRICKS), RecipeCategory.MISC, ModBlocks.FLINT_BRICK_SLAB, 2).criterion(hasItem(ModBlocks.FLINT_BRICKS), conditionsFromItem(ModBlocks.FLINT_BRICKS)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/flint_brick_slab")));
+                StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBlocks.FLINT_BRICKS), RecipeCategory.DECORATIONS, ModBlocks.FLINT_BRICK_SLAB, 2).criterion(hasItem(ModBlocks.FLINT_BRICKS), conditionsFromItem(ModBlocks.FLINT_BRICKS)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/flint_brick_slab")));
 
-                createShaped(RecipeCategory.MISC, ModBlocks.FLINT_BRICK_STAIR, 4).pattern("f  ").pattern("ff ").pattern("fff").input('f', ModBlocks.FLINT_BRICKS).criterion(hasItem(ModBlocks.FLINT_BRICKS), conditionsFromItem(ModBlocks.FLINT_BRICKS)).offerTo(exporter);
+                createShaped(RecipeCategory.DECORATIONS, ModBlocks.FLINT_BRICK_STAIR, 4).pattern("f  ").pattern("ff ").pattern("fff").input('f', ModBlocks.FLINT_BRICKS).criterion(hasItem(ModBlocks.FLINT_BRICKS), conditionsFromItem(ModBlocks.FLINT_BRICKS)).offerTo(exporter);
 
-                StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBlocks.FLINT_BRICKS), RecipeCategory.MISC, ModBlocks.FLINT_BRICK_STAIR).criterion(hasItem(ModBlocks.FLINT_BRICKS), conditionsFromItem(ModBlocks.FLINT_BRICKS)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/flint_brick_stair")));
+                StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBlocks.FLINT_BRICKS), RecipeCategory.DECORATIONS, ModBlocks.FLINT_BRICK_STAIR).criterion(hasItem(ModBlocks.FLINT_BRICKS), conditionsFromItem(ModBlocks.FLINT_BRICKS)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/flint_brick_stair")));
 
-                createShaped(RecipeCategory.MISC, ModBlocks.FLINT_BRICK_WALL, 6).pattern("fff").pattern("fff").input('f', ModBlocks.FLINT_BRICKS).criterion(hasItem(ModBlocks.FLINT_BRICKS), conditionsFromItem(ModBlocks.FLINT_BRICKS)).offerTo(exporter);
+                createShaped(RecipeCategory.DECORATIONS, ModBlocks.FLINT_BRICK_WALL, 6).pattern("fff").pattern("fff").input('f', ModBlocks.FLINT_BRICKS).criterion(hasItem(ModBlocks.FLINT_BRICKS), conditionsFromItem(ModBlocks.FLINT_BRICKS)).offerTo(exporter);
 
-                StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBlocks.FLINT_BRICKS), RecipeCategory.MISC, ModBlocks.FLINT_BRICK_WALL).criterion(hasItem(ModBlocks.FLINT_BRICKS), conditionsFromItem(ModBlocks.FLINT_BRICKS)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/flint_brick_wall")));
+                StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBlocks.FLINT_BRICKS), RecipeCategory.DECORATIONS, ModBlocks.FLINT_BRICK_WALL).criterion(hasItem(ModBlocks.FLINT_BRICKS), conditionsFromItem(ModBlocks.FLINT_BRICKS)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "stonecutting/flint_brick_wall")));
 
                 createShapeless(RecipeCategory.TOOLS, ModItems.BIG_FLINT_AND_STEEL).input(ModBlocks.FLINT_BLOCK).input(Blocks.IRON_BLOCK).criterion(hasItem(ModBlocks.FLINT_BLOCK), conditionsFromItem(ModBlocks.FLINT_BLOCK)).criterion(hasItem(Blocks.IRON_BLOCK), conditionsFromItem(Blocks.IRON_BLOCK)).offerTo(exporter);
 
