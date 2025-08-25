@@ -67,6 +67,22 @@
     "minecraft_extra:blue_concrete_wall",
     "minecraft_extra:purple_concrete_wall",
     "minecraft_extra:magenta_concrete_wall",
-    "minecraft_extra:pink_concrete_wall"
+    "minecraft_extra:pink_concrete_wall",
+    "minecraft_extra:white_concrete_powder_wall",
+    "minecraft_extra:light_gray_concrete_powder_wall",
+    "minecraft_extra:gray_concrete_powder_wall",
+    "minecraft_extra:black_concrete_powder_wall",
+    "minecraft_extra:brown_concrete_powder_wall",
+    "minecraft_extra:red_concrete_powder_wall",
+    "minecraft_extra:orange_concrete_powder_wall",
+    "minecraft_extra:yellow_concrete_powder_wall",
+    "minecraft_extra:lime_concrete_powder_wall",
+    "minecraft_extra:green_concrete_powder_wall",
+    "minecraft_extra:cyan_concrete_powder_wall",
+    "minecraft_extra:light_blue_concrete_powder_wall",
+    "minecraft_extra:blue_concrete_powder_wall",
+    "minecraft_extra:purple_concrete_powder_wall",
+    "minecraft_extra:magenta_concrete_powder_wall",
+    "minecraft_extra:pink_concrete_powder_wall"
   ]
 }

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "minecraft:gray_concrete_powder",
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:gray_concrete_powder_wall"
+  }
+}

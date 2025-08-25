@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "i": "minecraft:blue_concrete_powder"
+  },
+  "pattern": [
+    "iii"
+  ],
+  "result": {
+    "count": 4,
+    "id": "minecraft_extra:blue_concrete_powder_slab"
+  }
+}
