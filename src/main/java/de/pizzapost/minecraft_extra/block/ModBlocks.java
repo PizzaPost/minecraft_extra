@@ -6,6 +6,7 @@ import de.pizzapost.minecraft_extra.item.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -15,6 +16,9 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockView;
 
 import java.util.function.Function;
 
@@ -292,6 +296,424 @@ public class ModBlocks {
     public static final Block PINK_CONCRETE_POWDER_SLAB = registerBlock("pink_concrete_powder_slab", properties -> new ConcretePowderSlabBlock(ModBlocks.PINK_CONCRETE_SLAB, properties.mapColor(DyeColor.PINK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sounds(BlockSoundGroup.SAND)));
     public static final Block PINK_CONCRETE_POWDER_STAIR = registerBlock("pink_concrete_powder_stair", properties -> new ConcretePowderStairsBlock(ModBlocks.PINK_CONCRETE_STAIR.getDefaultState(), ModBlocks.PINK_CONCRETE_STAIR, properties.mapColor(DyeColor.PINK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sounds(BlockSoundGroup.SAND)));
     public static final Block PINK_CONCRETE_POWDER_WALL = registerBlock("pink_concrete_powder_wall", props -> new ConcretePowderWallBlock(ModBlocks.PINK_CONCRETE_WALL, props.mapColor(DyeColor.PINK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sounds(BlockSoundGroup.SAND)));
+
+    public static boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> entityType) {
+        return false;
+    }
+
+    private static boolean never(BlockState blockState, BlockView blockView, BlockPos blockPos) {
+        return false;
+    }
+
+
+    public static final Block GLASS_SLAB = registerBlock("glass_slab", properties -> new GlassSlabBlock(DyeColor.WHITE, properties.strength(0.3F).nonOpaque().solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.WHITE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block GLASS_STAIR = registerBlock("glass_stair", properties -> new GlassStairsBlock(DyeColor.RED, Blocks.GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.WHITE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block GLASS_WALL = registerBlock("glass_wall", properties -> new GlassWallBlock(DyeColor.WHITE, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.WHITE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block WHITE_STAINED_GLASS_SLAB = registerBlock("white_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.WHITE, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.WHITE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block WHITE_STAINED_GLASS_STAIR = registerBlock("white_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.WHITE, Blocks.WHITE_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.WHITE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block WHITE_STAINED_GLASS_WALL = registerBlock("white_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.WHITE, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.WHITE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block LIGHT_GRAY_STAINED_GLASS_SLAB = registerBlock("light_gray_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.LIGHT_GRAY, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.LIGHT_GRAY).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block LIGHT_GRAY_STAINED_GLASS_STAIR = registerBlock("light_gray_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.LIGHT_GRAY).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block LIGHT_GRAY_STAINED_GLASS_WALL = registerBlock("light_gray_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.LIGHT_GRAY, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.LIGHT_GRAY).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block GRAY_STAINED_GLASS_SLAB = registerBlock("gray_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.GRAY, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.GRAY).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block GRAY_STAINED_GLASS_STAIR = registerBlock("gray_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.GRAY, Blocks.GRAY_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.GRAY).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block GRAY_STAINED_GLASS_WALL = registerBlock("gray_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.GRAY, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.GRAY).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block BLACK_STAINED_GLASS_SLAB = registerBlock("black_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.BLACK, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.BLACK).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block BLACK_STAINED_GLASS_STAIR = registerBlock("black_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.BLACK, Blocks.BLACK_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.BLACK).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block BLACK_STAINED_GLASS_WALL = registerBlock("black_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.BLACK, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.BLACK).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block BROWN_STAINED_GLASS_SLAB = registerBlock("brown_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.BROWN, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.BROWN).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block BROWN_STAINED_GLASS_STAIR = registerBlock("brown_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.BROWN, Blocks.BROWN_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.BROWN).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block BROWN_STAINED_GLASS_WALL = registerBlock("brown_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.BROWN, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.BROWN).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block RED_STAINED_GLASS_SLAB = registerBlock("red_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.RED, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.RED).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block RED_STAINED_GLASS_STAIR = registerBlock("red_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.RED, Blocks.RED_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.RED).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block RED_STAINED_GLASS_WALL = registerBlock("red_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.RED, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.RED).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block ORANGE_STAINED_GLASS_SLAB = registerBlock("orange_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.ORANGE, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.ORANGE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block ORANGE_STAINED_GLASS_STAIR = registerBlock("orange_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.ORANGE, Blocks.ORANGE_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.ORANGE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block ORANGE_STAINED_GLASS_WALL = registerBlock("orange_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.ORANGE, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.ORANGE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block YELLOW_STAINED_GLASS_SLAB = registerBlock("yellow_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.YELLOW, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.YELLOW).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block YELLOW_STAINED_GLASS_STAIR = registerBlock("yellow_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.YELLOW, Blocks.YELLOW_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.YELLOW).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block YELLOW_STAINED_GLASS_WALL = registerBlock("yellow_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.YELLOW, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.YELLOW).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block LIME_STAINED_GLASS_SLAB = registerBlock("lime_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.LIME, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.LIME).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block LIME_STAINED_GLASS_STAIR = registerBlock("lime_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.LIME, Blocks.LIME_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.LIME).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block LIME_STAINED_GLASS_WALL = registerBlock("lime_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.LIME, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.LIME).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block GREEN_STAINED_GLASS_SLAB = registerBlock("green_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.GREEN, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.GREEN).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block GREEN_STAINED_GLASS_STAIR = registerBlock("green_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.GREEN, Blocks.GREEN_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.GREEN).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block GREEN_STAINED_GLASS_WALL = registerBlock("green_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.GREEN, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.GREEN).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block CYAN_STAINED_GLASS_SLAB = registerBlock("cyan_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.CYAN, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.CYAN).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block CYAN_STAINED_GLASS_STAIR = registerBlock("cyan_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.CYAN, Blocks.CYAN_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.CYAN).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block CYAN_STAINED_GLASS_WALL = registerBlock("cyan_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.CYAN, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.CYAN).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block LIGHT_BLUE_STAINED_GLASS_SLAB = registerBlock("light_blue_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.LIGHT_BLUE, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.LIGHT_BLUE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block LIGHT_BLUE_STAINED_GLASS_STAIR = registerBlock("light_blue_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.LIGHT_BLUE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block LIGHT_BLUE_STAINED_GLASS_WALL = registerBlock("light_blue_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.LIGHT_BLUE, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.LIGHT_BLUE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block BLUE_STAINED_GLASS_SLAB = registerBlock("blue_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.BLUE, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.BLUE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block BLUE_STAINED_GLASS_STAIR = registerBlock("blue_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.BLUE, Blocks.BLUE_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.BLUE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block BLUE_STAINED_GLASS_WALL = registerBlock("blue_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.BLUE, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.BLUE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block PURPLE_STAINED_GLASS_SLAB = registerBlock("purple_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.PURPLE, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.PURPLE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block PURPLE_STAINED_GLASS_STAIR = registerBlock("purple_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.PURPLE, Blocks.PURPLE_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.PURPLE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block PURPLE_STAINED_GLASS_WALL = registerBlock("purple_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.PURPLE, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.PURPLE).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block MAGENTA_STAINED_GLASS_SLAB = registerBlock("magenta_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.MAGENTA, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.MAGENTA).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block MAGENTA_STAINED_GLASS_STAIR = registerBlock("magenta_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.MAGENTA, Blocks.MAGENTA_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.MAGENTA).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block MAGENTA_STAINED_GLASS_WALL = registerBlock("magenta_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.MAGENTA, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.MAGENTA).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block PINK_STAINED_GLASS_SLAB = registerBlock("pink_stained_glass_slab", properties -> new GlassSlabBlock(DyeColor.PINK, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.PINK).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block PINK_STAINED_GLASS_STAIR = registerBlock("pink_stained_glass_stair", properties -> new GlassStairsBlock(DyeColor.PINK, Blocks.PINK_STAINED_GLASS.getDefaultState(), properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.PINK).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
+    public static final Block PINK_STAINED_GLASS_WALL = registerBlock("pink_stained_glass_wall", properties -> new GlassWallBlock(DyeColor.PINK, properties.strength(0.3F).nonOpaque().allowsSpawning(ModBlocks::never).solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.PINK).instrument(NoteBlockInstrument.HAT)) {
+        @Override
+        public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
+            if (stateFrom.isOf(this)) return true;
+            if (stateFrom.isOf(Blocks.GLASS)) return true;
+            return super.isSideInvisible(state, stateFrom, direction);
+        }
+    });
 
     public static void registerCompostables() {
         ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.ASH, 0.1f);

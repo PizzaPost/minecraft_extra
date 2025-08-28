@@ -18,14 +18,12 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.render.BlockRenderLayer;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 
 public class MinecraftExtraClient implements ClientModInitializer {
-    public static Integer LIGHT_BOOST = 0;
     private static float freezeOverlayAlpha = 0f;
     private static final float FADE_SPEED = 0.01f;
     private static final float MAX_ALPHA = 0.4f;
@@ -82,5 +80,6 @@ public class MinecraftExtraClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(ModParticles.HARDENED_NETHERITE_AMBIENT, HardenedNetheriteAmbientParticle.Factory::new);
         BlockEntityRendererFactories.register(ModBlockEntities.XP_STORAGE_BE, XPStorageEntityRenderer::new);
         BlockRenderLayerMap.putBlock(ModBlocks.XP_STORAGE, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlocks(BlockRenderLayer.TRANSLUCENT, ModBlocks.GLASS_SLAB, ModBlocks.GLASS_STAIR, ModBlocks.GLASS_WALL, ModBlocks.WHITE_STAINED_GLASS_SLAB, ModBlocks.WHITE_STAINED_GLASS_STAIR, ModBlocks.WHITE_STAINED_GLASS_WALL, ModBlocks.LIGHT_GRAY_STAINED_GLASS_SLAB, ModBlocks.LIGHT_GRAY_STAINED_GLASS_STAIR, ModBlocks.LIGHT_GRAY_STAINED_GLASS_WALL, ModBlocks.GRAY_STAINED_GLASS_SLAB, ModBlocks.GRAY_STAINED_GLASS_STAIR, ModBlocks.GRAY_STAINED_GLASS_WALL, ModBlocks.BLACK_STAINED_GLASS_SLAB, ModBlocks.BLACK_STAINED_GLASS_STAIR, ModBlocks.BLACK_STAINED_GLASS_WALL, ModBlocks.BROWN_STAINED_GLASS_SLAB, ModBlocks.BROWN_STAINED_GLASS_STAIR, ModBlocks.BROWN_STAINED_GLASS_WALL, ModBlocks.RED_STAINED_GLASS_SLAB, ModBlocks.RED_STAINED_GLASS_STAIR, ModBlocks.RED_STAINED_GLASS_WALL, ModBlocks.ORANGE_STAINED_GLASS_SLAB, ModBlocks.ORANGE_STAINED_GLASS_STAIR, ModBlocks.ORANGE_STAINED_GLASS_WALL, ModBlocks.YELLOW_STAINED_GLASS_SLAB, ModBlocks.YELLOW_STAINED_GLASS_STAIR, ModBlocks.YELLOW_STAINED_GLASS_WALL, ModBlocks.LIME_STAINED_GLASS_SLAB, ModBlocks.LIME_STAINED_GLASS_STAIR, ModBlocks.LIME_STAINED_GLASS_WALL, ModBlocks.GREEN_STAINED_GLASS_SLAB, ModBlocks.GREEN_STAINED_GLASS_STAIR, ModBlocks.GREEN_STAINED_GLASS_WALL, ModBlocks.CYAN_STAINED_GLASS_SLAB, ModBlocks.CYAN_STAINED_GLASS_STAIR, ModBlocks.CYAN_STAINED_GLASS_WALL, ModBlocks.LIGHT_BLUE_STAINED_GLASS_SLAB, ModBlocks.LIGHT_BLUE_STAINED_GLASS_STAIR, ModBlocks.LIGHT_BLUE_STAINED_GLASS_WALL, ModBlocks.BLUE_STAINED_GLASS_SLAB, ModBlocks.BLUE_STAINED_GLASS_STAIR, ModBlocks.BLUE_STAINED_GLASS_WALL, ModBlocks.PURPLE_STAINED_GLASS_SLAB, ModBlocks.PURPLE_STAINED_GLASS_STAIR, ModBlocks.PURPLE_STAINED_GLASS_WALL, ModBlocks.MAGENTA_STAINED_GLASS_SLAB, ModBlocks.MAGENTA_STAINED_GLASS_STAIR, ModBlocks.MAGENTA_STAINED_GLASS_WALL, ModBlocks.PINK_STAINED_GLASS_SLAB, ModBlocks.PINK_STAINED_GLASS_STAIR, ModBlocks.PINK_STAINED_GLASS_WALL);
     }
 }

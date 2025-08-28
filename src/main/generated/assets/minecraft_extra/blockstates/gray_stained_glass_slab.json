@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "minecraft_extra:block/gray_stained_glass_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/gray_stained_glass"
+    },
+    "type=top": {
+      "model": "minecraft_extra:block/gray_stained_glass_slab_top"
+    }
+  }
+}

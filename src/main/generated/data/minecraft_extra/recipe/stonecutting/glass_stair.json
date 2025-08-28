@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "minecraft:glass",
+  "result": {
+    "count": 1,
+    "id": "minecraft_extra:glass_stair"
+  }
+}
