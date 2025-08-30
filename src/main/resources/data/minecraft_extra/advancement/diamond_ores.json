@@ -4,7 +4,7 @@
       "id": "minecraft:deepslate_diamond_ore"
       },
 		"title": {"translate":"advancements.minecraft_extra.title.diamond_ores"},
-		"description": {"translate":"advancements.minecraft_extra.title.diamond_ores"},
+		"description": {"translate":"advancements.minecraft_extra.description.diamond_ores"},
 		"frame": "goal"
 	},
 	"parent": "minecraft_extra:root",

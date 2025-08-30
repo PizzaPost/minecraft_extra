@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:rotten_flesh"
+    },
+    "title": {
+      "translate":"advancements.minecraft_extra.description.zombie_horse"
+    },
+    "description": {
+      "translate":"advancements.minecraft_extra.description.zombie_horse"
+    }
+  },
+  "criteria": {
+    "imp": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "imp"
+    ]
+  ],
+  "parent":"minecraft_extra:root",
+  "rewards": {
+      "experience": 20
+  },
+  "sends_telemetry_event": true
+}

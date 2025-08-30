@@ -5,7 +5,7 @@
       "id": "minecraft:parrot_spawn_egg"
     },
     "title": {"translate":"advancements.minecraft_extra.title.cookie2"},
-    "description": {"translate":"advancements.minecraft_extra.title.cookie2"},
+    "description": {"translate":"advancements.minecraft_extra.description.cookie2"},
     "frame": "goal"
   },
   "criteria": {

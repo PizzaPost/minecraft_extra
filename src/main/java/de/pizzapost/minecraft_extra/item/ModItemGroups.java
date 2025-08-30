@@ -380,6 +380,11 @@ public class ModItemGroups {
         entries.add(ModBlocks.PINK_STAINED_GLASS_SLAB);
         entries.add(ModBlocks.PINK_STAINED_GLASS_STAIR);
         entries.add(ModBlocks.PINK_STAINED_GLASS_WALL);
+        entries.add(ModBlocks.HARDENED_NETHERITE_BLOCK);
+        entries.add(ModBlocks.COPPER_ANVIL);
+        entries.add(ModBlocks.CHIPPED_COPPER_ANVIL);
+        entries.add(ModBlocks.DAMAGED_COPPER_ANVIL);
+        entries.add(ModBlocks.HONEY_EXTRACTOR);
     }).build());
 
     public static void registerItemGroups() {

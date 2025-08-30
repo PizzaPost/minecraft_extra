@@ -84,15 +84,7 @@ public class BiomeCompassItem extends Item {
                 if (!player.isInCreativeMode()) {
                     itemStack.decrement(1);
                 }
-                int selectedSlot = player.getInventory().getSelectedSlot();
-                ItemStack currentInHand = player.getInventory().getStack(selectedSlot);
-                if (currentInHand.isEmpty()) {
-                    player.getInventory().setStack(selectedSlot, compassStack);
-                } else {
-                    if (!player.getInventory().insertStack(compassStack)) {
-                        player.dropItem(compassStack, false);
-                    }
-                }
+                player.giveOrDropStack(compassStack);
                 player.getInventory().markDirty();
                 int distance = (int) Math.round(Math.sqrt(player.getBlockPos().getSquaredDistance(biomePos)));
                 String formattedPos = String.format("%d, Y, %d", biomePos.getX(), biomePos.getZ());

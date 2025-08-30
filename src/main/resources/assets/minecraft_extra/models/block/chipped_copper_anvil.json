@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft_extra:block/template_copper_anvil",
+  "textures": {
+    "top": "minecraft_extra:block/chipped_copper_anvil_top",
+    "body": "minecraft_extra:block/copper_anvil",
+    "particle": "minecraft_extra:block/chipped_copper_anvil_top"
+  }
+}

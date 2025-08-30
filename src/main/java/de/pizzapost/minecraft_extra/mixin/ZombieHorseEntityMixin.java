@@ -1,5 +1,7 @@
 package de.pizzapost.minecraft_extra.mixin;
 
+import de.pizzapost.minecraft_extra.MinecraftExtra;
+import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.ZombieHorseEntity;
 import net.minecraft.entity.passive.AbstractHorseEntity;
@@ -7,9 +9,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -30,8 +34,15 @@ public abstract class ZombieHorseEntityMixin extends AbstractHorseEntity {
         if (itemStack.isOf(Items.ROTTEN_FLESH)) {
             if (!this.getWorld().isClient) {
                 if (!(this.isTame())) {
-                    if (this.random.nextInt(7) == 0) {
+                    if (random.nextInt(7) == 0) {
                         this.setTame(true);
+                        Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "zombie_horse");
+                        if (player instanceof ServerPlayerEntity serverPlayer) {
+                            AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+                            if (advancement != null) {
+                                serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
+                            }
+                        }
                         itemStack.decrement(1);
                         for (int i = 0; i < 7; i++)
                             if (player.getWorld() instanceof ServerWorld serverWorld)
@@ -39,7 +50,7 @@ public abstract class ZombieHorseEntityMixin extends AbstractHorseEntity {
                         cir.setReturnValue(ActionResult.FAIL);
                     } else {
                         itemStack.decrement(1);
-                        cir.setReturnValue(ActionResult.SUCCESS);
+                        player.setStackInHand(hand, itemStack);
                     }
                 }
             }

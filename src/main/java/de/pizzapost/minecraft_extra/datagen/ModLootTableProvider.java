@@ -57,5 +57,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
                 }
             }
         }
+        addDrop(ModBlocks.COPPER_ANVIL);
+        addDrop(ModBlocks.CHIPPED_COPPER_ANVIL);
+        addDrop(ModBlocks.DAMAGED_COPPER_ANVIL);
+        addDrop(ModBlocks.HONEY_EXTRACTOR);
     }
 }

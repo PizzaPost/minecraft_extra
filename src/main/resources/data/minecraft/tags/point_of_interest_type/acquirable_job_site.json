@@ -2,7 +2,11 @@
   "replace": false,
   "values": [
     {
-      "id": "minecraft_extra:pizza_poi",
+      "id": "minecraft_extra:beekeeper_poi",
+      "required": false
+    },
+    {
+      "id": "minecraft_extra:copperer_poi",
       "required": false
     }
   ]

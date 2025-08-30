@@ -296,16 +296,6 @@ public class ModBlocks {
     public static final Block PINK_CONCRETE_POWDER_SLAB = registerBlock("pink_concrete_powder_slab", properties -> new ConcretePowderSlabBlock(ModBlocks.PINK_CONCRETE_SLAB, properties.mapColor(DyeColor.PINK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sounds(BlockSoundGroup.SAND)));
     public static final Block PINK_CONCRETE_POWDER_STAIR = registerBlock("pink_concrete_powder_stair", properties -> new ConcretePowderStairsBlock(ModBlocks.PINK_CONCRETE_STAIR.getDefaultState(), ModBlocks.PINK_CONCRETE_STAIR, properties.mapColor(DyeColor.PINK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sounds(BlockSoundGroup.SAND)));
     public static final Block PINK_CONCRETE_POWDER_WALL = registerBlock("pink_concrete_powder_wall", props -> new ConcretePowderWallBlock(ModBlocks.PINK_CONCRETE_WALL, props.mapColor(DyeColor.PINK).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sounds(BlockSoundGroup.SAND)));
-
-    public static boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> entityType) {
-        return false;
-    }
-
-    private static boolean never(BlockState blockState, BlockView blockView, BlockPos blockPos) {
-        return false;
-    }
-
-
     public static final Block GLASS_SLAB = registerBlock("glass_slab", properties -> new GlassSlabBlock(DyeColor.WHITE, properties.strength(0.3F).nonOpaque().solidBlock(ModBlocks::never).suffocates(ModBlocks::never).blockVision(ModBlocks::never).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.WHITE).instrument(NoteBlockInstrument.HAT)) {
         @Override
         public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
@@ -714,7 +704,16 @@ public class ModBlocks {
             return super.isSideInvisible(state, stateFrom, direction);
         }
     });
-
+    public static final Block HARDENED_NETHERITE_BLOCK = registerBlock("hardened_netherite_block", properties -> new Block(properties
+            .strength(60.0F, 1400.0F).sounds(BlockSoundGroup.NETHERITE).mapColor(MapColor.BLACK)));
+    public static final Block COPPER_ANVIL = registerBlock("copper_anvil", properties -> new CopperAnvil(properties
+            .strength(4.0F, 1000.0F).mapColor(MapColor.ORANGE).sounds(BlockSoundGroup.ANVIL).pistonBehavior(PistonBehavior.BLOCK).requiresTool()));
+    public static final Block CHIPPED_COPPER_ANVIL = registerBlock("chipped_copper_anvil", properties -> new CopperAnvil(properties
+            .strength(4.0F, 1000.0F).mapColor(MapColor.ORANGE).sounds(BlockSoundGroup.ANVIL).pistonBehavior(PistonBehavior.BLOCK).requiresTool()));
+    public static final Block DAMAGED_COPPER_ANVIL = registerBlock("damaged_copper_anvil", properties -> new CopperAnvil(properties
+            .strength(4.0F, 1000.0F).mapColor(MapColor.ORANGE).sounds(BlockSoundGroup.ANVIL).pistonBehavior(PistonBehavior.BLOCK).requiresTool()));
+    public static final Block HONEY_EXTRACTOR = registerBlock("honey_extractor", properties -> new HoneyExtractor(properties
+            .strength(2.0F).requiresTool().sounds(BlockSoundGroup.IRON).nonOpaque().mapColor(MapColor.IRON_GRAY)));
     public static void registerCompostables() {
         ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.ASH, 0.1f);
         ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.HONEY_BERRIES, 0.3f);
@@ -732,5 +731,13 @@ public class ModBlocks {
 
     public static void registerModBlocks() {
         MinecraftExtra.LOGGER.info("Registering Mod Blocks for " + MinecraftExtra.MOD_ID);
+    }
+
+    public static boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> entityType) {
+        return false;
+    }
+
+    private static boolean never(BlockState blockState, BlockView blockView, BlockPos blockPos) {
+        return false;
     }
 }

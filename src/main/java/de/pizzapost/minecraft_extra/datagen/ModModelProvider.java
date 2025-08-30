@@ -46,6 +46,7 @@ public class ModModelProvider extends FabricModelProvider {
                 throw new RuntimeException("Failed to register block pool for " + name, e);
             }
         }
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.HARDENED_NETHERITE_BLOCK);
     }
 
     @Override

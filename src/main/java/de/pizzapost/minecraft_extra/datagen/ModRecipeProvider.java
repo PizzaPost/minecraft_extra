@@ -221,6 +221,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 createShaped(RecipeCategory.COMBAT, ModItems.TIME_CONTROL_DEVICE_PIECE).pattern(" gg").pattern("cig").pattern("cc ").input('g', Items.GOLD_INGOT).input('c', Items.COPPER_INGOT).input('i', ModItems.ICE_BLAZE_ROD).criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT)).criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT)).criterion(hasItem(ModItems.ICE_BLAZE_ROD), conditionsFromItem(ModItems.ICE_BLAZE_ROD)).offerTo(exporter);
 
                 createShaped(RecipeCategory.COMBAT, ModItems.TIME_CONTROL_DEVICE).pattern(" d ").pattern("iti").pattern("iii").input('d', Items.DAYLIGHT_DETECTOR).input('i', Items.IRON_INGOT).input('t', ModItems.TIME_CONTROL_DEVICE_PIECE).criterion(hasItem(Items.DAYLIGHT_DETECTOR), conditionsFromItem(Items.DAYLIGHT_DETECTOR)).criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT)).criterion(hasItem(ModItems.TIME_CONTROL_DEVICE_PIECE), conditionsFromItem(ModItems.TIME_CONTROL_DEVICE_PIECE)).offerTo(exporter);
+
+                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.HARDENED_NETHERITE_BLOCK).pattern("hhh").pattern("hhh").pattern("hhh").input('h', ModItems.HARDENED_NETHERITE_INGOT).criterion(hasItem(ModItems.HARDENED_NETHERITE_INGOT), conditionsFromItem(ModItems.HARDENED_NETHERITE_INGOT)).offerTo(exporter);
+
+                createShapeless(RecipeCategory.BUILDING_BLOCKS, ModItems.HARDENED_NETHERITE_INGOT, 9).input(ModBlocks.HARDENED_NETHERITE_BLOCK).criterion(hasItem(ModBlocks.HARDENED_NETHERITE_BLOCK), conditionsFromItem(ModBlocks.HARDENED_NETHERITE_BLOCK)).offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, Identifier.of(MinecraftExtra.MOD_ID, "hardened_netherite_ingot_from_block")));
+
+                createShaped(RecipeCategory.MISC, ModBlocks.COPPER_ANVIL).pattern("bbb").pattern(" b ").pattern("ccc").input('c', Items.COPPER_INGOT).input('b', Blocks.COPPER_BLOCK).criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT)).criterion(hasItem(Blocks.COPPER_BLOCK), conditionsFromItem(Blocks.COPPER_BLOCK)).offerTo(exporter);
+
+                createShaped(RecipeCategory.MISC, ModBlocks.HONEY_EXTRACTOR).pattern("i i").pattern("iii").pattern("iii").input('i', Items.IRON_INGOT).criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT)).offerTo(exporter);
             }
         };
     }

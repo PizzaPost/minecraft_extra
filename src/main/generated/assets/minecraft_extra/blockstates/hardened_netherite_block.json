@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "minecraft_extra:block/hardened_netherite_block"
+    }
+  }
+}

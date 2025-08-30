@@ -149,6 +149,10 @@
     "minecraft_extra:magenta_concrete_wall",
     "minecraft_extra:pink_concrete_slab",
     "minecraft_extra:pink_concrete_stair",
-    "minecraft_extra:pink_concrete_wall"
+    "minecraft_extra:pink_concrete_wall",
+    "minecraft_extra:copper_anvil",
+    "minecraft_extra:chipped_copper_anvil",
+    "minecraft_extra:damaged_copper_anvil",
+    "minecraft_extra:honey_extractor"
   ]
 }
