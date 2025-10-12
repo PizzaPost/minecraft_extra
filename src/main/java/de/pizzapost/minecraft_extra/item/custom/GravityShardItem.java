@@ -28,7 +28,7 @@ public class GravityShardItem extends Item {
         super.inventoryTick(stack, world, entity, slot);
         if (entity instanceof PlayerEntity player) {
             if (player.getMainHandStack().getItem() == ModItems.GRAVITY_SHARD || player.getOffHandStack().getItem() == ModItems.GRAVITY_SHARD) {
-                if (!world.isClient) {
+                if (!world.isClient()) {
                     List<ItemEntity> items = world.getEntitiesByClass(ItemEntity.class, player.getBoundingBox().expand(10 * player.getAttributeInstance(EntityAttributes.SCALE).getValue()), itemEntity -> true);
                     if (!items.isEmpty()) {
                         for (ItemEntity itemEntity : items) {
@@ -36,7 +36,7 @@ public class GravityShardItem extends Item {
                         }
                         if (player instanceof ServerPlayerEntity serverPlayer) {
                             Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "gravity_shard");
-                            AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+                            AdvancementEntry advancement = world.getServer().getAdvancementLoader().get(advancementId);
                             if (advancement != null) {
                                 serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
                             }

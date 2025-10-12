@@ -12,6 +12,7 @@ import de.pizzapost.minecraft_extra.particle.custom.EffectGemPushParticle;
 import de.pizzapost.minecraft_extra.particle.custom.HardenedNetheriteAmbientParticle;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.particle.v1.FabricSpriteProvider;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
@@ -20,6 +21,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.render.BlockRenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+import net.minecraft.client.texture.Sprite;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 
@@ -76,8 +78,17 @@ public class MinecraftExtraClient implements ClientModInitializer {
             drawContext.fill(0, 0, width, height, color);
         });
 
-        ParticleFactoryRegistry.getInstance().register(ModParticles.EFFECT_GEM_PUSH_PARTICLE, EffectGemPushParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(ModParticles.HARDENED_NETHERITE_AMBIENT, HardenedNetheriteAmbientParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(
+                ModParticles.EFFECT_GEM_PUSH_PARTICLE,
+                (FabricSpriteProvider provider) -> new EffectGemPushParticle.Factory(provider)
+        );
+
+
+        ParticleFactoryRegistry.getInstance().register(
+                ModParticles.HARDENED_NETHERITE_AMBIENT,
+                (FabricSpriteProvider provider) -> new HardenedNetheriteAmbientParticle.Factory(provider)
+        );
+
         BlockEntityRendererFactories.register(ModBlockEntities.XP_STORAGE_BE, XPStorageEntityRenderer::new);
         BlockRenderLayerMap.putBlock(ModBlocks.XP_STORAGE, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlocks(BlockRenderLayer.TRANSLUCENT, ModBlocks.GLASS_SLAB, ModBlocks.GLASS_STAIR, ModBlocks.GLASS_WALL, ModBlocks.WHITE_STAINED_GLASS_SLAB, ModBlocks.WHITE_STAINED_GLASS_STAIR, ModBlocks.WHITE_STAINED_GLASS_WALL, ModBlocks.LIGHT_GRAY_STAINED_GLASS_SLAB, ModBlocks.LIGHT_GRAY_STAINED_GLASS_STAIR, ModBlocks.LIGHT_GRAY_STAINED_GLASS_WALL, ModBlocks.GRAY_STAINED_GLASS_SLAB, ModBlocks.GRAY_STAINED_GLASS_STAIR, ModBlocks.GRAY_STAINED_GLASS_WALL, ModBlocks.BLACK_STAINED_GLASS_SLAB, ModBlocks.BLACK_STAINED_GLASS_STAIR, ModBlocks.BLACK_STAINED_GLASS_WALL, ModBlocks.BROWN_STAINED_GLASS_SLAB, ModBlocks.BROWN_STAINED_GLASS_STAIR, ModBlocks.BROWN_STAINED_GLASS_WALL, ModBlocks.RED_STAINED_GLASS_SLAB, ModBlocks.RED_STAINED_GLASS_STAIR, ModBlocks.RED_STAINED_GLASS_WALL, ModBlocks.ORANGE_STAINED_GLASS_SLAB, ModBlocks.ORANGE_STAINED_GLASS_STAIR, ModBlocks.ORANGE_STAINED_GLASS_WALL, ModBlocks.YELLOW_STAINED_GLASS_SLAB, ModBlocks.YELLOW_STAINED_GLASS_STAIR, ModBlocks.YELLOW_STAINED_GLASS_WALL, ModBlocks.LIME_STAINED_GLASS_SLAB, ModBlocks.LIME_STAINED_GLASS_STAIR, ModBlocks.LIME_STAINED_GLASS_WALL, ModBlocks.GREEN_STAINED_GLASS_SLAB, ModBlocks.GREEN_STAINED_GLASS_STAIR, ModBlocks.GREEN_STAINED_GLASS_WALL, ModBlocks.CYAN_STAINED_GLASS_SLAB, ModBlocks.CYAN_STAINED_GLASS_STAIR, ModBlocks.CYAN_STAINED_GLASS_WALL, ModBlocks.LIGHT_BLUE_STAINED_GLASS_SLAB, ModBlocks.LIGHT_BLUE_STAINED_GLASS_STAIR, ModBlocks.LIGHT_BLUE_STAINED_GLASS_WALL, ModBlocks.BLUE_STAINED_GLASS_SLAB, ModBlocks.BLUE_STAINED_GLASS_STAIR, ModBlocks.BLUE_STAINED_GLASS_WALL, ModBlocks.PURPLE_STAINED_GLASS_SLAB, ModBlocks.PURPLE_STAINED_GLASS_STAIR, ModBlocks.PURPLE_STAINED_GLASS_WALL, ModBlocks.MAGENTA_STAINED_GLASS_SLAB, ModBlocks.MAGENTA_STAINED_GLASS_STAIR, ModBlocks.MAGENTA_STAINED_GLASS_WALL, ModBlocks.PINK_STAINED_GLASS_SLAB, ModBlocks.PINK_STAINED_GLASS_STAIR, ModBlocks.PINK_STAINED_GLASS_WALL);

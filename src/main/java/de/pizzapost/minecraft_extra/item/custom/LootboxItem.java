@@ -6,21 +6,17 @@ import de.pizzapost.minecraft_extra.util.InventoryShuffler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.loot.context.LootWorldContext;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -34,7 +30,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Position;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
@@ -46,6 +42,7 @@ public class LootboxItem extends Item {
     public LootboxItem(Settings settings) {
         super(settings);
     }
+
     List paths = List.of(
             List.of("lootbox/1", -1, -1, -1),
             List.of("lootbox/2", 3, -1, 1),
@@ -67,7 +64,7 @@ public class LootboxItem extends Item {
         player.getStackInHand(hand).decrement(1);
         if (player instanceof ServerPlayerEntity serverPlayer) {
             if (random.nextInt(20) == 0) {
-                int x = random.nextInt(5+paths.size());
+                int x = random.nextInt(5 + paths.size());
                 if (x == 0) {
                     Inventory inventory = player.getInventory();
                     if (!inventory.isEmpty()) {
@@ -99,7 +96,7 @@ public class LootboxItem extends Item {
                     return ActionResult.SUCCESS;
                 } else if (x == 4) {
                     BlockPos blockPos = player.getBlockPos();
-                    List<BlockState> ORES=List.of(
+                    List<BlockState> ORES = List.of(
                             Blocks.COAL_ORE.getDefaultState(),
                             Blocks.COPPER_ORE.getDefaultState(),
                             Blocks.GOLD_ORE.getDefaultState(),
@@ -116,12 +113,12 @@ public class LootboxItem extends Item {
                             -90
                     );
                     for (int i = 0; i < 30; i++) {
-                        world.setBlockState(new BlockPos(blockPos.getX(), blockPos.getY()+i, blockPos.getZ()), Blocks.AIR.getDefaultState());
+                        world.setBlockState(new BlockPos(blockPos.getX(), blockPos.getY() + i, blockPos.getZ()), Blocks.AIR.getDefaultState());
                     }
                     for (int i = 0; i < ORES.size(); i++) {
                         FallingBlockEntity fallingBlock = FallingBlockEntity.spawnFromBlock(
                                 world,
-                                new BlockPos(player.getBlockPos().getX(), player.getBlockPos().getY()+i+30, player.getBlockPos().getZ()),
+                                new BlockPos(player.getBlockPos().getX(), player.getBlockPos().getY() + i + 30, player.getBlockPos().getZ()),
                                 ORES.get(i)
                         );
                         world.spawnEntity(fallingBlock);
@@ -132,12 +129,18 @@ public class LootboxItem extends Item {
                     return ActionResult.SUCCESS;
                 }
             }
-            RegistryKey lootTableId = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of(MinecraftExtra.MOD_ID, "items/lootbox"));
-            LootTable lootTable = serverPlayer.getServer().getReloadableRegistries().getLootTable(lootTableId);
-            LootWorldContext parameters = new LootWorldContext.Builder((ServerWorld) world).add(LootContextParameters.ORIGIN, serverPlayer.getPos()).add(LootContextParameters.THIS_ENTITY, serverPlayer).build(LootContextTypes.CHEST);
-            List<ItemStack> items = lootTable.generateLoot(parameters);
-            for (ItemStack item : items) {
-                player.setStackInHand(hand, item);
+            if (world instanceof ServerWorld serverWorld) {
+                RegistryKey lootTableId = RegistryKey.of(RegistryKeys.LOOT_TABLE, Identifier.of(MinecraftExtra.MOD_ID, "items/lootbox"));
+                LootTable lootTable = world.getServer().getReloadableRegistries().getLootTable(lootTableId);
+                Vec3d lootOrigin = Vec3d.ofCenter(serverPlayer.getBlockPos());
+                LootWorldContext parameters = new LootWorldContext.Builder(serverWorld)
+                        .add(LootContextParameters.ORIGIN, lootOrigin)
+                        .add(LootContextParameters.THIS_ENTITY, serverPlayer)
+                        .build(LootContextTypes.CHEST);
+                List<ItemStack> items = lootTable.generateLoot(parameters);
+                for (ItemStack item : items) {
+                    player.setStackInHand(hand, item);
+                }
             }
         }
         return ActionResult.FAIL;

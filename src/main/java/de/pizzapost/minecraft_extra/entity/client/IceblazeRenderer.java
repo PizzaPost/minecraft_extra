@@ -20,12 +20,6 @@ public class IceblazeRenderer extends MobEntityRenderer<IceblazeEntity, Iceblaze
     }
 
     @Override
-    public void render(IceblazeRenderState state, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-        matrixStack.scale(1f, 1f, 1f);
-        super.render(state, matrixStack, vertexConsumerProvider, i);
-    }
-
-    @Override
     public IceblazeRenderState createRenderState() {
         return new IceblazeRenderState();
     }

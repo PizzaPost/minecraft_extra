@@ -41,7 +41,7 @@ public class LightningStickItem extends Item {
                 if (!livingEntities.isEmpty()) {
                     if (player instanceof ServerPlayerEntity serverPlayer) {
                         Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "lightning_stick");
-                        AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+                        AdvancementEntry advancement = world.getServer().getAdvancementLoader().get(advancementId);
                         if (advancement != null) {
                             serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
                         }

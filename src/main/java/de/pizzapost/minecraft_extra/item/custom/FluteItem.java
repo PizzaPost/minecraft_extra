@@ -25,7 +25,7 @@ public class FluteItem extends Item {
     public ActionResult use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         player.incrementStat(Stats.USED.getOrCreateStat(this));
-        if (!world.isClient) {
+        if (!world.isClient()) {
             if (!player.getItemCooldownManager().isCoolingDown(itemStack)) {
                 player.getItemCooldownManager().set(itemStack, 120 * 20);
                 world.playSound(null, player.getBlockPos(), ModSounds.FLUTE, SoundCategory.PLAYERS, 1f, 1f);

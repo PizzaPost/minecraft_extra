@@ -1,27 +1,27 @@
 package de.pizzapost.minecraft_extra.particle.custom;
 
-import net.minecraft.client.particle.*;
+import net.minecraft.client.particle.BillboardParticle;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleFactory;
+import net.minecraft.client.particle.SpriteProvider;
+import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.SimpleParticleType;
+import net.minecraft.util.math.random.Random;
 import org.jetbrains.annotations.Nullable;
 
-public class HardenedNetheriteAmbientParticle extends SpriteBillboardParticle {
-    private final SpriteProvider spriteProvider;
-
-    public HardenedNetheriteAmbientParticle(ClientWorld clientWorld, double x, double y, double z, SpriteProvider spriteProvider, double xSpeed, double ySpeed, double zSpeed) {
-        super(clientWorld, x, y, z, xSpeed, ySpeed, zSpeed);
-        this.spriteProvider = spriteProvider;
+public class HardenedNetheriteAmbientParticle extends BillboardParticle {
+    public HardenedNetheriteAmbientParticle(ClientWorld clientWorld, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, Sprite sprite) {
+        super(clientWorld, x, y, z, xSpeed, ySpeed, zSpeed, sprite);
         this.velocityMultiplier = 0.8f;
         this.maxAge = 50;
         this.setBoundingBoxSpacing(0.2f, 0.2f);
-        this.setSpriteForAge(spriteProvider);
         updateColor();
     }
 
     @Override
     public void tick() {
         super.tick();
-        this.setSpriteForAge(spriteProvider);
         updateColor();
     }
 
@@ -39,8 +39,8 @@ public class HardenedNetheriteAmbientParticle extends SpriteBillboardParticle {
     }
 
     @Override
-    public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
+    public RenderType getRenderType() {
+        return RenderType.PARTICLE_ATLAS_TRANSLUCENT;
     }
 
     public static class Factory implements ParticleFactory<SimpleParticleType> {
@@ -52,8 +52,9 @@ public class HardenedNetheriteAmbientParticle extends SpriteBillboardParticle {
 
         @Nullable
         @Override
-        public Particle createParticle(SimpleParticleType parameters, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
-            return new HardenedNetheriteAmbientParticle(world, x, y, z, this.spriteProvider, velocityX, velocityY, velocityZ);
+        public Particle createParticle(SimpleParticleType parameters, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, Random random) {
+            Sprite sprite = this.spriteProvider.getSprite(random);
+            return new HardenedNetheriteAmbientParticle(world, x, y, z, velocityX, velocityY, velocityZ, sprite);
         }
     }
 }

@@ -52,7 +52,7 @@ public class InventoryShuffler {
 
         state.ticksLeft--;
 
-        if (player.getWorld() instanceof ServerWorld serverWorld) {
+        if (player.getEntityWorld() instanceof ServerWorld serverWorld) {
             Random random = new Random();
             serverWorld.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
         }

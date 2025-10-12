@@ -25,7 +25,7 @@ public abstract class ItemEntityMixin extends Entity {
 
         double radius = 10;
 
-        for (ItemEntity other : self.getWorld().getEntitiesByClass(ItemEntity.class, self.getBoundingBox().expand(radius, 0.0, radius), other -> other != self && ((ItemEntityMixin) (Object) other).canMerge())) {
+        for (ItemEntity other : self.getEntityWorld().getEntitiesByClass(ItemEntity.class, self.getBoundingBox().expand(radius, 0.0, radius), other -> other != self && ((ItemEntityMixin) (Object) other).canMerge())) {
             if (self.isRemoved()) break;
             ((ItemEntityMixin) (Object) self).tryMerge(other);
         }

@@ -79,7 +79,7 @@ public class XPStorage extends BlockWithEntity {
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack) {
         super.afterBreak(world, player, pos, state, blockEntity, stack);
-        if (!world.isClient) {
+        if (!world.isClient()) {
             int xpToDrop = state.get(XP);
             for (int i = 0; i < xpToDrop / 2; i++) {
                 ExperienceOrbEntity orb = new ExperienceOrbEntity(world, (double) pos.getX() + 0.5, (double) pos.getY() + 0.5, (double) pos.getZ() + 0.5, 1);

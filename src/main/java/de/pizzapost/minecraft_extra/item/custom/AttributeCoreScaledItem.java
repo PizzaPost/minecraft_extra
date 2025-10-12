@@ -7,7 +7,6 @@ import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.Stats;
@@ -65,7 +64,6 @@ public class AttributeCoreScaledItem extends Item {
 
     @Override
     public ActionResult use(World world, PlayerEntity player, Hand hand) {
-        ItemStack itemStack = player.getStackInHand(hand);
         double size = player.getAttributeInstance(EntityAttributes.SCALE).getValue();
         if (size > 15.5 && !player.isSneaking()) {
             return ActionResult.FAIL;
@@ -75,7 +73,7 @@ public class AttributeCoreScaledItem extends Item {
         if (size < 0.6 && player.isSneaking()) {
             if (player instanceof ServerPlayerEntity serverPlayer) {
                 Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "scale");
-                AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+                AdvancementEntry advancement = world.getServer().getAdvancementLoader().get(advancementId);
                 if (advancement != null) {
                     serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
                 }

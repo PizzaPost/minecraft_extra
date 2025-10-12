@@ -32,20 +32,20 @@ public abstract class ZombieHorseEntityMixin extends AbstractHorseEntity {
         ItemStack itemStack = player.getStackInHand(hand);
 
         if (itemStack.isOf(Items.ROTTEN_FLESH)) {
-            if (!this.getWorld().isClient) {
+            if (!this.getEntityWorld().isClient()) {
                 if (!(this.isTame())) {
                     if (random.nextInt(7) == 0) {
                         this.setTame(true);
                         Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "zombie_horse");
                         if (player instanceof ServerPlayerEntity serverPlayer) {
-                            AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+                            AdvancementEntry advancement = serverPlayer.getEntityWorld().getServer().getAdvancementLoader().get(advancementId);
                             if (advancement != null) {
                                 serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
                             }
                         }
                         itemStack.decrement(1);
                         for (int i = 0; i < 7; i++)
-                            if (player.getWorld() instanceof ServerWorld serverWorld)
+                            if (player.getEntityWorld() instanceof ServerWorld serverWorld)
                                 serverWorld.spawnParticles(ParticleTypes.HEART, this.getX() + (random.nextDouble() * 2 - 1), this.getY() + 1 + (random.nextDouble() * 2 - 1), this.getZ() + (random.nextDouble() * 2 - 1), 1, 0.0, 0.0, 0.0, 1.0);
                         cir.setReturnValue(ActionResult.FAIL);
                     } else {

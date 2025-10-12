@@ -2,7 +2,7 @@ package de.pizzapost.minecraft_extra.item.custom;
 
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.*;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,6 +12,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -20,6 +21,13 @@ import net.minecraft.world.event.GameEvent;
 public class BigFlintAndSteelItem extends Item {
     public BigFlintAndSteelItem(Item.Settings settings) {
         super(settings);
+    }
+
+    public EquipmentSlot getEquipmentSlotFromHand(Hand hand) {
+        return switch (hand) {
+            case MAIN_HAND -> EquipmentSlot.MAINHAND;
+            case OFF_HAND -> EquipmentSlot.OFFHAND;
+        };
     }
 
     @Override
@@ -48,7 +56,8 @@ public class BigFlintAndSteelItem extends Item {
                 ItemStack itemStack = context.getStack();
                 if (playerEntity instanceof ServerPlayerEntity) {
                     Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity) playerEntity, blockPos, itemStack);
-                    itemStack.damage(1, playerEntity, LivingEntity.getSlotForHand(context.getHand()));
+                    EquipmentSlot slot = getEquipmentSlotFromHand(context.getHand());
+                    itemStack.damage(1, playerEntity, slot);
                 }
                 return ActionResult.SUCCESS;
             } else {
@@ -59,7 +68,8 @@ public class BigFlintAndSteelItem extends Item {
             world.setBlockState(blockPos, blockState.with(Properties.LIT, Boolean.TRUE), Block.NOTIFY_ALL_AND_REDRAW);
             world.emitGameEvent(playerEntity, GameEvent.BLOCK_CHANGE, blockPos);
             if (playerEntity != null) {
-                context.getStack().damage(1, playerEntity, LivingEntity.getSlotForHand(context.getHand()));
+                EquipmentSlot slot = getEquipmentSlotFromHand(context.getHand());
+                context.getStack().damage(1, playerEntity, slot);
             }
             return ActionResult.SUCCESS;
         }

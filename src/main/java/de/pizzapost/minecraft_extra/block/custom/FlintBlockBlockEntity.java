@@ -10,6 +10,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -57,10 +58,13 @@ public class FlintBlockBlockEntity extends BlockWithEntity {
                             world.setBlockState(pos.add(x, y, z), Blocks.FIRE.getDefaultState());
                             proceed = true;
                             if (placer instanceof ServerPlayerEntity serverPlayer) {
-                                Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "flint_block");
-                                AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
-                                if (advancement != null) {
-                                    serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
+                                MinecraftServer server = world.getServer();
+                                if (server != null) {
+                                    Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "flint_block");
+                                    AdvancementEntry advancement = server.getAdvancementLoader().get(advancementId);
+                                    if (advancement != null) {
+                                        serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
+                                    }
                                 }
                             }
                             break;
@@ -88,10 +92,10 @@ public class FlintBlockBlockEntity extends BlockWithEntity {
         Box area = new Box(pos2.subtract(8, 8, 8), pos2.add(8, 8, 8));
         PlayerEntity player = (PlayerEntity) placer;
         for (PlayerEntity targetPlayer : world.getPlayers()) {
-            if (area.contains(targetPlayer.getPos())) {
+            if (area.contains(targetPlayer.getBlockPos())) {
                 if (world instanceof ServerWorld serverWorld) {
                     targetPlayer.damage(serverWorld, world.getDamageSources().playerAttack(player), 1.5F);
-                    Vec3d direction = targetPlayer.getPos().subtract(Vec3d.ofCenter(pos));
+                    Vec3d direction = Vec3d.ofCenter(targetPlayer.getBlockPos()).subtract(Vec3d.ofCenter(pos));
                     double distance = direction.length();
                     double boost = Math.max(0, 1 / (distance + 1) * 1.5);
                     targetPlayer.addVelocity(direction.x * boost, 0.02 * boost, direction.z * boost);
@@ -101,10 +105,10 @@ public class FlintBlockBlockEntity extends BlockWithEntity {
             }
         }
         for (LivingEntity targetEntity : world.getEntitiesByClass(MobEntity.class, area, e -> true)) {
-            if (area.contains(targetEntity.getPos())) {
+            if (area.contains(targetEntity.getBlockPos())) {
                 if (world instanceof ServerWorld serverWorld) {
                     targetEntity.damage(serverWorld, world.getDamageSources().playerAttack(player), 1.5F);
-                    Vec3d direction = targetEntity.getPos().subtract(Vec3d.ofCenter(pos));
+                    Vec3d direction = Vec3d.ofCenter(targetEntity.getBlockPos()).subtract(Vec3d.ofCenter(pos));
                     double distance = direction.length();
                     double boost = Math.max(0, 1 / (distance + 1) * 1.5);
                     targetEntity.addVelocity(direction.x * boost, 0.02 * boost, direction.z * boost);

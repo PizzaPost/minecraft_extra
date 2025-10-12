@@ -45,7 +45,7 @@ public class EndCrystalMobEntity extends HostileEntity {
     }
 
     private void setupAnimationStates() {
-        if (this.getWorld().isClient()) {
+        if (this.getEntityWorld().isClient()) {
             boolean isMoving = this.getVelocity().horizontalLengthSquared() > 0 || this.navigation.isFollowingPath();
             this.idleAnimationState.startIfNotRunning(this.age);
             this.walkingAnimationState.startIfNotRunning(this.age);
@@ -62,7 +62,7 @@ public class EndCrystalMobEntity extends HostileEntity {
     @Override
     public void tick() {
         super.tick();
-        if (this.getWorld().isClient()) {
+        if (this.getEntityWorld().isClient()) {
             this.setupAnimationStates();
         }
 
@@ -74,7 +74,7 @@ public class EndCrystalMobEntity extends HostileEntity {
     @Override
     public boolean tryAttack(ServerWorld serverWorld, Entity target) {
         this.attackTick = 10;
-        this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_ATTACK_SOUND);
+        this.getEntityWorld().sendEntityStatus(this, EntityStatuses.PLAY_ATTACK_SOUND);
         return super.tryAttack(serverWorld, target);
     }
 

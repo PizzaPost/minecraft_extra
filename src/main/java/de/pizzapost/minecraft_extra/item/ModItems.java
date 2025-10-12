@@ -288,7 +288,7 @@ public class ModItems {
             super.appendTooltip(stack, context, displayComponent, textConsumer, type);
         }
     });
-    public static final Item ICEBLAZE_SPAWN_EGG = registerItem("iceblaze_spawn_egg", settings -> new SpawnEggItem(ModEntities.ICEBLAZE, settings) {
+    public static final Item ICEBLAZE_SPAWN_EGG = registerItem("iceblaze_spawn_egg", settings -> new SpawnEggItem(settings.spawnEgg(ModEntities.ICEBLAZE)) {
     });
     public static final Item HARDENED_NETHERITE_PICKAXE = registerItem("hardened_netherite_pickaxe", settings -> new HardenedNetheritePickaxeItem(ModToolMaterials.HARDENED_NETHERITE, 2.0F, -2.8F, settings.maxCount(1).maxDamage(9999).rarity(Rarity.EPIC)) {
         @Override
@@ -369,7 +369,7 @@ public class ModItems {
     public static final Item TIME_CONTROL_DEVICE = registerItem("time_control_device", settings -> new TimeControlDeviceItem(settings.maxCount(1)));
     public static final Item TIME_CONTROL_DEVICE_PIECE = registerItem("time_control_device_piece", Item::new);
     public static final Item ICE_BLAZE_ROD = registerItem("ice_blaze_rod", Item::new);
-    public static final Item END_CRYSTAL_MOB_SPAWN_EGG = registerItem("end_crystal_mob_spawn_egg", settings -> new SpawnEggItem(ModEntities.END_CRYSTAL_MOB, settings));
+    public static final Item END_CRYSTAL_MOB_SPAWN_EGG = registerItem("end_crystal_mob_spawn_egg", settings -> new SpawnEggItem(settings.spawnEgg(ModEntities.END_CRYSTAL_MOB)));
 
     public static Item registerBlock(Block block) {
         return registerBlock(new BlockItem(block, new Item.Settings()));

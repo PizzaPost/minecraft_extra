@@ -28,7 +28,7 @@ public class HoneyKeyItem extends Item {
         BlockPos pos = context.getBlockPos();
         BlockState state = world.getBlockState(pos);
         PlayerEntity player = context.getPlayer();
-        if (!world.isClient && player != null) {
+        if (!world.isClient() && player != null) {
             if (state.isOf(Blocks.WATER_CAULDRON)) {
                 int level = state.get(LeveledCauldronBlock.LEVEL);
                 if (level > 1) {
@@ -39,7 +39,7 @@ public class HoneyKeyItem extends Item {
                 if (level > 0) {
                     if (player instanceof ServerPlayerEntity serverPlayer) {
                         Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "honey_key_clean");
-                        AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+                        AdvancementEntry advancement = world.getServer().getAdvancementLoader().get(advancementId);
                         if (advancement != null) {
                             serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
                         }

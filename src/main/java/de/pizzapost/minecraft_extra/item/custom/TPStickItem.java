@@ -32,7 +32,10 @@ public class TPStickItem extends Item {
             player.getItemCooldownManager().set(itemStack, 10 * 20);
             player.addExperience(-10);
             Vec3d lookVec = player.getRotationVec(1.0f);
-            Vec3d teleportPosition = player.getPos().add(lookVec.multiply(20 * player.getAttributeInstance(EntityAttributes.SCALE).getValue()));
+            Vec3d offsetVec = lookVec.multiply(20 * player.getAttributeInstance(EntityAttributes.SCALE).getValue());
+            BlockPos offsetBlockPos = new BlockPos((int) offsetVec.getX(), (int) offsetVec.getY(), (int) offsetVec.getZ());
+            BlockPos targetBlock = player.getBlockPos().add(offsetBlockPos);
+            Vec3d teleportPosition = Vec3d.ofCenter(targetBlock);
             BlockPos pos1 = new BlockPos((int) Math.floor(teleportPosition.x), (int) Math.floor(teleportPosition.y), (int) Math.floor(teleportPosition.z));
             world.breakBlock(pos1, true);
             BlockPos pos2 = pos1.up();
@@ -43,7 +46,7 @@ public class TPStickItem extends Item {
             if (player.getAttributeInstance(EntityAttributes.SCALE).getValue() > 1) {
                 if (player instanceof ServerPlayerEntity serverPlayer) {
                     Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "tp_stick");
-                    AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+                    AdvancementEntry advancement = world.getServer().getAdvancementLoader().get(advancementId);
                     if (advancement != null) {
                         serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
                     }

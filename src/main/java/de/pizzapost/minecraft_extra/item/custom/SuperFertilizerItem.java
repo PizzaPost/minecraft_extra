@@ -1,14 +1,12 @@
 package de.pizzapost.minecraft_extra.item.custom;
 
 import de.pizzapost.minecraft_extra.MinecraftExtra;
-import de.pizzapost.minecraft_extra.sound.ModSounds;
 import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -24,7 +22,7 @@ public class SuperFertilizerItem extends Item {
     private void giveAdvancement(PlayerEntity player) {
         if (player instanceof ServerPlayerEntity serverPlayer) {
             Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "super_fertilizer");
-            AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+            AdvancementEntry advancement = serverPlayer.getEntityWorld().getServer().getAdvancementLoader().get(advancementId);
             if (advancement != null) {
                 serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
             }
@@ -39,7 +37,7 @@ public class SuperFertilizerItem extends Item {
         Block block = blockState.getBlock();
         if (blockState.getBlock() instanceof Fertilizable fertilizable) {
             if (fertilizable.isFertilizable(world, blockPos, blockState)) {
-                if (!world.isClient) {
+                if (!world.isClient()) {
                     if (block instanceof CropBlock) {
                         if (!(block == Blocks.BEETROOTS)) {
                             world.setBlockState(blockPos, block.getDefaultState().with(CropBlock.AGE, 7));

@@ -13,5 +13,5 @@ public class ModFoodComponents {
     public static final ConsumableComponent INFINITE_POTATO_EFFECT = ConsumableComponents.food().consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 300, 4), 0.25F)).build();
     public static final FoodComponent HONEY_BERRY = new FoodComponent.Builder().nutrition(2).saturationModifier(0.1F).build();
     public static final FoodComponent SOAP = new FoodComponent.Builder().nutrition(1).saturationModifier(0.1F).alwaysEdible().build();
-    public static final ConsumableComponent SOAP_EFFECT = ConsumableComponents.food().consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 1050, 0), 1F)).consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(ModEffects.SOAPED, 1000, 0), 1F)).build();
+    public static final ConsumableComponent SOAP_EFFECT = ConsumableComponents.food().consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(ModEffects.SOAPED, 1800, 0), 1F)).build();
 }

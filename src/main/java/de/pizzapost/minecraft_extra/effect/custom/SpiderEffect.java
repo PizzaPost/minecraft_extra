@@ -16,14 +16,14 @@ public class SpiderEffect extends StatusEffect {
     public boolean applyUpdateEffect(ServerWorld serverWorld, LivingEntity entity, int amplifier) {
         BlockPos blockPos1 = entity.getBlockPos().down();
         BlockPos blockPos2 = entity.getBlockPos().down(2);
-        if (entity.horizontalCollision && entity.getPitch() >= 50 && !entity.getWorld().getBlockState(blockPos1).isSolidBlock(entity.getWorld(), blockPos1) && !entity.getWorld().getBlockState(blockPos2).isSolidBlock(entity.getWorld(), blockPos2)) {
+        if (entity.horizontalCollision && entity.getPitch() >= 50 && !entity.getEntityWorld().getBlockState(blockPos1).isSolidBlock(entity.getEntityWorld(), blockPos1) && !entity.getEntityWorld().getBlockState(blockPos2).isSolidBlock(entity.getEntityWorld(), blockPos2)) {
             Vec3d initialVec = entity.getVelocity();
             Vec3d climbVec = new Vec3d(initialVec.x, -0.1D, initialVec.z);
             entity.setVelocity(climbVec);
             entity.velocityModified = true;
             entity.velocityDirty = true;
             return true;
-        } else if (entity.horizontalCollision && entity.getPitch() < 50 && !entity.getWorld().getBlockState(blockPos1).isSolidBlock(entity.getWorld(), blockPos1)) {
+        } else if (entity.horizontalCollision && entity.getPitch() < 50 && !entity.getEntityWorld().getBlockState(blockPos1).isSolidBlock(entity.getEntityWorld(), blockPos1)) {
             Vec3d initialVec = entity.getVelocity();
             Vec3d climbVec = new Vec3d(initialVec.x, 0.15D, initialVec.z);
             entity.setVelocity(climbVec);

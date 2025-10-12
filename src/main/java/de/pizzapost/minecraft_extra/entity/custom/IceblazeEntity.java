@@ -74,7 +74,7 @@ public class IceblazeEntity extends HostileEntity {
     @Override
     public void tick() {
         super.tick();
-        List<Entity> entities = this.getWorld().getEntitiesByClass(Entity.class, this.getBoundingBox().expand(5.0), Entity::isAlive);
+        List<Entity> entities = this.getEntityWorld().getEntitiesByClass(Entity.class, this.getBoundingBox().expand(5.0), Entity::isAlive);
         for (Entity entity : entities) {
             if (entity instanceof ArrowEntity) {
                 entity.setAngles(entity.getYaw(), -90);
@@ -99,7 +99,7 @@ public class IceblazeEntity extends HostileEntity {
             }
         }
         this.setVelocity(this.getVelocity().x, this.verticalVelocity, this.getVelocity().z);
-        if (this.getWorld().isClient()) {
+        if (this.getEntityWorld().isClient()) {
             this.setupAnimationStates();
         }
     }
@@ -198,14 +198,14 @@ public class IceblazeEntity extends HostileEntity {
                         if (this.icebombsFired > 1) {
                             double h = Math.sqrt(Math.sqrt(d)) * 0.5;
                             if (!this.iceblaze.isSilent()) {
-                                this.iceblaze.getWorld().syncWorldEvent(null, WorldEvents.BLAZE_SHOOTS, this.iceblaze.getBlockPos(), 0);
+                                this.iceblaze.getEntityWorld().syncWorldEvent(null, WorldEvents.BLAZE_SHOOTS, this.iceblaze.getBlockPos(), 0);
                             }
                             for (int i = 0; i < 16; i++) {
                                 Vec3d vec3d = new Vec3d(this.iceblaze.getRandom().nextTriangular(e, 2.297 * h), f, this.iceblaze.getRandom().nextTriangular(g, 2.297 * h));
-                                IcebombEntity IcebombEntity = new IcebombEntity(this.iceblaze.getWorld(), this.iceblaze, new ItemStack(ModItems.ICEBOMB));
+                                IcebombEntity IcebombEntity = new IcebombEntity(this.iceblaze.getEntityWorld(), this.iceblaze, new ItemStack(ModItems.ICEBOMB));
                                 IcebombEntity.setVelocity(vec3d.x + random.nextDouble(-.2, .2), vec3d.y + random.nextDouble(-.2, .2), vec3d.z + random.nextDouble(-.2, .2));
                                 IcebombEntity.setPosition(IcebombEntity.getX(), this.iceblaze.getBodyY(0.5) + 0.5, IcebombEntity.getZ());
-                                this.iceblaze.getWorld().spawnEntity(IcebombEntity);
+                                this.iceblaze.getEntityWorld().spawnEntity(IcebombEntity);
                             }
                         }
                     }

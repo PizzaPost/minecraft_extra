@@ -31,7 +31,7 @@ public class HardenedNetheritePickaxeItem extends Item {
                 player.addExperienceLevels(-25);
                 var changes = ComponentChanges.builder().add(DataComponentTypes.ITEM_NAME, item.getName().copy().formatted(Formatting.DARK_RED).formatted(Formatting.ITALIC)).add(DataComponentTypes.CUSTOM_NAME, item.getName().copy().formatted(Formatting.DARK_RED)).build();
                 item.applyChanges(changes);
-                RegistryWrapper<Enchantment> enchantmentRegistry = player.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
+                RegistryWrapper<Enchantment> enchantmentRegistry = player.getEntityWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.EFFICIENCY), 5);
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.UNBREAKING), 3);
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.FORTUNE), 3);

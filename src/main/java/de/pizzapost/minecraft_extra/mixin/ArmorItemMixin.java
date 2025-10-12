@@ -29,7 +29,7 @@ public abstract class ArmorItemMixin {
         player.addExperienceLevels(-50);
         var changes = ComponentChanges.builder().add(DataComponentTypes.ITEM_NAME, item.getName().copy().formatted(Formatting.DARK_RED).formatted(Formatting.ITALIC)).add(DataComponentTypes.CUSTOM_NAME, item.getName().copy().formatted(Formatting.DARK_RED)).build();
         item.applyChanges(changes);
-        RegistryWrapper<Enchantment> enchantmentRegistry = player.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
+        RegistryWrapper<Enchantment> enchantmentRegistry = player.getEntityWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
         item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.PROTECTION), 4);
         item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.FIRE_PROTECTION), 4);
         item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.THORNS), 3);

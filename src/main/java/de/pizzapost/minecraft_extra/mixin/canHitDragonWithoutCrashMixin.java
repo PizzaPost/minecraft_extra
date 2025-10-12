@@ -22,7 +22,7 @@ public class canHitDragonWithoutCrashMixin {
 
     private void handleDragonPartAttack(PlayerEntity player, Entity target) {
         // Directly call the server-side damage handling without client processing
-        if (!player.getWorld().isClient) {
+        if (!player.getEntityWorld().isClient()) {
             target.serverDamage(player.getDamageSources().playerAttack(player), 1.0f);
         }
 

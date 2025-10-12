@@ -31,7 +31,7 @@ public class HardenedNetheriteSwordItem extends Item {
                 player.addExperienceLevels(-25);
                 var changes = ComponentChanges.builder().add(DataComponentTypes.ITEM_NAME, item.getName().copy().formatted(Formatting.DARK_RED).formatted(Formatting.ITALIC)).add(DataComponentTypes.CUSTOM_NAME, item.getName().copy().formatted(Formatting.DARK_RED)).build();
                 item.applyChanges(changes);
-                RegistryWrapper<Enchantment> enchantmentRegistry = player.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
+                RegistryWrapper<Enchantment> enchantmentRegistry = player.getEntityWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.BANE_OF_ARTHROPODS), 5);
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.SMITE), 5);
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.KNOCKBACK), 2);

@@ -21,7 +21,7 @@ public class ChaseAndAttackPlayerGoal extends Goal {
 
     @Override
     public boolean canStart() {
-        List<PlayerEntity> players = this.mob.getWorld().getEntitiesByClass(PlayerEntity.class, this.mob.getBoundingBox().expand(detectionRange), player -> true);
+        List<PlayerEntity> players = this.mob.getEntityWorld().getEntitiesByClass(PlayerEntity.class, this.mob.getBoundingBox().expand(detectionRange), player -> true);
         if (!players.isEmpty()) {
             this.target = players.get(0);
             return true;
@@ -43,7 +43,7 @@ public class ChaseAndAttackPlayerGoal extends Goal {
     @Override
     public void tick() {
         if (this.target != null && this.mob.squaredDistanceTo(this.target) <= 10.5) {
-            if (this.mob.getWorld() instanceof ServerWorld serverWorld) {
+            if (this.mob.getEntityWorld() instanceof ServerWorld serverWorld) {
                 this.mob.tryAttack(serverWorld, this.target);
             }
         } else {

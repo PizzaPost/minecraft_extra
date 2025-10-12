@@ -22,14 +22,14 @@ public class TimeControlDeviceItem extends Item {
     @Override
     public ActionResult use(World world, PlayerEntity player, Hand hand) {
         player.incrementStat(Stats.USED.getOrCreateStat(this));
-        if (!world.isClient) {
+        if (!world.isClient()) {
             frozen = !frozen;
-            ServerTickManager serverTickManager = player.getServer().getTickManager();
+            ServerTickManager serverTickManager = world.getServer().getTickManager();
             serverTickManager.setFrozen(frozen);
         }
         Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "time_control_device");
         if (player instanceof ServerPlayerEntity serverPlayer) {
-            AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+            AdvancementEntry advancement = world.getServer().getAdvancementLoader().get(advancementId);
             if (advancement != null) {
                 serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
             }

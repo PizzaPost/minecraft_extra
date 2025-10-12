@@ -19,12 +19,6 @@ public class EndCrystalMobRenderer extends MobEntityRenderer<EndCrystalMobEntity
     }
 
     @Override
-    public void render(EndCrystalMobRenderState state, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-        matrixStack.scale(1f, 1f, 1f);
-        super.render(state, matrixStack, vertexConsumerProvider, i);
-    }
-
-    @Override
     public EndCrystalMobRenderState createRenderState() {
         return new EndCrystalMobRenderState();
     }

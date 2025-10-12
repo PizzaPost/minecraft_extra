@@ -62,7 +62,7 @@ public class ModArmorItem extends Item {
         for (Map.Entry<ArmorMaterial, List<StatusEffectInstance>> entry : MATERIAL_TO_EFFECT_MAP.entrySet()) {
             ArmorMaterial mapArmorMaterial = entry.getKey();
             List<StatusEffectInstance> mapStatusEffects = entry.getValue();
-            if (player.getWorld() instanceof ServerWorld serverWorld) {
+            if (player.getEntityWorld() instanceof ServerWorld serverWorld) {
                 serverWorld.spawnParticles(ModParticles.HARDENED_NETHERITE_AMBIENT, player.getX(), player.getY() + 0.1, player.getZ(), 1, 0.0, 0.0, 0.0, 1);
             }
             if (hasCorrectArmorOn(mapArmorMaterial, player)) {

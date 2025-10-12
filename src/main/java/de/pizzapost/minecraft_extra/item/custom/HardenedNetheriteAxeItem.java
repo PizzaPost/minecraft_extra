@@ -38,7 +38,7 @@ public class HardenedNetheriteAxeItem extends AxeItem {
                 player.addExperienceLevels(-25);
                 var changes = ComponentChanges.builder().add(DataComponentTypes.ITEM_NAME, item.getName().copy().formatted(Formatting.DARK_RED).formatted(Formatting.ITALIC)).add(DataComponentTypes.CUSTOM_NAME, item.getName().copy().formatted(Formatting.DARK_RED)).build();
                 item.applyChanges(changes);
-                RegistryWrapper<Enchantment> enchantmentRegistry = player.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
+                RegistryWrapper<Enchantment> enchantmentRegistry = player.getEntityWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.EFFICIENCY), 5);
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.UNBREAKING), 3);
                 return ActionResult.SUCCESS;
@@ -48,7 +48,7 @@ public class HardenedNetheriteAxeItem extends AxeItem {
     }
 
     public static boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, PlayerEntity miner, Hand hand) {
-        if (!world.isClient && isLog(state)) {
+        if (!world.isClient() && isLog(state)) {
             breakTree((ServerWorld) world, pos, miner, stack, hand);
         }
         return true;

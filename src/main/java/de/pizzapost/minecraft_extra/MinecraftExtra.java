@@ -51,6 +51,7 @@ import net.minecraft.network.packet.s2c.play.OverlayMessageS2CPacket;
 import net.minecraft.network.packet.s2c.play.PositionFlag;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.Stats;
@@ -109,17 +110,17 @@ public class MinecraftExtra implements ModInitializer {
                 ItemStack itemStack = player.getStackInHand(Hand.MAIN_HAND);
                 checkPlayerHandForEffect(player, world);
                 AttributeCoreScaledItem.checkAndResetAttributes(player);
-                if (player.getPos().getY() >= 400) {
+                if (player.getBlockPos().getY() >= 400) {
                     if (player instanceof ServerPlayerEntity serverPlayer) {
                         Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "gravity");
-                        AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+                        AdvancementEntry advancement = serverPlayer.getEntityWorld().getServer().getAdvancementLoader().get(advancementId);
                         if (advancement != null) {
                             serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
                         }
                     }
                 }
                 if (ModKeys.silkTouchKey.isPressed() && itemStack.isOf(ModItems.HARDENED_NETHERITE_PICKAXE)) {
-                    RegistryWrapper<Enchantment> enchantmentRegistry = player.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
+                    RegistryWrapper<Enchantment> enchantmentRegistry = player.getEntityWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
                     itemStack.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.SILK_TOUCH), 1);
                 } else if (!ModKeys.silkTouchKey.isPressed() && itemStack.isOf(ModItems.HARDENED_NETHERITE_PICKAXE)) {
                     if (itemStack.getEnchantments().toString().contains("minecraft:silk_touch")) {
@@ -128,7 +129,7 @@ public class MinecraftExtra implements ModInitializer {
                         ItemStack itemStack2 = player.getStackInHand(Hand.MAIN_HAND);
                         var changes = ComponentChanges.builder().add(DataComponentTypes.ITEM_NAME, itemStack.getName().copy().formatted(Formatting.DARK_RED).formatted(Formatting.ITALIC)).add(DataComponentTypes.CUSTOM_NAME, itemStack.getName().copy().formatted(Formatting.DARK_RED)).build();
                         itemStack2.applyChanges(changes);
-                        RegistryWrapper<Enchantment> enchantmentRegistry = player.getWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
+                        RegistryWrapper<Enchantment> enchantmentRegistry = player.getEntityWorld().getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
                         itemStack2.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.EFFICIENCY), 5);
                         itemStack2.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.FORTUNE), 3);
                         itemStack2.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.UNBREAKING), 3);
@@ -158,18 +159,18 @@ public class MinecraftExtra implements ModInitializer {
                 for (ServerPlayerEntity player : world.getPlayers()) {
                     checkUnderwaterForItem(player);
                     checkPlayerMovement(player);
-                    if (player.getWorld().getRegistryKey() == World.END && player.getY() <= -55) {
+                    if (player.getEntityWorld().getRegistryKey() == World.END && player.getY() <= -55) {
                         if (player instanceof ServerPlayerEntity serverPlayer) {
-                            Vec3d pos = player.getPos();
-                            player.teleport(player.getServer().getWorld(World.OVERWORLD), pos.getX(), 499, pos.getZ(), EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
+                            Vec3d pos = player.getBlockPos().toCenterPos();
+                            player.teleport(player.getEntityWorld().getServer().getWorld(World.OVERWORLD), pos.getX(), 499, pos.getZ(), EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
                             serverPlayer.refreshPositionAfterTeleport(player.getX(), player.getY(), player.getZ());
                         }
-                    } else if (player.getWorld().getRegistryKey() == World.OVERWORLD && player.getY() >= 500) {
+                    } else if (player.getEntityWorld().getRegistryKey() == World.OVERWORLD && player.getY() >= 500) {
                         if (player instanceof ServerPlayerEntity serverPlayer) {
-                            boolean hasEnteredTheEnd = serverPlayer.getAdvancementTracker().getProgress(serverPlayer.getServer().getAdvancementLoader().get(Identifier.of("minecraft:story/enter_the_end"))).isDone();
+                            boolean hasEnteredTheEnd = serverPlayer.getAdvancementTracker().getProgress(serverPlayer.getEntityWorld().getServer().getAdvancementLoader().get(Identifier.of("minecraft:story/enter_the_end"))).isDone();
                             if (hasEnteredTheEnd) {
-                                Vec3d pos = player.getPos();
-                                player.teleport(player.getServer().getWorld(World.END), pos.getX(), -40, pos.getZ(), EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
+                                Vec3d pos = player.getBlockPos().toCenterPos();
+                                player.teleport(player.getEntityWorld().getServer().getWorld(World.END), pos.getX(), -40, pos.getZ(), EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
                                 serverPlayer.refreshPositionAfterTeleport(player.getX(), player.getY(), player.getZ());
                                 Vec3d boost = new Vec3d(0, 1.5, 0);
                                 player.setVelocity(player.getVelocity().add(boost));
@@ -179,22 +180,22 @@ public class MinecraftExtra implements ModInitializer {
                                 serverPlayer.networkHandler.sendPacket(new OverlayMessageS2CPacket(actionbarMessage));
                             }
                         }
-                    } else if (player.getWorld().getRegistryKey() == World.OVERWORLD && player.getY() <= -95) {
+                    } else if (player.getEntityWorld().getRegistryKey() == World.OVERWORLD && player.getY() <= -95) {
                         if (player instanceof ServerPlayerEntity serverPlayer) {
-                            boolean hasEnteredTheNether = serverPlayer.getAdvancementTracker().getProgress(serverPlayer.getServer().getAdvancementLoader().get(Identifier.of("minecraft:nether/root"))).isDone();
+                            boolean hasEnteredTheNether = serverPlayer.getAdvancementTracker().getProgress(serverPlayer.getEntityWorld().getServer().getAdvancementLoader().get(Identifier.of("minecraft:nether/root"))).isDone();
                             if (hasEnteredTheNether) {
-                                Vec3d pos = player.getPos();
-                                player.teleport(player.getServer().getWorld(World.NETHER), pos.getX() * 8, 250, pos.getZ() * 8, EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
+                                Vec3d pos = player.getBlockPos().toCenterPos();
+                                player.teleport(player.getEntityWorld().getServer().getWorld(World.NETHER), pos.getX() * 8, 250, pos.getZ() * 8, EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
                                 serverPlayer.refreshPositionAfterTeleport(player.getX(), player.getY(), player.getZ());
                             } else {
                                 Text actionbarMessage = Text.translatable("actionbar.minecraft_extra.levitate_between_dimensions");
                                 serverPlayer.networkHandler.sendPacket(new OverlayMessageS2CPacket(actionbarMessage));
                             }
                         }
-                    } else if (player.getWorld().getRegistryKey() == World.NETHER && player.getY() >= 251) {
+                    } else if (player.getEntityWorld().getRegistryKey() == World.NETHER && player.getY() >= 251) {
                         if (player instanceof ServerPlayerEntity serverPlayer) {
-                            Vec3d pos = player.getPos();
-                            player.teleport(player.getServer().getWorld(World.OVERWORLD), pos.getX() / 8, -80, pos.getZ() / 8, EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
+                            Vec3d pos = player.getBlockPos().toCenterPos();
+                            player.teleport(player.getEntityWorld().getServer().getWorld(World.OVERWORLD), pos.getX() / 8, -80, pos.getZ() / 8, EnumSet.noneOf(PositionFlag.class), player.getYaw(), player.getPitch(), false);
                             serverPlayer.refreshPositionAfterTeleport(player.getX(), player.getY(), player.getZ());
                             Vec3d boost = new Vec3d(0, 1.5, 0);
                             player.setVelocity(player.getVelocity().add(boost));
@@ -222,7 +223,7 @@ public class MinecraftExtra implements ModInitializer {
                     world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Blocks.GRAVEL, 2)));
                     if (player instanceof ServerPlayerEntity serverPlayer) {
                         Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "hammer");
-                        AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+                        AdvancementEntry advancement = serverPlayer.getEntityWorld().getServer().getAdvancementLoader().get(advancementId);
                         if (advancement != null) {
                             serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
                         }
@@ -463,12 +464,12 @@ public class MinecraftExtra implements ModInitializer {
                 angle = Math.toRadians(i);
                 double x = player.getX() + Math.cos(angle) * 1.5;
                 double z = player.getZ() + Math.sin(angle) * 1.5;
-                ServerWorld serverWorld = player.getWorld();
+                ServerWorld serverWorld = player.getEntityWorld();
                 serverWorld.spawnParticles(ModParticles.EFFECT_GEM_PUSH_PARTICLE, x, player.getY() + 0.2, z, 1, 0.0, 0.0, 0.0, 0.0);
             }
             world.getEntitiesByClass(MobEntity.class, player.getBoundingBox().expand(1.5), Entity::isAlive).forEach(mob -> {
                 if (mob.getType() == EntityType.BLAZE || mob.getType() == EntityType.BOGGED || mob.getType() == EntityType.BREEZE || mob.getType() == EntityType.CAVE_SPIDER || mob.getType() == EntityType.CREEPER || mob.getType() == EntityType.DROWNED || mob.getType() == EntityType.ELDER_GUARDIAN || mob.getType() == EntityType.ENDER_DRAGON || mob.getType() == EntityType.ENDERMAN || mob.getType() == EntityType.ENDERMITE || mob.getType() == EntityType.EVOKER || mob.getType() == EntityType.GHAST || mob.getType() == EntityType.GIANT || mob.getType() == EntityType.GUARDIAN || mob.getType() == EntityType.HOGLIN || mob.getType() == EntityType.HUSK || mob.getType() == EntityType.ILLUSIONER || mob.getType() == EntityType.MAGMA_CUBE || mob.getType() == EntityType.PHANTOM || mob.getType() == EntityType.PIGLIN || mob.getType() == EntityType.PIGLIN_BRUTE || mob.getType() == EntityType.PILLAGER || mob.getType() == EntityType.PUFFERFISH || mob.getType() == EntityType.RAVAGER || mob.getType() == EntityType.SHULKER || mob.getType() == EntityType.SILVERFISH || mob.getType() == EntityType.SKELETON || mob.getType() == EntityType.SLIME || mob.getType() == EntityType.SPIDER || mob.getType() == EntityType.STRAY || mob.getType() == EntityType.VEX || mob.getType() == EntityType.VINDICATOR || mob.getType() == EntityType.WARDEN || mob.getType() == EntityType.WITCH || mob.getType() == EntityType.WITHER || mob.getType() == EntityType.WITHER_SKELETON || mob.getType() == EntityType.ZOGLIN || mob.getType() == EntityType.ZOMBIE || mob.getType() == EntityType.ZOMBIE_VILLAGER || mob.getType() == EntityType.PLAYER || mob.getType() == ModEntities.ICEBLAZE || mob.getType() == ModEntities.END_CRYSTAL_MOB) {
-                    Vec3d direction = mob.getPos().subtract(player.getPos()).normalize();
+                    Vec3d direction = mob.getBlockPos().toCenterPos().subtract(player.getBlockPos().toCenterPos()).normalize();
                     mob.addVelocity(direction.x * 0.5, direction.y * 0.5 + 0.5, direction.z * 0.5);
                 }
             });

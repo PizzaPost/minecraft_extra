@@ -38,7 +38,7 @@ public class BiomeCompassItem extends Item {
     }
 
     private Pair<BlockPos, RegistryEntry<Biome>> findNearestBiome(PlayerEntity player, Identifier targetBiomeId) {
-        World world = player.getWorld();
+        World world = player.getEntityWorld();
         BlockPos searchCenter = player.getBlockPos();
         Predicate<RegistryEntry<Biome>> biomePredicate = entry -> {
             return entry.getKey().map(key -> key.getValue().equals(targetBiomeId)).orElse(false);
@@ -54,7 +54,7 @@ public class BiomeCompassItem extends Item {
         ItemStack itemStack = player.getStackInHand(hand);
         Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "biome_compass");
         if (player instanceof ServerPlayerEntity serverPlayer) {
-            AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+            AdvancementEntry advancement = world.getServer().getAdvancementLoader().get(advancementId);
             if (advancement != null) {
                 serverPlayer.getAdvancementTracker().grantCriterion(advancement, "imp");
             }
@@ -79,12 +79,12 @@ public class BiomeCompassItem extends Item {
                 LodestoneTrackerComponent lodestoneTrackerComponent = new LodestoneTrackerComponent(Optional.of(GlobalPos.create(world.getRegistryKey(), biomePos)), false);
                 ItemStack compassStack = new ItemStack(Items.COMPASS);
                 compassStack.set(DataComponentTypes.LODESTONE_TRACKER, lodestoneTrackerComponent);
-                var changes = ComponentChanges.builder().add(DataComponentTypes.ITEM_NAME, Text.literal(formattedBiomeId)).build();
+                var changes = ComponentChanges.builder().add(DataComponentTypes.ITEM_NAME, Text.literal(formattedBiomeId)).add(DataComponentTypes.CUSTOM_NAME, Text.literal(formattedBiomeId)).build();
                 compassStack.applyChanges(changes);
+                player.giveOrDropStack(compassStack);
                 if (!player.isInCreativeMode()) {
                     itemStack.decrement(1);
                 }
-                player.giveOrDropStack(compassStack);
                 player.getInventory().markDirty();
                 int distance = (int) Math.round(Math.sqrt(player.getBlockPos().getSquaredDistance(biomePos)));
                 String formattedPos = String.format("%d, Y, %d", biomePos.getX(), biomePos.getZ());

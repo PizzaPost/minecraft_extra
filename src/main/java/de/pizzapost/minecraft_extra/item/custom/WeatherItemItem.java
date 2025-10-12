@@ -36,7 +36,7 @@ public class WeatherItemItem extends Item {
                         overworld.setWeather(ServerWorld.CLEAR_WEATHER_DURATION_PROVIDER.get(overworld.getRandom()), 0, false, false);
                         if (player instanceof ServerPlayerEntity serverPlayer) {
                             Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "weather");
-                            AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+                            AdvancementEntry advancement = world.getServer().getAdvancementLoader().get(advancementId);
                             if (advancement != null) {
                                 serverPlayer.getAdvancementTracker().grantCriterion(advancement, "clear");
                             }
@@ -45,7 +45,7 @@ public class WeatherItemItem extends Item {
                         overworld.setWeather(0, ServerWorld.RAIN_WEATHER_DURATION_PROVIDER.get(overworld.getRandom()), true, false);
                         if (player instanceof ServerPlayerEntity serverPlayer) {
                             Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "weather");
-                            AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+                            AdvancementEntry advancement = world.getServer().getAdvancementLoader().get(advancementId);
                             if (advancement != null) {
                                 serverPlayer.getAdvancementTracker().grantCriterion(advancement, "rain");
                             }
@@ -54,7 +54,7 @@ public class WeatherItemItem extends Item {
                         overworld.setWeather(0, ServerWorld.THUNDER_WEATHER_DURATION_PROVIDER.get(overworld.getRandom()), true, true);
                         if (player instanceof ServerPlayerEntity serverPlayer) {
                             Identifier advancementId = Identifier.of(MinecraftExtra.MOD_ID, "weather");
-                            AdvancementEntry advancement = serverPlayer.getServer().getAdvancementLoader().get(advancementId);
+                            AdvancementEntry advancement = world.getServer().getAdvancementLoader().get(advancementId);
                             if (advancement != null) {
                                 serverPlayer.getAdvancementTracker().grantCriterion(advancement, "thunder");
                             }
