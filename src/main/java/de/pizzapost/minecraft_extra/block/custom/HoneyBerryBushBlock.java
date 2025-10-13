@@ -52,7 +52,7 @@ public class HoneyBerryBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler) {
+    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler, boolean bl) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.slowMovement(state, new Vec3d((double) 0.2F, (double) 0.15F, (double) 0.2F));
             if (world instanceof ServerWorld) {
