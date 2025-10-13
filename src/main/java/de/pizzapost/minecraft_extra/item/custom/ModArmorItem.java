@@ -4,12 +4,14 @@ import com.google.common.collect.ImmutableMap;
 import de.pizzapost.minecraft_extra.MinecraftExtra;
 import de.pizzapost.minecraft_extra.effect.ModEffects;
 import de.pizzapost.minecraft_extra.item.ModArmorMaterials;
+import de.pizzapost.minecraft_extra.item.ModItems;
 import de.pizzapost.minecraft_extra.keybinds.ModKeys;
 import de.pizzapost.minecraft_extra.particle.ModParticles;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.EquippableComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -24,7 +26,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class ModArmorItem extends Item {
     private static final Map<ArmorMaterial, List<StatusEffectInstance>> MATERIAL_TO_EFFECT_MAP = (new ImmutableMap.Builder<ArmorMaterial, List<StatusEffectInstance>>()).put(ModArmorMaterials.HARDENED_NETHERITE_ARMOR_MATERIAL, List.of(new StatusEffectInstance(StatusEffects.HASTE, 10, 2, false, false), new StatusEffectInstance(StatusEffects.REGENERATION, 50, 0, false, false), new StatusEffectInstance(StatusEffects.STRENGTH, 10, 1, false, false), new StatusEffectInstance(StatusEffects.SPEED, 10, 1, false, false), new StatusEffectInstance(ModEffects.SPIDER, 10, 0, false, false))).build();
@@ -47,6 +48,9 @@ public class ModArmorItem extends Item {
     @Override
     public void inventoryTick(ItemStack stack, ServerWorld world, Entity entity, @Nullable EquipmentSlot slot) {
         if (!world.isClient()) {
+            if (hasFullUnenchantedSuitOfArmorOn(entity)) {
+                entity.setFireTicks(-20);
+            }
             if (entity instanceof PlayerEntity player) {
                 if (hasFullSuitOfArmorOn(player)) {
                     evaluateArmorEffects(player);
@@ -95,9 +99,20 @@ public class ModArmorItem extends Item {
         ItemStack leggings = player.getEquippedStack(EquipmentSlot.LEGS);
         ItemStack breastplate = player.getEquippedStack(EquipmentSlot.CHEST);
         ItemStack helmet = player.getEquippedStack(EquipmentSlot.HEAD);
-        return !helmet.isEmpty() && !breastplate.isEmpty()
-                && !leggings.isEmpty() && !boots.isEmpty() && isEnchanted(helmet) && isEnchanted(breastplate) && isEnchanted(leggings) && isEnchanted(boots);
+        return !helmet.isEmpty() && !breastplate.isEmpty() && !leggings.isEmpty() && !boots.isEmpty() && isEnchanted(helmet) && isEnchanted(breastplate) && isEnchanted(leggings) && isEnchanted(boots);
     }
+
+    public static boolean hasFullUnenchantedSuitOfArmorOn(Entity entity) {
+        if (!(entity instanceof LivingEntity livingEntity)) {
+            return false;
+        }
+        ItemStack helmet = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
+        ItemStack chestplate = livingEntity.getEquippedStack(EquipmentSlot.CHEST);
+        ItemStack leggings = livingEntity.getEquippedStack(EquipmentSlot.LEGS);
+        ItemStack boots = livingEntity.getEquippedStack(EquipmentSlot.FEET);
+        return helmet.isOf(ModItems.HARDENED_NETHERITE_HELMET) && chestplate.isOf(ModItems.HARDENED_NETHERITE_CHESTPLATE) && leggings.isOf(ModItems.HARDENED_NETHERITE_LEGGINGS) && boots.isOf(ModItems.HARDENED_NETHERITE_BOOTS);
+    }
+
 
     private boolean isEnchanted(ItemStack armor) {
         return !armor.isEmpty() && armor.hasEnchantments();

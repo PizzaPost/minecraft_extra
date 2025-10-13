@@ -4,6 +4,7 @@ import net.minecraft.component.ComponentChanges;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,7 +36,6 @@ public class HardenedNetheriteSwordItem extends Item {
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.BANE_OF_ARTHROPODS), 5);
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.SMITE), 5);
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.KNOCKBACK), 2);
-                item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.FIRE_ASPECT), 2);
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.SWEEPING_EDGE), 3);
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.UNBREAKING), 3);
                 item.addEnchantment(enchantmentRegistry.getOrThrow(Enchantments.LOOTING), 3);
@@ -44,5 +44,15 @@ public class HardenedNetheriteSwordItem extends Item {
             }
         }
         return ActionResult.FAIL;
+    }
+
+    @Override
+    public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        String enchantments = stack.getEnchantments().toString();
+        if (enchantments.contains("Bane of Arthropods}=>5") && enchantments.contains("Sharpness}=>5") && enchantments.contains("Unbreaking}=>3") && enchantments.contains("Smite}=>5") && enchantments.contains("Sweeping Edge}=>3") && enchantments.contains("Looting}=>3") && enchantments.contains("Knockback}=>2")) {
+            if (!ModArmorItem.hasFullUnenchantedSuitOfArmorOn(target)) {
+                target.setFireTicks(160);
+            }
+        }
     }
 }
